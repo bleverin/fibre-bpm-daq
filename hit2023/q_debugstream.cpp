@@ -6,7 +6,9 @@ Q_DebugStream::Q_DebugStream(std::ostream &stream, QTextBrowser* text_edit) : m_
 {
     debugStreamHandle = this;   //we can use a global variable as only one instance of QDebugStream can be active
     displayMask = DS_INFO | DS_WARNING | DS_CRITICAL | DS_FATAL;
-    detailsMask = DS_WARNING | DS_CRITICAL | DS_FATAL;
+    //detailsMask = DS_WARNING | DS_CRITICAL | DS_FATAL; //why not DS_INFO here too?
+    detailsMask = DS_CRITICAL | DS_FATAL; //why not DS_INFO here too?
+
     log_window = text_edit;
     m_old_buf = stream.rdbuf();
     stream.rdbuf(this);
@@ -98,7 +100,7 @@ std::streamsize Q_DebugStream::xsputn(const char *p, std::streamsize n)
     {
         QStringList strSplitted = str.split("\n");
 
-        //log_window->moveCursor (QTextCursor::End);
+        log_window->moveCursor (QTextCursor::End);
         //log_window->insertPlainText (strSplitted.at(0)); //Index 0 is still on the same old line
 
         for(int i = 0; i < strSplitted.size(); i++)

@@ -6,9 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>602</width>
-    <height>360</height>
+    <width>603</width>
+    <height>392</height>
    </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Midlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>221</red>
+        <green>221</green>
+        <blue>221</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>85</red>
+        <green>85</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive/>
+    <disabled>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>85</red>
+        <green>85</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
   </property>
   <property name="windowTitle">
    <string>Online Display</string>
@@ -16,26 +61,16 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>9</x>
+     <x>10</x>
      <y>10</y>
      <width>581</width>
-     <height>341</height>
+     <height>371</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLineEdit" name="lineTitle">
-      <property name="frame">
-       <bool>false</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
     <item>
      <widget class="QCustomPlot" name="plot" native="true">
       <property name="sizePolicy">
@@ -44,14 +79,168 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <widget class="QLineEdit" name="lineTitle">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>0</y>
+         <width>106</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="frame">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QCheckBox" name="checkAutoscale">
+       <widget class="QRadioButton" name="radioButtonMaxScale">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Autoscale</string>
+         <string>Max Scale</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButtonAutoscale">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Auto-Scale</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButtonFixedScale">
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string notr="true">Fixed Scale</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_fixedmin">
+        <property name="minimum">
+         <number>-2000</number>
+        </property>
+        <property name="maximum">
+         <number>60000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>-2000</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_fixedmax">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="accelerated">
+         <bool>true</bool>
+        </property>
+        <property name="minimum">
+         <number>2000</number>
+        </property>
+        <property name="maximum">
+         <number>65000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>20000</number>
         </property>
        </widget>
       </item>
@@ -68,6 +257,14 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>radioButtonFixedScale</tabstop>
+  <tabstop>spinBox_fixedmin</tabstop>
+  <tabstop>spinBox_fixedmax</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

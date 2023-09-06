@@ -29,8 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
     theKeithley = new keithley_thr;
     theStepper = new Stepper;
 
-    connect(&timer, QTimer::timeout, this, on_timer);
-    connect(theKeithley, keithley_thr::esig_newCurrentReadout, this, MainWindow::on_newCurrentReadout);
+    //connect(&timer, QTimer::timeout, this, on_timer);
+    connect(&timer, &QTimer::timeout, this, &MainWindow::on_timer);
+ //   connect(theKeithley, keithley_thr::esig_newCurrentReadout, this, MainWindow::on_newCurrentReadout);
 
 }
 

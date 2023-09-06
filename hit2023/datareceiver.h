@@ -13,10 +13,10 @@
 #define DATA_SYNC_HEADER_SIZE       6
 #define DATA_BYTES_PER_SAMPLE       2
 #define DATA_SAMPLES_PER_SENSOR     64
-#define DATA_SENSORS_PER_BOARD      2
+#define DATA_SENSORS_PER_BOARD      5
 #define DATA_MAX_BUNCH              16   //max. product of dmaBunch * ethBunch
-#define DATA_RESULTS_PER_BOARD      2
-#define DATA_BYTES_PER_RESULT       2
+#define DATA_RESULTS_PER_BOARD      0
+#define DATA_BYTES_PER_RESULT       0
 
 
 #define DATA_BLOCK_SIZE             (DATA_SENSORS_PER_BOARD * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE + DATA_RESULTS_PER_BOARD * DATA_BYTES_PER_RESULT )

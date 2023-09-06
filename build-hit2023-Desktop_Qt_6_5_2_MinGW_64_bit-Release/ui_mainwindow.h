@@ -56,7 +56,6 @@ public:
     QMenuBar *menuBar;
     QMenu *menuDevice;
     QMenu *menuSettings;
-    QMenu *menuAuto;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -148,8 +147,6 @@ public:
         menuDevice->setObjectName("menuDevice");
         menuSettings = new QMenu(menuBar);
         menuSettings->setObjectName("menuSettings");
-        menuAuto = new QMenu(menuBar);
-        menuAuto->setObjectName("menuAuto");
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName("mainToolBar");
@@ -160,22 +157,13 @@ public:
 
         menuBar->addAction(menuDevice->menuAction());
         menuBar->addAction(menuSettings->menuAction());
-        menuBar->addAction(menuAuto->menuAction());
         menuDevice->addAction(actionConnect);
         menuDevice->addAction(actionDisconnect);
         menuDevice->addSeparator();
-        menuDevice->addAction(actionConnect_Keithley);
-        menuDevice->addAction(actionDisconnect_Keithley);
         menuDevice->addSeparator();
-        menuDevice->addAction(actionConnect_Stepper);
-        menuDevice->addAction(actionDisconnect_Stepper);
         menuSettings->addAction(actionHost_IP);
         menuSettings->addAction(actionDevices);
         menuSettings->addAction(actionTrigger_config);
-        menuAuto->addAction(actionLinearity_test);
-        menuAuto->addAction(actionIntegration_time_scan);
-        menuAuto->addAction(actionProfile_viewer);
-        menuAuto->addAction(actionBeta_Scanner);
 
         retranslateUi(MainWindow);
 
@@ -205,7 +193,6 @@ public:
         pushLogSettings->setText(QCoreApplication::translate("MainWindow", "Log settings...", nullptr));
         menuDevice->setTitle(QCoreApplication::translate("MainWindow", "Device", nullptr));
         menuSettings->setTitle(QCoreApplication::translate("MainWindow", "Settings", nullptr));
-        menuAuto->setTitle(QCoreApplication::translate("MainWindow", "Auto", nullptr));
     } // retranslateUi
 
 };
