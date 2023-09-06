@@ -51,7 +51,8 @@ int keithley::ps_read(char* dest, int maxSize)
         //return number of read characters
     return ptr;
 }*/
-
+//Qt5
+/*
 void keithley::ps_printf(const char* fmt, ...)
 {
     QString result;
@@ -64,6 +65,18 @@ void keithley::ps_printf(const char* fmt, ...)
     //strcpy(toWrite, qPrintable(result));
     //serialPort.write(toWrite, strlen(toWrite));
     serialPort.write(qPrintable(result), result.length());
+    serialPort.waitForBytesWritten(500);
+}
+*/
+//Qt6
+void keithley::ps_printf(const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    QString result = QString::vasprintf(fmt, args);
+    va_end(args);
+
+    serialPort.write(result.toUtf8());
     serialPort.waitForBytesWritten(500);
 }
 

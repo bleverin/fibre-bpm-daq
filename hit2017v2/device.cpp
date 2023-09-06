@@ -7,7 +7,8 @@
 
 
 //************** Constructor ********************
-
+// Qt5
+/*
 Device::Device(QObject *parent) : QObject(parent), controlSocket(this)
 {
     connect(&controlSocket, QTcpSocket::connected, this, Device::onConnected);
@@ -16,10 +17,29 @@ Device::Device(QObject *parent) : QObject(parent), controlSocket(this)
             this, Device::onSocketError);
     connect(&controlSocket, QTcpSocket::disconnected, this, Device::onDisconnected);
 
+*/
+/*dataReceiver.moveToThread(&receiverThread);
+    receiverThread.start();
+    dataReceiver.init();*/
+//}
+
+//Qt6
+Device::Device(QObject *parent) : QObject(parent), controlSocket(this)
+{
+    connect(&controlSocket, &QTcpSocket::connected, this, &Device::onConnected);
+
+    connect(&controlSocket, &QAbstractSocket::errorOccurred,
+            [this](QAbstractSocket::SocketError socketError) {
+                this->onSocketError(socketError);
+            });
+
+    connect(&controlSocket, &QTcpSocket::disconnected, this, &Device::onDisconnected);
+
     /*dataReceiver.moveToThread(&receiverThread);
     receiverThread.start();
     dataReceiver.init();*/
 }
+
 
 Device::~Device()
 {

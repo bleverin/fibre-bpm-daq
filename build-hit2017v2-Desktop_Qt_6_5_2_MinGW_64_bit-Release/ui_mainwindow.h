@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,21 +10,19 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QMainWindow>
-#include <QMenu>
-#include <QMenuBar>
-#include <QPushButton>
-#include <QSpacerItem>
-#include <QStatusBar>
-#include <QTextBrowser>
-#include <QToolBar>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtGui/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -65,68 +63,68 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+            MainWindow->setObjectName("MainWindow");
         MainWindow->resize(853, 601);
         actionConnect = new QAction(MainWindow);
-        actionConnect->setObjectName(QStringLiteral("actionConnect"));
+        actionConnect->setObjectName("actionConnect");
         actionDisconnect = new QAction(MainWindow);
-        actionDisconnect->setObjectName(QStringLiteral("actionDisconnect"));
+        actionDisconnect->setObjectName("actionDisconnect");
         actionHost_IP = new QAction(MainWindow);
-        actionHost_IP->setObjectName(QStringLiteral("actionHost_IP"));
+        actionHost_IP->setObjectName("actionHost_IP");
         actionDevices = new QAction(MainWindow);
-        actionDevices->setObjectName(QStringLiteral("actionDevices"));
+        actionDevices->setObjectName("actionDevices");
         actionTrigger_config = new QAction(MainWindow);
-        actionTrigger_config->setObjectName(QStringLiteral("actionTrigger_config"));
+        actionTrigger_config->setObjectName("actionTrigger_config");
         actionRun = new QAction(MainWindow);
-        actionRun->setObjectName(QStringLiteral("actionRun"));
+        actionRun->setObjectName("actionRun");
         actionConnect_Keithley = new QAction(MainWindow);
-        actionConnect_Keithley->setObjectName(QStringLiteral("actionConnect_Keithley"));
+        actionConnect_Keithley->setObjectName("actionConnect_Keithley");
         actionDisconnect_Keithley = new QAction(MainWindow);
-        actionDisconnect_Keithley->setObjectName(QStringLiteral("actionDisconnect_Keithley"));
+        actionDisconnect_Keithley->setObjectName("actionDisconnect_Keithley");
         actionLinearity_test = new QAction(MainWindow);
-        actionLinearity_test->setObjectName(QStringLiteral("actionLinearity_test"));
+        actionLinearity_test->setObjectName("actionLinearity_test");
         actionIntegration_time_scan = new QAction(MainWindow);
-        actionIntegration_time_scan->setObjectName(QStringLiteral("actionIntegration_time_scan"));
+        actionIntegration_time_scan->setObjectName("actionIntegration_time_scan");
         actionProfile_viewer = new QAction(MainWindow);
-        actionProfile_viewer->setObjectName(QStringLiteral("actionProfile_viewer"));
+        actionProfile_viewer->setObjectName("actionProfile_viewer");
         actionConnect_Stepper = new QAction(MainWindow);
-        actionConnect_Stepper->setObjectName(QStringLiteral("actionConnect_Stepper"));
+        actionConnect_Stepper->setObjectName("actionConnect_Stepper");
         actionDisconnect_Stepper = new QAction(MainWindow);
-        actionDisconnect_Stepper->setObjectName(QStringLiteral("actionDisconnect_Stepper"));
+        actionDisconnect_Stepper->setObjectName("actionDisconnect_Stepper");
         actionBeta_Scanner = new QAction(MainWindow);
-        actionBeta_Scanner->setObjectName(QStringLiteral("actionBeta_Scanner"));
+        actionBeta_Scanner->setObjectName("actionBeta_Scanner");
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName("centralWidget");
         verticalLayoutWidget = new QWidget(centralWidget);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
         verticalLayoutWidget->setGeometry(QRect(10, 10, 831, 421));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         logWindow = new QTextBrowser(verticalLayoutWidget);
-        logWindow->setObjectName(QStringLiteral("logWindow"));
+        logWindow->setObjectName("logWindow");
 
         verticalLayout->addWidget(logWindow);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName("horizontalLayout");
         pushRun = new QPushButton(verticalLayoutWidget);
-        pushRun->setObjectName(QStringLiteral("pushRun"));
+        pushRun->setObjectName("pushRun");
         pushRun->setEnabled(false);
 
         horizontalLayout->addWidget(pushRun);
 
         pushLogging = new QPushButton(verticalLayoutWidget);
-        pushLogging->setObjectName(QStringLiteral("pushLogging"));
+        pushLogging->setObjectName("pushLogging");
         pushLogging->setEnabled(true);
 
         horizontalLayout->addWidget(pushLogging);
 
         pushDisplay = new QPushButton(verticalLayoutWidget);
-        pushDisplay->setObjectName(QStringLiteral("pushDisplay"));
+        pushDisplay->setObjectName("pushDisplay");
 
         horizontalLayout->addWidget(pushDisplay);
 
@@ -135,7 +133,7 @@ public:
         horizontalLayout->addItem(horizontalSpacer);
 
         pushLogSettings = new QPushButton(verticalLayoutWidget);
-        pushLogSettings->setObjectName(QStringLiteral("pushLogSettings"));
+        pushLogSettings->setObjectName("pushLogSettings");
 
         horizontalLayout->addWidget(pushLogSettings);
 
@@ -144,20 +142,20 @@ public:
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setObjectName("menuBar");
         menuBar->setGeometry(QRect(0, 0, 853, 21));
         menuDevice = new QMenu(menuBar);
-        menuDevice->setObjectName(QStringLiteral("menuDevice"));
+        menuDevice->setObjectName("menuDevice");
         menuSettings = new QMenu(menuBar);
-        menuSettings->setObjectName(QStringLiteral("menuSettings"));
+        menuSettings->setObjectName("menuSettings");
         menuAuto = new QMenu(menuBar);
-        menuAuto->setObjectName(QStringLiteral("menuAuto"));
+        menuAuto->setObjectName("menuAuto");
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setObjectName("mainToolBar");
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
+        statusBar->setObjectName("statusBar");
         MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuDevice->menuAction());
@@ -186,28 +184,28 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "HIT DAQ", 0));
-        actionConnect->setText(QApplication::translate("MainWindow", "Connect", 0));
-        actionDisconnect->setText(QApplication::translate("MainWindow", "Disconnect", 0));
-        actionHost_IP->setText(QApplication::translate("MainWindow", "Host IP...", 0));
-        actionDevices->setText(QApplication::translate("MainWindow", "Devices...", 0));
-        actionTrigger_config->setText(QApplication::translate("MainWindow", "Trigger config...", 0));
-        actionRun->setText(QApplication::translate("MainWindow", "Run", 0));
-        actionConnect_Keithley->setText(QApplication::translate("MainWindow", "Connect Keithley", 0));
-        actionDisconnect_Keithley->setText(QApplication::translate("MainWindow", "Disconnect Keithley", 0));
-        actionLinearity_test->setText(QApplication::translate("MainWindow", "Linearity test", 0));
-        actionIntegration_time_scan->setText(QApplication::translate("MainWindow", "Integration time scan", 0));
-        actionProfile_viewer->setText(QApplication::translate("MainWindow", "Profile viewer", 0));
-        actionConnect_Stepper->setText(QApplication::translate("MainWindow", "Connect Stepper", 0));
-        actionDisconnect_Stepper->setText(QApplication::translate("MainWindow", "Disconnect Stepper", 0));
-        actionBeta_Scanner->setText(QApplication::translate("MainWindow", "Beta Scanner", 0));
-        pushRun->setText(QApplication::translate("MainWindow", "Run!", 0));
-        pushLogging->setText(QApplication::translate("MainWindow", "Start logging!", 0));
-        pushDisplay->setText(QApplication::translate("MainWindow", "Show display!", 0));
-        pushLogSettings->setText(QApplication::translate("MainWindow", "Log settings...", 0));
-        menuDevice->setTitle(QApplication::translate("MainWindow", "Device", 0));
-        menuSettings->setTitle(QApplication::translate("MainWindow", "Settings", 0));
-        menuAuto->setTitle(QApplication::translate("MainWindow", "Auto", 0));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "HIT DAQ", nullptr));
+        actionConnect->setText(QCoreApplication::translate("MainWindow", "Connect", nullptr));
+        actionDisconnect->setText(QCoreApplication::translate("MainWindow", "Disconnect", nullptr));
+        actionHost_IP->setText(QCoreApplication::translate("MainWindow", "Host IP...", nullptr));
+        actionDevices->setText(QCoreApplication::translate("MainWindow", "Devices...", nullptr));
+        actionTrigger_config->setText(QCoreApplication::translate("MainWindow", "Trigger config...", nullptr));
+        actionRun->setText(QCoreApplication::translate("MainWindow", "Run", nullptr));
+        actionConnect_Keithley->setText(QCoreApplication::translate("MainWindow", "Connect Keithley", nullptr));
+        actionDisconnect_Keithley->setText(QCoreApplication::translate("MainWindow", "Disconnect Keithley", nullptr));
+        actionLinearity_test->setText(QCoreApplication::translate("MainWindow", "Linearity test", nullptr));
+        actionIntegration_time_scan->setText(QCoreApplication::translate("MainWindow", "Integration time scan", nullptr));
+        actionProfile_viewer->setText(QCoreApplication::translate("MainWindow", "Profile viewer", nullptr));
+        actionConnect_Stepper->setText(QCoreApplication::translate("MainWindow", "Connect Stepper", nullptr));
+        actionDisconnect_Stepper->setText(QCoreApplication::translate("MainWindow", "Disconnect Stepper", nullptr));
+        actionBeta_Scanner->setText(QCoreApplication::translate("MainWindow", "Beta Scanner", nullptr));
+        pushRun->setText(QCoreApplication::translate("MainWindow", "Run!", nullptr));
+        pushLogging->setText(QCoreApplication::translate("MainWindow", "Start logging!", nullptr));
+        pushDisplay->setText(QCoreApplication::translate("MainWindow", "Show display!", nullptr));
+        pushLogSettings->setText(QCoreApplication::translate("MainWindow", "Log settings...", nullptr));
+        menuDevice->setTitle(QCoreApplication::translate("MainWindow", "Device", nullptr));
+        menuSettings->setTitle(QCoreApplication::translate("MainWindow", "Settings", nullptr));
+        menuAuto->setTitle(QCoreApplication::translate("MainWindow", "Auto", nullptr));
     } // retranslateUi
 
 };

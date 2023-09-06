@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialoghostip.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,16 +10,14 @@
 #define UI_DIALOGHOSTIP_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QLineEdit>
-#include <QWidget>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -35,41 +33,41 @@ public:
     void setupUi(QDialog *DialogHostIp)
     {
         if (DialogHostIp->objectName().isEmpty())
-            DialogHostIp->setObjectName(QStringLiteral("DialogHostIp"));
+            DialogHostIp->setObjectName("DialogHostIp");
         DialogHostIp->resize(185, 99);
         buttonBox = new QDialogButtonBox(DialogHostIp);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(10, 60, 161, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         horizontalLayoutWidget = new QWidget(DialogHostIp);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
         horizontalLayoutWidget->setGeometry(QRect(10, 10, 160, 41));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(horizontalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName("label");
 
         horizontalLayout->addWidget(label);
 
         lineIp = new QLineEdit(horizontalLayoutWidget);
-        lineIp->setObjectName(QStringLiteral("lineIp"));
+        lineIp->setObjectName("lineIp");
 
         horizontalLayout->addWidget(lineIp);
 
 
         retranslateUi(DialogHostIp);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DialogHostIp, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DialogHostIp, SLOT(reject()));
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, DialogHostIp, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, DialogHostIp, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(DialogHostIp);
     } // setupUi
 
     void retranslateUi(QDialog *DialogHostIp)
     {
-        DialogHostIp->setWindowTitle(QApplication::translate("DialogHostIp", "Host IP", 0));
-        label->setText(QApplication::translate("DialogHostIp", "Host IP:", 0));
+        DialogHostIp->setWindowTitle(QCoreApplication::translate("DialogHostIp", "Host IP", nullptr));
+        label->setText(QCoreApplication::translate("DialogHostIp", "Host IP:", nullptr));
     } // retranslateUi
 
 };

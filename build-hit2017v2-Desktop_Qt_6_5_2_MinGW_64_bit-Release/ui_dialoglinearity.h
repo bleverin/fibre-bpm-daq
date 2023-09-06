@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialoglinearity.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,21 +10,19 @@
 #define UI_DIALOGLINEARITY_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QDoubleSpinBox>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QPushButton>
-#include <QSpacerItem>
-#include <QSpinBox>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -68,23 +66,23 @@ public:
     void setupUi(QDialog *DialogLinearity)
     {
         if (DialogLinearity->objectName().isEmpty())
-            DialogLinearity->setObjectName(QStringLiteral("DialogLinearity"));
+            DialogLinearity->setObjectName("DialogLinearity");
         DialogLinearity->resize(844, 632);
         buttonBox = new QDialogButtonBox(DialogLinearity);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(490, 590, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Close);
         horizontalLayoutWidget = new QWidget(DialogLinearity);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
         horizontalLayoutWidget->setGeometry(QRect(10, 10, 821, 571));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(horizontalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName("label");
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -95,23 +93,23 @@ public:
         verticalLayout->addWidget(label);
 
         gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName("gridLayout");
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_2, 3, 0, 1, 1);
 
         label_5 = new QLabel(horizontalLayoutWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName("label_5");
 
         gridLayout->addWidget(label_5, 0, 2, 1, 1);
 
         label_8 = new QLabel(horizontalLayoutWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setObjectName("label_8");
 
         gridLayout->addWidget(label_8, 4, 0, 1, 1);
 
         spinDelay = new QSpinBox(horizontalLayoutWidget);
-        spinDelay->setObjectName(QStringLiteral("spinDelay"));
+        spinDelay->setObjectName("spinDelay");
         spinDelay->setMinimum(100);
         spinDelay->setMaximum(10000);
         spinDelay->setSingleStep(100);
@@ -120,27 +118,27 @@ public:
         gridLayout->addWidget(spinDelay, 4, 1, 1, 1);
 
         label_9 = new QLabel(horizontalLayoutWidget);
-        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setObjectName("label_9");
 
         gridLayout->addWidget(label_9, 4, 2, 1, 1);
 
         label_7 = new QLabel(horizontalLayoutWidget);
-        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setObjectName("label_7");
 
         gridLayout->addWidget(label_7, 2, 2, 1, 1);
 
         label_6 = new QLabel(horizontalLayoutWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setObjectName("label_6");
 
         gridLayout->addWidget(label_6, 1, 2, 1, 1);
 
         label_10 = new QLabel(horizontalLayoutWidget);
-        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setObjectName("label_10");
 
         gridLayout->addWidget(label_10, 5, 0, 1, 1);
 
         spinAcquisitions = new QSpinBox(horizontalLayoutWidget);
-        spinAcquisitions->setObjectName(QStringLiteral("spinAcquisitions"));
+        spinAcquisitions->setObjectName("spinAcquisitions");
         spinAcquisitions->setMinimum(1);
         spinAcquisitions->setMaximum(1000000);
         spinAcquisitions->setSingleStep(1000);
@@ -149,33 +147,33 @@ public:
         gridLayout->addWidget(spinAcquisitions, 5, 1, 1, 1);
 
         label_3 = new QLabel(horizontalLayoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName("label_3");
 
         gridLayout->addWidget(label_3, 1, 0, 1, 1);
 
         doubleSpinVend = new QDoubleSpinBox(horizontalLayoutWidget);
-        doubleSpinVend->setObjectName(QStringLiteral("doubleSpinVend"));
-        doubleSpinVend->setMaximum(10);
-        doubleSpinVend->setSingleStep(0.1);
-        doubleSpinVend->setValue(6);
+        doubleSpinVend->setObjectName("doubleSpinVend");
+        doubleSpinVend->setMaximum(10.000000000000000);
+        doubleSpinVend->setSingleStep(0.100000000000000);
+        doubleSpinVend->setValue(6.000000000000000);
 
         gridLayout->addWidget(doubleSpinVend, 1, 1, 1, 1);
 
         doubleSpinVstart = new QDoubleSpinBox(horizontalLayoutWidget);
-        doubleSpinVstart->setObjectName(QStringLiteral("doubleSpinVstart"));
+        doubleSpinVstart->setObjectName("doubleSpinVstart");
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(doubleSpinVstart->sizePolicy().hasHeightForWidth());
         doubleSpinVstart->setSizePolicy(sizePolicy1);
-        doubleSpinVstart->setMaximum(10);
-        doubleSpinVstart->setSingleStep(0.1);
-        doubleSpinVstart->setValue(2);
+        doubleSpinVstart->setMaximum(10.000000000000000);
+        doubleSpinVstart->setSingleStep(0.100000000000000);
+        doubleSpinVstart->setValue(2.000000000000000);
 
         gridLayout->addWidget(doubleSpinVstart, 0, 1, 1, 1);
 
         label_2 = new QLabel(horizontalLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName("label_2");
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -185,25 +183,25 @@ public:
         gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
         label_4 = new QLabel(horizontalLayoutWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName("label_4");
 
         gridLayout->addWidget(label_4, 2, 0, 1, 1);
 
         doubleSpinVinc = new QDoubleSpinBox(horizontalLayoutWidget);
-        doubleSpinVinc->setObjectName(QStringLiteral("doubleSpinVinc"));
-        doubleSpinVinc->setMaximum(10);
-        doubleSpinVinc->setSingleStep(0.01);
-        doubleSpinVinc->setValue(0.1);
+        doubleSpinVinc->setObjectName("doubleSpinVinc");
+        doubleSpinVinc->setMaximum(10.000000000000000);
+        doubleSpinVinc->setSingleStep(0.010000000000000);
+        doubleSpinVinc->setValue(0.100000000000000);
 
         gridLayout->addWidget(doubleSpinVinc, 2, 1, 1, 1);
 
         label_11 = new QLabel(horizontalLayoutWidget);
-        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setObjectName("label_11");
 
         gridLayout->addWidget(label_11, 6, 0, 1, 1);
 
         spinPLotDecimation = new QSpinBox(horizontalLayoutWidget);
-        spinPLotDecimation->setObjectName(QStringLiteral("spinPLotDecimation"));
+        spinPLotDecimation->setObjectName("spinPLotDecimation");
         spinPLotDecimation->setMinimum(1);
         spinPLotDecimation->setMaximum(128);
         spinPLotDecimation->setValue(16);
@@ -218,12 +216,12 @@ public:
         verticalLayout->addItem(verticalSpacer_3);
 
         pushRun = new QPushButton(horizontalLayoutWidget);
-        pushRun->setObjectName(QStringLiteral("pushRun"));
+        pushRun->setObjectName("pushRun");
 
         verticalLayout->addWidget(pushRun);
 
         pushSave = new QPushButton(horizontalLayoutWidget);
-        pushSave->setObjectName(QStringLiteral("pushSave"));
+        pushSave->setObjectName("pushSave");
 
         verticalLayout->addWidget(pushSave);
 
@@ -235,9 +233,9 @@ public:
         horizontalLayout->addLayout(verticalLayout);
 
         verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setObjectName("verticalLayout_3");
         label_12 = new QLabel(horizontalLayoutWidget);
-        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setObjectName("label_12");
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
@@ -248,7 +246,7 @@ public:
         verticalLayout_3->addWidget(label_12);
 
         plotResultsMean = new QCustomPlot(horizontalLayoutWidget);
-        plotResultsMean->setObjectName(QStringLiteral("plotResultsMean"));
+        plotResultsMean->setObjectName("plotResultsMean");
         QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Minimum);
         sizePolicy4.setHorizontalStretch(0);
         sizePolicy4.setVerticalStretch(0);
@@ -258,7 +256,7 @@ public:
         verticalLayout_3->addWidget(plotResultsMean);
 
         label_13 = new QLabel(horizontalLayoutWidget);
-        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setObjectName("label_13");
         sizePolicy3.setHeightForWidth(label_13->sizePolicy().hasHeightForWidth());
         label_13->setSizePolicy(sizePolicy3);
         label_13->setAlignment(Qt::AlignCenter);
@@ -266,7 +264,7 @@ public:
         verticalLayout_3->addWidget(label_13);
 
         plotResultsStd = new QCustomPlot(horizontalLayoutWidget);
-        plotResultsStd->setObjectName(QStringLiteral("plotResultsStd"));
+        plotResultsStd->setObjectName("plotResultsStd");
 
         verticalLayout_3->addWidget(plotResultsStd);
 
@@ -275,30 +273,30 @@ public:
 
 
         retranslateUi(DialogLinearity);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DialogLinearity, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DialogLinearity, SLOT(reject()));
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, DialogLinearity, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, DialogLinearity, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(DialogLinearity);
     } // setupUi
 
     void retranslateUi(QDialog *DialogLinearity)
     {
-        DialogLinearity->setWindowTitle(QApplication::translate("DialogLinearity", "Linearity Test", 0));
-        label->setText(QApplication::translate("DialogLinearity", "Scan settings", 0));
-        label_5->setText(QApplication::translate("DialogLinearity", "V", 0));
-        label_8->setText(QApplication::translate("DialogLinearity", "Measurement delay:", 0));
-        label_9->setText(QApplication::translate("DialogLinearity", "ms", 0));
-        label_7->setText(QApplication::translate("DialogLinearity", "V", 0));
-        label_6->setText(QApplication::translate("DialogLinearity", "V", 0));
-        label_10->setText(QApplication::translate("DialogLinearity", "Acqs/point:", 0));
-        label_3->setText(QApplication::translate("DialogLinearity", "End LED voltage:", 0));
-        label_2->setText(QApplication::translate("DialogLinearity", "Start LED voltage:", 0));
-        label_4->setText(QApplication::translate("DialogLinearity", "Voltage increment:", 0));
-        label_11->setText(QApplication::translate("DialogLinearity", "Plot decimation:", 0));
-        pushRun->setText(QApplication::translate("DialogLinearity", "Run!", 0));
-        pushSave->setText(QApplication::translate("DialogLinearity", "Save results...", 0));
-        label_12->setText(QApplication::translate("DialogLinearity", "Signal mean", 0));
-        label_13->setText(QApplication::translate("DialogLinearity", "Signal standard deviation", 0));
+        DialogLinearity->setWindowTitle(QCoreApplication::translate("DialogLinearity", "Linearity Test", nullptr));
+        label->setText(QCoreApplication::translate("DialogLinearity", "Scan settings", nullptr));
+        label_5->setText(QCoreApplication::translate("DialogLinearity", "V", nullptr));
+        label_8->setText(QCoreApplication::translate("DialogLinearity", "Measurement delay:", nullptr));
+        label_9->setText(QCoreApplication::translate("DialogLinearity", "ms", nullptr));
+        label_7->setText(QCoreApplication::translate("DialogLinearity", "V", nullptr));
+        label_6->setText(QCoreApplication::translate("DialogLinearity", "V", nullptr));
+        label_10->setText(QCoreApplication::translate("DialogLinearity", "Acqs/point:", nullptr));
+        label_3->setText(QCoreApplication::translate("DialogLinearity", "End LED voltage:", nullptr));
+        label_2->setText(QCoreApplication::translate("DialogLinearity", "Start LED voltage:", nullptr));
+        label_4->setText(QCoreApplication::translate("DialogLinearity", "Voltage increment:", nullptr));
+        label_11->setText(QCoreApplication::translate("DialogLinearity", "Plot decimation:", nullptr));
+        pushRun->setText(QCoreApplication::translate("DialogLinearity", "Run!", nullptr));
+        pushSave->setText(QCoreApplication::translate("DialogLinearity", "Save results...", nullptr));
+        label_12->setText(QCoreApplication::translate("DialogLinearity", "Signal mean", nullptr));
+        label_13->setText(QCoreApplication::translate("DialogLinearity", "Signal standard deviation", nullptr));
     } // retranslateUi
 
 };

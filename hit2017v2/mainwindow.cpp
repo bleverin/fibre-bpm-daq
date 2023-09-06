@@ -422,12 +422,20 @@ void MainWindow::on_actionBeta_Scanner_triggered()
 
 //************** Keithley support *******************
 
-void MainWindow::on_newCurrentReadout(const double currentReadout)
+//Qt5
+/*void MainWindow::on_newCurrentReadout(const double currentReadout)
 {
     QString text;
     text.sprintf("I=%1.8f nA", 1e+9*currentReadout);
     statusKeithley.setText(text);
+}*/
+//Qt6
+void MainWindow::on_newCurrentReadout(const double currentReadout)
+{
+    QString text = QString("I=%1 nA").arg(1e+9 * currentReadout, 0, 'f', 8);
+    statusKeithley.setText(text);
 }
+
 
 
 void MainWindow::on_actionConnect_Keithley_triggered()

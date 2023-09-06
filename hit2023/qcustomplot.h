@@ -93,7 +93,7 @@
 #  include <QtGui/QPrintEngine>
 #else
 #  include <QtNumeric>
-#  include <QtWidgets/QWidget>
+#  include <QWidget>
 #  include <QtPrintSupport/QtPrintSupport>
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(4, 8, 0)

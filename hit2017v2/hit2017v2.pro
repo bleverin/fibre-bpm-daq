@@ -5,11 +5,12 @@
 #-------------------------------------------------
 
 QT       += core gui network serialport
+QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets printsupport
 
-TARGET = hit2017
+TARGET = hit2017v2
 TEMPLATE = app
 
 

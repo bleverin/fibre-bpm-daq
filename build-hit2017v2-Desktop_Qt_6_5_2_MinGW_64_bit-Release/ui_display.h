@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'display.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,16 +10,13 @@
 #define UI_DISPLAY_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QCheckBox>
-#include <QDialog>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLineEdit>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -37,16 +34,16 @@ public:
     void setupUi(QDialog *display)
     {
         if (display->objectName().isEmpty())
-            display->setObjectName(QStringLiteral("display"));
+            display->setObjectName("display");
         display->resize(602, 360);
         verticalLayoutWidget = new QWidget(display);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
         verticalLayoutWidget->setGeometry(QRect(9, 10, 581, 341));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         lineTitle = new QLineEdit(verticalLayoutWidget);
-        lineTitle->setObjectName(QStringLiteral("lineTitle"));
+        lineTitle->setObjectName("lineTitle");
         lineTitle->setFrame(false);
         lineTitle->setAlignment(Qt::AlignCenter);
         lineTitle->setReadOnly(true);
@@ -54,7 +51,7 @@ public:
         verticalLayout->addWidget(lineTitle);
 
         plot = new QCustomPlot(verticalLayoutWidget);
-        plot->setObjectName(QStringLiteral("plot"));
+        plot->setObjectName("plot");
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -64,9 +61,9 @@ public:
         verticalLayout->addWidget(plot);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName("horizontalLayout");
         checkAutoscale = new QCheckBox(verticalLayoutWidget);
-        checkAutoscale->setObjectName(QStringLiteral("checkAutoscale"));
+        checkAutoscale->setObjectName("checkAutoscale");
 
         horizontalLayout->addWidget(checkAutoscale);
 
@@ -81,8 +78,8 @@ public:
 
     void retranslateUi(QDialog *display)
     {
-        display->setWindowTitle(QApplication::translate("display", "Online Display", 0));
-        checkAutoscale->setText(QApplication::translate("display", "Autoscale", 0));
+        display->setWindowTitle(QCoreApplication::translate("display", "Online Display", nullptr));
+        checkAutoscale->setText(QCoreApplication::translate("display", "Autoscale", nullptr));
     } // retranslateUi
 
 };

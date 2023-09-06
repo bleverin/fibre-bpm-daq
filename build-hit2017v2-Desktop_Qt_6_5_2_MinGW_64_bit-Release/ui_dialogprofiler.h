@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogprofiler.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,21 +10,19 @@
 #define UI_DIALOGPROFILER_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QSpacerItem>
-#include <QSpinBox>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -62,23 +60,23 @@ public:
     void setupUi(QDialog *DialogProfiler)
     {
         if (DialogProfiler->objectName().isEmpty())
-            DialogProfiler->setObjectName(QStringLiteral("DialogProfiler"));
+            DialogProfiler->setObjectName("DialogProfiler");
         DialogProfiler->resize(844, 632);
         buttonBox = new QDialogButtonBox(DialogProfiler);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(490, 590, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Close);
         horizontalLayoutWidget = new QWidget(DialogProfiler);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
         horizontalLayoutWidget->setGeometry(QRect(10, 10, 821, 571));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(horizontalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName("label");
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -89,14 +87,14 @@ public:
         verticalLayout->addWidget(label);
 
         gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName("gridLayout");
         label_10 = new QLabel(horizontalLayoutWidget);
-        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setObjectName("label_10");
 
         gridLayout->addWidget(label_10, 0, 0, 1, 1);
 
         spinAcquisitions = new QSpinBox(horizontalLayoutWidget);
-        spinAcquisitions->setObjectName(QStringLiteral("spinAcquisitions"));
+        spinAcquisitions->setObjectName("spinAcquisitions");
         spinAcquisitions->setMinimum(1);
         spinAcquisitions->setMaximum(1000000);
         spinAcquisitions->setSingleStep(1000);
@@ -105,12 +103,12 @@ public:
         gridLayout->addWidget(spinAcquisitions, 0, 1, 1, 1);
 
         label_11 = new QLabel(horizontalLayoutWidget);
-        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setObjectName("label_11");
 
         gridLayout->addWidget(label_11, 1, 0, 1, 1);
 
         spinRuns = new QSpinBox(horizontalLayoutWidget);
-        spinRuns->setObjectName(QStringLiteral("spinRuns"));
+        spinRuns->setObjectName("spinRuns");
         spinRuns->setMinimum(1);
         spinRuns->setMaximum(128);
         spinRuns->setValue(16);
@@ -125,17 +123,17 @@ public:
         verticalLayout->addItem(verticalSpacer_3);
 
         pushRun = new QPushButton(horizontalLayoutWidget);
-        pushRun->setObjectName(QStringLiteral("pushRun"));
+        pushRun->setObjectName("pushRun");
 
         verticalLayout->addWidget(pushRun);
 
         pushRunOnce = new QPushButton(horizontalLayoutWidget);
-        pushRunOnce->setObjectName(QStringLiteral("pushRunOnce"));
+        pushRunOnce->setObjectName("pushRunOnce");
 
         verticalLayout->addWidget(pushRunOnce);
 
         pushRunInfinite = new QPushButton(horizontalLayoutWidget);
-        pushRunInfinite->setObjectName(QStringLiteral("pushRunInfinite"));
+        pushRunInfinite->setObjectName("pushRunInfinite");
 
         verticalLayout->addWidget(pushRunInfinite);
 
@@ -144,15 +142,15 @@ public:
         verticalLayout->addItem(verticalSpacer_2);
 
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(-1, -1, -1, 0);
         label_2 = new QLabel(horizontalLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName("label_2");
 
         horizontalLayout_2->addWidget(label_2);
 
         lineRunsDone = new QLineEdit(horizontalLayoutWidget);
-        lineRunsDone->setObjectName(QStringLiteral("lineRunsDone"));
+        lineRunsDone->setObjectName("lineRunsDone");
         sizePolicy.setHeightForWidth(lineRunsDone->sizePolicy().hasHeightForWidth());
         lineRunsDone->setSizePolicy(sizePolicy);
         lineRunsDone->setAutoFillBackground(false);
@@ -164,12 +162,12 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
         pushClear = new QPushButton(horizontalLayoutWidget);
-        pushClear->setObjectName(QStringLiteral("pushClear"));
+        pushClear->setObjectName("pushClear");
 
         verticalLayout->addWidget(pushClear);
 
         pushSave = new QPushButton(horizontalLayoutWidget);
-        pushSave->setObjectName(QStringLiteral("pushSave"));
+        pushSave->setObjectName("pushSave");
 
         verticalLayout->addWidget(pushSave);
 
@@ -181,9 +179,9 @@ public:
         horizontalLayout->addLayout(verticalLayout);
 
         verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setObjectName("verticalLayout_3");
         label_12 = new QLabel(horizontalLayoutWidget);
-        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setObjectName("label_12");
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -194,7 +192,7 @@ public:
         verticalLayout_3->addWidget(label_12);
 
         plotResultsMean = new QCustomPlot(horizontalLayoutWidget);
-        plotResultsMean->setObjectName(QStringLiteral("plotResultsMean"));
+        plotResultsMean->setObjectName("plotResultsMean");
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -204,7 +202,7 @@ public:
         verticalLayout_3->addWidget(plotResultsMean);
 
         label_13 = new QLabel(horizontalLayoutWidget);
-        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setObjectName("label_13");
         sizePolicy1.setHeightForWidth(label_13->sizePolicy().hasHeightForWidth());
         label_13->setSizePolicy(sizePolicy1);
         label_13->setAlignment(Qt::AlignCenter);
@@ -212,7 +210,7 @@ public:
         verticalLayout_3->addWidget(label_13);
 
         plotResultsStd = new QCustomPlot(horizontalLayoutWidget);
-        plotResultsStd->setObjectName(QStringLiteral("plotResultsStd"));
+        plotResultsStd->setObjectName("plotResultsStd");
 
         verticalLayout_3->addWidget(plotResultsStd);
 
@@ -221,26 +219,26 @@ public:
 
 
         retranslateUi(DialogProfiler);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DialogProfiler, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DialogProfiler, SLOT(reject()));
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, DialogProfiler, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, DialogProfiler, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(DialogProfiler);
     } // setupUi
 
     void retranslateUi(QDialog *DialogProfiler)
     {
-        DialogProfiler->setWindowTitle(QApplication::translate("DialogProfiler", "Profile Viewer", 0));
-        label->setText(QApplication::translate("DialogProfiler", "Scan settings", 0));
-        label_10->setText(QApplication::translate("DialogProfiler", "Acqs/run:", 0));
-        label_11->setText(QApplication::translate("DialogProfiler", "Nr runs:", 0));
-        pushRun->setText(QApplication::translate("DialogProfiler", "Run!", 0));
-        pushRunOnce->setText(QApplication::translate("DialogProfiler", "Run once!", 0));
-        pushRunInfinite->setText(QApplication::translate("DialogProfiler", "Run infinite!", 0));
-        label_2->setText(QApplication::translate("DialogProfiler", "Runs:", 0));
-        pushClear->setText(QApplication::translate("DialogProfiler", "Clear", 0));
-        pushSave->setText(QApplication::translate("DialogProfiler", "Save results...", 0));
-        label_12->setText(QApplication::translate("DialogProfiler", "Signal mean", 0));
-        label_13->setText(QApplication::translate("DialogProfiler", "Signal standard deviation", 0));
+        DialogProfiler->setWindowTitle(QCoreApplication::translate("DialogProfiler", "Profile Viewer", nullptr));
+        label->setText(QCoreApplication::translate("DialogProfiler", "Scan settings", nullptr));
+        label_10->setText(QCoreApplication::translate("DialogProfiler", "Acqs/run:", nullptr));
+        label_11->setText(QCoreApplication::translate("DialogProfiler", "Nr runs:", nullptr));
+        pushRun->setText(QCoreApplication::translate("DialogProfiler", "Run!", nullptr));
+        pushRunOnce->setText(QCoreApplication::translate("DialogProfiler", "Run once!", nullptr));
+        pushRunInfinite->setText(QCoreApplication::translate("DialogProfiler", "Run infinite!", nullptr));
+        label_2->setText(QCoreApplication::translate("DialogProfiler", "Runs:", nullptr));
+        pushClear->setText(QCoreApplication::translate("DialogProfiler", "Clear", nullptr));
+        pushSave->setText(QCoreApplication::translate("DialogProfiler", "Save results...", nullptr));
+        label_12->setText(QCoreApplication::translate("DialogProfiler", "Signal mean", nullptr));
+        label_13->setText(QCoreApplication::translate("DialogProfiler", "Signal standard deviation", nullptr));
     } // retranslateUi
 
 };

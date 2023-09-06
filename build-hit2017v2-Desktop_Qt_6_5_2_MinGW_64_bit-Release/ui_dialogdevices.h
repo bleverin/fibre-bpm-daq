@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogdevices.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,18 +10,17 @@
 #define UI_DIALOGDEVICES_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QSpinBox>
-#include <QTableWidget>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -39,28 +38,28 @@ public:
     void setupUi(QDialog *DialogDevices)
     {
         if (DialogDevices->objectName().isEmpty())
-            DialogDevices->setObjectName(QStringLiteral("DialogDevices"));
+            DialogDevices->setObjectName("DialogDevices");
         DialogDevices->resize(573, 233);
         buttonBox = new QDialogButtonBox(DialogDevices);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(210, 190, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         verticalLayoutWidget = new QWidget(DialogDevices);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
         verticalLayoutWidget->setGeometry(QRect(20, 10, 531, 171));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         label = new QLabel(verticalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName("label");
 
         horizontalLayout_2->addWidget(label);
 
         spinNrDevices = new QSpinBox(verticalLayoutWidget);
-        spinNrDevices->setObjectName(QStringLiteral("spinNrDevices"));
+        spinNrDevices->setObjectName("spinNrDevices");
         spinNrDevices->setMinimum(1);
 
         horizontalLayout_2->addWidget(spinNrDevices);
@@ -69,22 +68,22 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
         tableDevices = new QTableWidget(verticalLayoutWidget);
-        tableDevices->setObjectName(QStringLiteral("tableDevices"));
+        tableDevices->setObjectName("tableDevices");
 
         verticalLayout->addWidget(tableDevices);
 
 
         retranslateUi(DialogDevices);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DialogDevices, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DialogDevices, SLOT(reject()));
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, DialogDevices, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, DialogDevices, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(DialogDevices);
     } // setupUi
 
     void retranslateUi(QDialog *DialogDevices)
     {
-        DialogDevices->setWindowTitle(QApplication::translate("DialogDevices", "Devices", 0));
-        label->setText(QApplication::translate("DialogDevices", "Number of devices", 0));
+        DialogDevices->setWindowTitle(QCoreApplication::translate("DialogDevices", "Devices", nullptr));
+        label->setText(QCoreApplication::translate("DialogDevices", "Number of devices", nullptr));
     } // retranslateUi
 
 };
