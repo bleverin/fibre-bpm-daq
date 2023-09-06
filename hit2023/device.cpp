@@ -78,6 +78,7 @@ void Device::configure(DeviceConfig &cfg)
     dataReceiver.configureEthSettings(QHostAddress(ip32), DEV_BASE_DATA_PORT + deviceConfig.device_id);
     dataReceiver.configureBunchSize(deviceConfig.dma_bunch, deviceConfig.eth_bunch);
     dataReceiver.devNr = deviceConfig.device_id;
+    dataReceiver.sensorsPerBoard = deviceConfig.max_sensors();
 
     if (connected)
     {

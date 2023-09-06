@@ -13,7 +13,7 @@
 #include "datareceiver.h"
 #include "histogram.h"
 
-    //The event builder will constantly keep some data in the buffers to enable synchronization of the devices. So:
+//The event builder will constantly keep some data in the buffers to enable synchronization of the devices. So:
 #define EVB_MIN_BUFFER_OCCUPANCY    (RECEIVER_BUFFER_SIZE / 8)      //the EVB will wait until so much data is in each device buffer
 #define EVB_MAX_BUFFER_OCCUPANCY    (RECEIVER_BUFFER_SIZE / 2)      //or so much in at least one
 
@@ -36,6 +36,8 @@ public:
     QVector<Histogram> &getHistos();
     QVector<BufferData> getLastFrame();
     QVector<BufferData> getNewFrame();  //as getLastFrame(), but ensures that the frame is new, i.e. no frame will be read twice
+    void recalculateChannels(); //recalculate baseAddresses
+    void setChannelCount(int sensor_nr, int nr_channels);
 signals:
     void sigInit();
     void sigDeinit();
@@ -57,11 +59,20 @@ protected:
 
     QThread thread;
     QSemaphore initSemaphore;
+
     QVector<DataReceiver*> receivers;
+
     QVector<BufferData> currentFrame;
     QVector<BufferData> lastFrame;
+
     QVector<Histogram> histograms;
     int histogramSamplesToTake = 0;
+
+    QVector<unsigned short> baseAddresses; //base channel numbers for receivers
+    QVector<unsigned short> channelCounts; //and numbers of channels
+    unsigned short totalChannels;   //we like unsigned shorts to put them directly into the data file
+    unsigned short totalBoards;
+
     QMutex lastFrameMutex;
     QSemaphore newDataSemaphore;
     int nrReceivers;

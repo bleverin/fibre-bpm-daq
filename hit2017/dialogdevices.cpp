@@ -31,6 +31,8 @@ void DialogDevices::showEvent(QShowEvent * event)
             ui->tableDevices->setColumnCount(7);
             QStringList h_header;
             h_header.append("IP Address");
+            h_header.append("Hardware ver.");
+
             h_header.append("Layer");
             h_header.append("Position");
             h_header.append("Sensors");
@@ -74,18 +76,20 @@ void DialogDevices::importSettings()
             QTableWidgetItem* newItem;
             newItem = new QTableWidgetItem(deviceSettings->value("IP","0.0.0.0").toString());
             ui->tableDevices->setItem(dev_nr, 0, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("Plane","0").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("HardwareVer","2").toString());
             ui->tableDevices->setItem(dev_nr, 1, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("Position","0").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("Plane","0").toString());
             ui->tableDevices->setItem(dev_nr, 2, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("Sensors","2").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("Position","0").toString());
             ui->tableDevices->setItem(dev_nr, 3, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("Master","0").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("Sensors","5").toString());
             ui->tableDevices->setItem(dev_nr, 4, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("MasterDelay","22").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("Master","1").toString());
             ui->tableDevices->setItem(dev_nr, 5, newItem );
-            newItem = new QTableWidgetItem(deviceSettings->value("SlaveDelay","1").toString());
+            newItem = new QTableWidgetItem(deviceSettings->value("MasterDelay","62").toString());
             ui->tableDevices->setItem(dev_nr, 6, newItem );
+            newItem = new QTableWidgetItem(deviceSettings->value("SlaveDelay","34").toString());
+            ui->tableDevices->setItem(dev_nr, 7, newItem );
         }
     }
 
@@ -111,20 +115,23 @@ int DialogDevices::validateAndSave()
             data_ok = 0;
         ui->tableDevices->item(dev_nr,0)->setText(generated);
 
-            //now the plane
+            //hardware version
         user_data = ui->tableDevices->item(dev_nr,1)->text();
-        int num_value = user_data.toInt();
-        if (num_value < 0)
-            num_value = 0;
-        generated = QString("%1").arg(num_value);
+        int num_hw = user_data.toInt();
+        if (num_hw < 1)
+            num_hw = 1;
+        if (num_hw > 2)
+            num_hw = 2;
+        generated = QString("%1").arg(num_hw);
             //if the strings are identical, save the value and return 1
         if (generated.compare(user_data) != 0)
             data_ok = 0;
         ui->tableDevices->item(dev_nr,1)->setText(generated);
 
-            //now physical position
+
+            //now the plane
         user_data = ui->tableDevices->item(dev_nr,2)->text();
-        num_value = user_data.toInt();
+        int num_value = user_data.toInt();
         if (num_value < 0)
             num_value = 0;
         generated = QString("%1").arg(num_value);
@@ -133,21 +140,34 @@ int DialogDevices::validateAndSave()
             data_ok = 0;
         ui->tableDevices->item(dev_nr,2)->setText(generated);
 
-            //now number of sensors
+            //now physical position
         user_data = ui->tableDevices->item(dev_nr,3)->text();
         num_value = user_data.toInt();
-        if (num_value < 1)
-            num_value = 1;
-        if (num_value > 2)
-            num_value = 2;
+        if (num_value < 0)
+            num_value = 0;
         generated = QString("%1").arg(num_value);
             //if the strings are identical, save the value and return 1
         if (generated.compare(user_data) != 0)
             data_ok = 0;
         ui->tableDevices->item(dev_nr,3)->setText(generated);
 
-            //now master selector
+            //now number of sensors
         user_data = ui->tableDevices->item(dev_nr,4)->text();
+        num_value = user_data.toInt();
+        int max_sensors = (num_hw == 1) ? 2 : 5;
+
+        if (num_value < 1)
+            num_value = 1;
+        if (num_value > max_sensors)
+            num_value = max_sensors;
+        generated = QString("%1").arg(num_value);
+            //if the strings are identical, save the value and return 1
+        if (generated.compare(user_data) != 0)
+            data_ok = 0;
+        ui->tableDevices->item(dev_nr,4)->setText(generated);
+
+            //now master selector
+        user_data = ui->tableDevices->item(dev_nr,5)->text();
         num_value = user_data.toInt();
         if (num_value < 0)
             num_value = 0;
@@ -157,22 +177,9 @@ int DialogDevices::validateAndSave()
             //if the strings are identical, save the value and return 1
         if (generated.compare(user_data) != 0)
             data_ok = 0;
-        ui->tableDevices->item(dev_nr,4)->setText(generated);
-
-            //now master delay
-        user_data = ui->tableDevices->item(dev_nr,5)->text();
-        num_value = user_data.toInt();
-        if (num_value < 1)
-            num_value = 1;
-        if (num_value > 255)
-            num_value = 255;
-        generated = QString("%1").arg(num_value);
-            //if the strings are identical, save the value and return 1
-        if (generated.compare(user_data) != 0)
-            data_ok = 0;
         ui->tableDevices->item(dev_nr,5)->setText(generated);
 
-            //now slave delay
+            //now master delay
         user_data = ui->tableDevices->item(dev_nr,6)->text();
         num_value = user_data.toInt();
         if (num_value < 1)
@@ -184,6 +191,19 @@ int DialogDevices::validateAndSave()
         if (generated.compare(user_data) != 0)
             data_ok = 0;
         ui->tableDevices->item(dev_nr,6)->setText(generated);
+
+            //now slave delay
+        user_data = ui->tableDevices->item(dev_nr,7)->text();
+        num_value = user_data.toInt();
+        if (num_value < 1)
+            num_value = 1;
+        if (num_value > 255)
+            num_value = 255;
+        generated = QString("%1").arg(num_value);
+            //if the strings are identical, save the value and return 1
+        if (generated.compare(user_data) != 0)
+            data_ok = 0;
+        ui->tableDevices->item(dev_nr,7)->setText(generated);
     }
 
         //now store the data
@@ -201,12 +221,13 @@ int DialogDevices::validateAndSave()
         deviceSettings->beginGroup(group_label);
 
         deviceSettings->setValue("IP", ui->tableDevices->item(dev_nr,0)->text());
-        deviceSettings->setValue("Plane", ui->tableDevices->item(dev_nr,1)->text());
-        deviceSettings->setValue("Position", ui->tableDevices->item(dev_nr,2)->text());
-        deviceSettings->setValue("Sensors", ui->tableDevices->item(dev_nr,3)->text());
-        deviceSettings->setValue("Master", ui->tableDevices->item(dev_nr,4)->text());
-        deviceSettings->setValue("MasterDelay", ui->tableDevices->item(dev_nr,5)->text());
-        deviceSettings->setValue("SlaveDelay", ui->tableDevices->item(dev_nr,6)->text());
+        deviceSettings->setValue("HardwareVer", ui->tableDevices->item(dev_nr,1)->text());
+        deviceSettings->setValue("Plane", ui->tableDevices->item(dev_nr,2)->text());
+        deviceSettings->setValue("Position", ui->tableDevices->item(dev_nr,3)->text());
+        deviceSettings->setValue("Sensors", ui->tableDevices->item(dev_nr,4)->text());
+        deviceSettings->setValue("Master", ui->tableDevices->item(dev_nr,5)->text());
+        deviceSettings->setValue("MasterDelay", ui->tableDevices->item(dev_nr,6)->text());
+        deviceSettings->setValue("SlaveDelay", ui->tableDevices->item(dev_nr,7)->text());
 }
 
    //TODO

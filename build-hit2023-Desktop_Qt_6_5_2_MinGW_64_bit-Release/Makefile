@@ -102,8 +102,6 @@ Makefile: ../hit2023/hit2023.pro C:/Qt/6.5.2/mingw_64/mkspecs/win32-g++/qmake.co
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_harfbuzz_private.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_help.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_help_private.pri \
-		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_httpserver.pri \
-		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_httpserver_private.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_jpeg_private.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_labsanimation.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_labsanimation_private.pri \
@@ -186,8 +184,6 @@ Makefile: ../hit2023/hit2023.pro C:/Qt/6.5.2/mingw_64/mkspecs/win32-g++/qmake.co
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uiplugin.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uitools.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_websockets.pri \
-		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_websockets_private.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_widgets.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_widgets_private.pri \
 		C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_xml.pri \
@@ -264,8 +260,6 @@ C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_gui_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_harfbuzz_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_help.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_help_private.pri:
-C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_httpserver.pri:
-C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_httpserver_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_jpeg_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_labsanimation.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_labsanimation_private.pri:
@@ -348,8 +342,6 @@ C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_tools_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uiplugin.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uitools.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_uitools_private.pri:
-C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_websockets.pri:
-C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_websockets_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_widgets.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_widgets_private.pri:
 C:/Qt/6.5.2/mingw_64/mkspecs/modules/qt_lib_xml.pri:

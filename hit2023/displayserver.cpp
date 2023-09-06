@@ -100,17 +100,22 @@ void DisplayServer::plot()
 
     for (int plane = 0; plane < planeConfig.length(); plane++)
     {
-            //initialize buffer
-        displays[plane]->buffer.resize(planeConfig[plane]->nr_devices*128);
+        //initialize buffer
+        displays[plane]->buffer.resize(planeConfig[plane]->nr_sensors*64);
             //fill with data
+        int current_base = 0;
         for (int dev_nr = 0; dev_nr < planeConfig[plane]->nr_devices; dev_nr++)
         {
             int dev_id = planeConfig[plane]->devices[dev_nr]->deviceConfig.device_id;
-                //WARNING!!! Device order is not yet implemented!!! (chyba)
-            for (int i = 0; i < 128; i++)
-                displays[plane]->buffer[128*dev_nr+i] = lastFrame[dev_id].sensor_data[i];
+            int nr_channels = planeConfig[plane]->devices[dev_nr]->deviceConfig.nr_channels();
+            if (nr_channels > lastFrame[dev_id].buffer_size)
+                nr_channels = lastFrame[dev_id].buffer_size;    //check if there's really some data in the buffer
+            //WARNING!!! Device order is not yet implemented!!! (probably)
+            for (int i = 0; i < nr_channels; i++)
+                displays[plane]->buffer[current_base+i] = lastFrame[dev_id].sensor_data[i];
+            current_base += nr_channels;
         }
-            //plot
+        //plot
         displays[plane]->plot();
     }
 }

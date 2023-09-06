@@ -63,11 +63,11 @@ void DataReceiver::readData()
 
                 if (outputEnabled)
                 {
-                    BufferData data_to_push;
+                    BufferData data_to_push(sensorsPerBoard * DATA_SAMPLES_PER_SENSOR);
                     data_to_push.sync_frame = sync;
                     int baseaddr3 = baseaddr2 + DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE;
 
-                    for (int s = 0; s < (DATA_SENSORS_PER_BOARD * DATA_SAMPLES_PER_SENSOR); s++)
+                    for (int s = 0; s < (sensorsPerBoard * DATA_SAMPLES_PER_SENSOR); s++)
                         data_to_push.sensor_data[s] = 65535 - BYTES2SHORT(tmpBuffer + baseaddr3 + 2*s);
 
                     dataBuffer.push(data_to_push);
