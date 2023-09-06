@@ -403,6 +403,32 @@ release/moc_mainwindow.cpp: ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextoption.h \
+		../hit2023/myStyleSheet.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		../hit2023/Q_DebugStream.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QTextBrowser \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qtextbrowser.h \
@@ -420,27 +446,24 @@ release/moc_mainwindow.cpp: ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/QUdpSocket \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QThread \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutex \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
 		../hit2023/datareceiver.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSemaphore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qsemaphore.h \
 		../hit2023/cbuffer.h \
 		../hit2023/hw.h \
 		../hit2023/eventbuilder.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutexLocker \
 		../hit2023/histogram.h \
 		../hit2023/displayserver.h \
 		../hit2023/display.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		../hit2023/keithley_thr.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCoreDepends \
@@ -450,29 +473,17 @@ release/moc_mainwindow.cpp: ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/q23functional.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractanimation.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractproxymodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qanimationgroup.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qapplicationstatic.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qassociativeiterable.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbitarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbuffer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbytearraymatcher.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcache.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcalendar.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborvalue.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qdatetime.h \
@@ -1954,6 +1965,11 @@ release/moc_display.cpp: ../hit2023/display.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QVector \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qvector.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		release/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/leverington/cernbox/BeamProfileMonitor/HITDAQ/build-hit2023-Desktop_Qt_6_5_2_MinGW_64_bit-Release/release/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/leverington/cernbox/BeamProfileMonitor/HITDAQ/hit2023 -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtPrintSupport -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtNetwork -IC:/Qt/6.5.2/mingw_64/include/QtSerialPort -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\hit2023\display.h -o release\moc_display.cpp
@@ -2151,6 +2167,11 @@ release/moc_displayserver.cpp: ../hit2023/displayserver.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSizeF \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		release/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/leverington/cernbox/BeamProfileMonitor/HITDAQ/build-hit2023-Desktop_Qt_6_5_2_MinGW_64_bit-Release/release/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/leverington/cernbox/BeamProfileMonitor/HITDAQ/hit2023 -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtPrintSupport -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtNetwork -IC:/Qt/6.5.2/mingw_64/include/QtSerialPort -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\hit2023\displayserver.h -o release\moc_displayserver.cpp
@@ -7607,6 +7628,32 @@ release/main.o: ../hit2023/main.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextoption.h \
+		../hit2023/myStyleSheet.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		../hit2023/Q_DebugStream.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QTextBrowser \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qtextbrowser.h \
@@ -7624,27 +7671,24 @@ release/main.o: ../hit2023/main.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/QUdpSocket \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QThread \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutex \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
 		../hit2023/datareceiver.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSemaphore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qsemaphore.h \
 		../hit2023/cbuffer.h \
 		../hit2023/hw.h \
 		../hit2023/eventbuilder.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutexLocker \
 		../hit2023/histogram.h \
 		../hit2023/displayserver.h \
 		../hit2023/display.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		../hit2023/keithley_thr.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCoreDepends \
@@ -7654,29 +7698,17 @@ release/main.o: ../hit2023/main.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/q23functional.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractanimation.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractproxymodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qanimationgroup.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qapplicationstatic.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qassociativeiterable.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbitarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbuffer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbytearraymatcher.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcache.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcalendar.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborvalue.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qdatetime.h \
@@ -7782,12 +7814,7 @@ release/main.o: ../hit2023/main.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtSerialPort/qtserialportversion.h \
 		C:/Qt/6.5.2/mingw_64/include/QtSerialPort/QSerialPortInfo \
 		C:/Qt/6.5.2/mingw_64/include/QtSerialPort/QSerialPort \
-		../hit2023/stepper.h \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication_platform.h
+		../hit2023/stepper.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\hit2023\main.cpp
 
 release/mainwindow.o: ../hit2023/mainwindow.cpp ../hit2023/mainwindow.h \
@@ -7965,6 +7992,32 @@ release/mainwindow.o: ../hit2023/mainwindow.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/qtextoption.h \
+		../hit2023/myStyleSheet.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		../hit2023/Q_DebugStream.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QTextBrowser \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qtextbrowser.h \
@@ -7982,27 +8035,24 @@ release/mainwindow.o: ../hit2023/mainwindow.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/QUdpSocket \
 		C:/Qt/6.5.2/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QThread \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutex \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qtsan_impl.h \
 		../hit2023/datareceiver.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSemaphore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qsemaphore.h \
 		../hit2023/cbuffer.h \
 		../hit2023/hw.h \
 		../hit2023/eventbuilder.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/QFile \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfile.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfiledevice.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QMutexLocker \
 		../hit2023/histogram.h \
 		../hit2023/displayserver.h \
 		../hit2023/display.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		../hit2023/keithley_thr.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCore \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QtCoreDepends \
@@ -8012,29 +8062,17 @@ release/mainwindow.o: ../hit2023/mainwindow.cpp ../hit2023/mainwindow.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/q23functional.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractanimation.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qabstractproxymodel.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qanimationgroup.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qapplicationstatic.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qpromise.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qassociativeiterable.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbitarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbuffer.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qbytearraymatcher.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcache.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcalendar.h \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborarray.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qcborvalue.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qdatetime.h \
@@ -9988,6 +10026,11 @@ release/display.o: ../hit2023/display.cpp ../hit2023/display.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QVector \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/qvector.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h \
 		ui_display.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\display.o ..\hit2023\display.cpp
 
@@ -10183,7 +10226,12 @@ release/displayserver.o: ../hit2023/displayserver.cpp ../hit2023/displayserver.h
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSize \
 		C:/Qt/6.5.2/mingw_64/include/QtCore/QSizeF \
 		C:/Qt/6.5.2/mingw_64/include/QtGui/QTransform \
-		C:/Qt/6.5.2/mingw_64/include/QtCore/qnativeinterface.h
+		C:/Qt/6.5.2/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QButtonGroup \
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qbuttongroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\displayserver.o ..\hit2023\displayserver.cpp
 
 release/keithley.o: ../hit2023/keithley.cpp ../hit2023/keithley.h \

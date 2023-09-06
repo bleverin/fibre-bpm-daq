@@ -7,6 +7,7 @@
 #include <QVector>
 #include <QTimer>
 #include <QLineEdit>
+#include "myStyleSheet.h"
 
 #include "Q_DebugStream.h"
 #include "device.h"

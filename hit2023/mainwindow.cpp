@@ -9,7 +9,7 @@
 #include "dialogprofiler.h"
 #include "dialogbeta.h"
 #include "helpers.h"
-
+#include "myStyleSheet.h"
 #include <QShowEvent>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -19,7 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
+
+
     debugStream = new Q_DebugStream(std::cout, ui->logWindow); //Redirect Console output to QTextEdit
     Q_DebugStream::registerQDebugMessageHandler(); //Redirect qDebug() output to QTextEdit
 
