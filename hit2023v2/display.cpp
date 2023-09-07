@@ -173,10 +173,10 @@ void Display::onSaveBackgroundClicked()
         file.close();
 
         // Notify the user that the data has been saved
-        qDebug() << "Data saved to" << filename;
+        qInfo() << "Data saved to" << filename;
     } else {
         // Failed to open the file
-        qDebug() << "Error: Failed to open" << filename << "for writing";
+        qWarning() << "Error: Failed to open" << filename << "for writing";
     }
 }
 
@@ -189,7 +189,7 @@ void Display::onLoadBackgroundClicked()
     planeName.remove(QChar(' '));
 
     // Generate the filename with the plane name appended
-    QString filename = QString("background_%1.txt").arg(planeName);
+    QString filename = QString("bkg/background_%1.txt").arg(planeName);
 
     // Open the file for reading
     QFile file(filename);
@@ -211,10 +211,10 @@ void Display::onLoadBackgroundClicked()
         backgroundDataMap[planeName] = backgroundData;
 
         // Notify the user that the data has been loaded
-        qDebug() << "Background data loaded for" << planeName;
+        qInfo() << "Background data loaded for" << planeName;
     } else {
         // Failed to open the file
-        qDebug() << "Error: Failed to open" << filename << "for reading";
+        qWarning() << "Error: Failed to open" << filename << "for reading";
     }
 }
 
