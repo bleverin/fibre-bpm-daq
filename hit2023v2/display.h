@@ -31,6 +31,8 @@ public slots:
     void showEvent(QShowEvent *event);
     void onButtonClicked(QAbstractButton *button);
     void onSaveBackgroundClicked();
+    void onLoadBackgroundClicked();
+    void onCheckBoxStateChanged(int state);
 
 protected:
     int nrPoints = 0;
@@ -41,6 +43,9 @@ private:
     QRadioButton *radioButtonFixedScale; // Pointer to the Fixed Scale radio button
     QRadioButton *radioButtonAutoscale;  // Pointer to the Autoscale radio button
     QButtonGroup *buttonGroup;
+    QMap<QString, QVector<unsigned short>> backgroundDataMap; // Map to store background data for each plane
+    bool subtractBackground = false; // Flag to track if background subtraction is enabled
+
 
 };
 

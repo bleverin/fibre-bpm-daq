@@ -28,6 +28,8 @@ Display::Display(QWidget *parent) :
     connect(buttonGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onButtonClicked(QAbstractButton*)));
 
     connect(ui->pushButton_savebkg, &QPushButton::clicked, this, &Display::onSaveBackgroundClicked);
+    connect(ui->pushButton_loadbkg, &QPushButton::clicked, this, &Display::onLoadBackgroundClicked);
+    connect(ui->checkBox_subbkg, &QCheckBox::stateChanged, this, &Display::onCheckBoxStateChanged);
 }
 
 Display::~Display()
@@ -75,6 +77,23 @@ void Display::plot(const QVector<unsigned short> &data)
             min = dataY[i];
         if (dataY[i] > max)
             max = dataY[i];
+    }
+
+
+    if (subtractBackground && ui->checkBox_subbkg->isChecked()) {
+        // Check if background subtraction is enabled and the checkbox is checked
+        QString planeName = ui->lineTitle->text();
+        planeName.remove(QChar(' '));
+
+        // Check if background data exists for this plane
+        if (backgroundDataMap.contains(planeName)) {
+            const QVector<unsigned short> &backgroundData = backgroundDataMap[planeName];
+
+            // Subtract background data from the current data
+            for (int i = 0; i < nrPoints; ++i) {
+                dataY[i] -= backgroundData[i];
+            }
+        }
     }
 
     if (ui->radioButtonAutoscale->isChecked())
@@ -160,3 +179,48 @@ void Display::onSaveBackgroundClicked()
         qDebug() << "Error: Failed to open" << filename << "for writing";
     }
 }
+
+void Display::onLoadBackgroundClicked()
+{
+    // Get the plane's name (you might need to adjust how you retrieve it)
+    QString planeName = ui->lineTitle->text();
+
+    // Remove invalid characters from the plane name (e.g., spaces)
+    planeName.remove(QChar(' '));
+
+    // Generate the filename with the plane name appended
+    QString filename = QString("background_%1.txt").arg(planeName);
+
+    // Open the file for reading
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
+
+        // Read the data from the file and store it in the map
+        QVector<unsigned short> backgroundData;
+        while (!stream.atEnd()) {
+            QString line = stream.readLine();
+            unsigned short value = line.toUShort();
+            backgroundData.append(value);
+        }
+
+        // Close the file
+        file.close();
+
+        // Store the background data in the map
+        backgroundDataMap[planeName] = backgroundData;
+
+        // Notify the user that the data has been loaded
+        qDebug() << "Background data loaded for" << planeName;
+    } else {
+        // Failed to open the file
+        qDebug() << "Error: Failed to open" << filename << "for reading";
+    }
+}
+
+void Display::onCheckBoxStateChanged(int state)
+{
+    // The state argument will be Qt::Unchecked (0) or Qt::Checked (2)
+    subtractBackground = (state == Qt::Checked);
+}
+

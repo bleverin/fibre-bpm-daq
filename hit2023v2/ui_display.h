@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -41,6 +42,8 @@ public:
     QSpinBox *spinBox_fixedmin;
     QSpinBox *spinBox_fixedmax;
     QPushButton *pushButton_savebkg;
+    QPushButton *pushButton_loadbkg;
+    QCheckBox *checkBox_subbkg;
     QButtonGroup *buttonGroup;
 
     void setupUi(QDialog *display)
@@ -133,6 +136,12 @@ public:
         pushButton_savebkg = new QPushButton(display);
         pushButton_savebkg->setObjectName("pushButton_savebkg");
         pushButton_savebkg->setGeometry(QRect(510, 360, 80, 24));
+        pushButton_loadbkg = new QPushButton(display);
+        pushButton_loadbkg->setObjectName("pushButton_loadbkg");
+        pushButton_loadbkg->setGeometry(QRect(420, 360, 80, 24));
+        checkBox_subbkg = new QCheckBox(display);
+        checkBox_subbkg->setObjectName("checkBox_subbkg");
+        checkBox_subbkg->setGeometry(QRect(330, 360, 77, 22));
 
         retranslateUi(display);
 
@@ -146,6 +155,8 @@ public:
         radioButtonMaxScale->setText(QCoreApplication::translate("display", "Max Y-Scale", nullptr));
         radioButtonFixedScale->setText(QCoreApplication::translate("display", "Fixed Y-Scale", nullptr));
         pushButton_savebkg->setText(QCoreApplication::translate("display", "save bkg", nullptr));
+        pushButton_loadbkg->setText(QCoreApplication::translate("display", "load bkg", nullptr));
+        checkBox_subbkg->setText(QCoreApplication::translate("display", "sub bkg", nullptr));
     } // retranslateUi
 
 };
