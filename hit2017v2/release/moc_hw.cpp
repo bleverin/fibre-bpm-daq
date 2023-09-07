@@ -1,45 +1,66 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hw.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../hw.h"
-#include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#if __has_include(<QtCore/qtmochelpers.h>)
+#include <QtCore/qtmochelpers.h>
+#else
+QT_BEGIN_MOC_NAMESPACE
+#endif
+
+
+#include <memory>
+
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hw.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.7.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.5.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
-QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_HW_t {
-    QByteArrayData data[1];
+#ifndef Q_CONSTINIT
+#define Q_CONSTINIT
+#endif
+
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSHWENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSHWENDCLASS = QtMocHelpers::stringData(
+    "HW"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSHWENDCLASS_t {
+    uint offsetsAndSizes[2];
     char stringdata0[3];
 };
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_HW_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_HW_t qt_meta_stringdata_HW = {
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSHWENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSHWENDCLASS_t qt_meta_stringdata_CLASSHWENDCLASS = {
     {
-QT_MOC_LITERAL(0, 0, 2) // "HW"
-
+        QT_MOC_LITERAL(0, 2)   // "HW"
     },
     "HW"
 };
 #undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
 
-static const uint qt_meta_data_HW[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSHWENDCLASS[] = {
 
  // content:
-       7,       // revision
+      11,       // revision
        0,       // classname
        0,    0, // classinfo
        0,    0, // methods
@@ -52,19 +73,26 @@ static const uint qt_meta_data_HW[] = {
        0        // eod
 };
 
+Q_CONSTINIT const QMetaObject HW::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_CLASSHWENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSHWENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSHWENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<HW, std::true_type>
+    >,
+    nullptr
+} };
+
 void HW::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
-    Q_UNUSED(_a);
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
-
-const QMetaObject HW::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_HW.data,
-      qt_meta_data_HW,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
-
 
 const QMetaObject *HW::metaObject() const
 {
@@ -73,17 +101,15 @@ const QMetaObject *HW::metaObject() const
 
 void *HW::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_HW.stringdata0))
-        return static_cast<void*>(const_cast< HW*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSHWENDCLASS.stringdata0))
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
 int HW::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
-    if (_id < 0)
-        return _id;
     return _id;
 }
-QT_END_MOC_NAMESPACE
+QT_WARNING_POP

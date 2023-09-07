@@ -97,11 +97,7 @@
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
-    <addaction name="actionConnect_Keithley"/>
-    <addaction name="actionDisconnect_Keithley"/>
     <addaction name="separator"/>
-    <addaction name="actionConnect_Stepper"/>
-    <addaction name="actionDisconnect_Stepper"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -111,18 +107,8 @@
     <addaction name="actionDevices"/>
     <addaction name="actionTrigger_config"/>
    </widget>
-   <widget class="QMenu" name="menuAuto">
-    <property name="title">
-     <string>Auto</string>
-    </property>
-    <addaction name="actionLinearity_test"/>
-    <addaction name="actionIntegration_time_scan"/>
-    <addaction name="actionProfile_viewer"/>
-    <addaction name="actionBeta_Scanner"/>
-   </widget>
    <addaction name="menuDevice"/>
    <addaction name="menuSettings"/>
-   <addaction name="menuAuto"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

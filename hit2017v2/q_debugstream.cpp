@@ -6,7 +6,8 @@ Q_DebugStream::Q_DebugStream(std::ostream &stream, QTextBrowser* text_edit) : m_
 {
     debugStreamHandle = this;   //we can use a global variable as only one instance of QDebugStream can be active
     displayMask = DS_INFO | DS_WARNING | DS_CRITICAL | DS_FATAL;
-    detailsMask = DS_WARNING | DS_CRITICAL | DS_FATAL;
+   // detailsMask = DS_WARNING | DS_CRITICAL | DS_FATAL; //why not info too?
+    detailsMask = DS_CRITICAL | DS_FATAL;
     log_window = text_edit;
     m_old_buf = stream.rdbuf();
     stream.rdbuf(this);

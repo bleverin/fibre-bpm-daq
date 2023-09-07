@@ -1,50 +1,82 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialoglinearity.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../dialoglinearity.h"
-#include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#if __has_include(<QtCore/qtmochelpers.h>)
+#include <QtCore/qtmochelpers.h>
+#else
+QT_BEGIN_MOC_NAMESPACE
+#endif
+
+
+#include <memory>
+
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'dialoglinearity.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.7.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.5.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
-QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_DialogLinearity_t {
-    QByteArrayData data[5];
-    char stringdata0[77];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_DialogLinearity_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_DialogLinearity_t qt_meta_stringdata_DialogLinearity = {
-    {
-QT_MOC_LITERAL(0, 0, 15), // "DialogLinearity"
-QT_MOC_LITERAL(1, 16, 20), // "onHistogramCompleted"
-QT_MOC_LITERAL(2, 37, 0), // ""
-QT_MOC_LITERAL(3, 38, 18), // "on_pushRun_pressed"
-QT_MOC_LITERAL(4, 57, 19) // "on_pushSave_pressed"
+#ifndef Q_CONSTINIT
+#define Q_CONSTINIT
+#endif
 
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSDialogLinearityENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSDialogLinearityENDCLASS = QtMocHelpers::stringData(
+    "DialogLinearity",
+    "onHistogramCompleted",
+    "",
+    "on_pushRun_pressed",
+    "on_pushSave_pressed"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSDialogLinearityENDCLASS_t {
+    uint offsetsAndSizes[10];
+    char stringdata0[16];
+    char stringdata1[21];
+    char stringdata2[1];
+    char stringdata3[19];
+    char stringdata4[20];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSDialogLinearityENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSDialogLinearityENDCLASS_t qt_meta_stringdata_CLASSDialogLinearityENDCLASS = {
+    {
+        QT_MOC_LITERAL(0, 15),  // "DialogLinearity"
+        QT_MOC_LITERAL(16, 20),  // "onHistogramCompleted"
+        QT_MOC_LITERAL(37, 0),  // ""
+        QT_MOC_LITERAL(38, 18),  // "on_pushRun_pressed"
+        QT_MOC_LITERAL(57, 19)   // "on_pushSave_pressed"
     },
-    "DialogLinearity\0onHistogramCompleted\0"
-    "\0on_pushRun_pressed\0on_pushSave_pressed"
+    "DialogLinearity",
+    "onHistogramCompleted",
+    "",
+    "on_pushRun_pressed",
+    "on_pushSave_pressed"
 };
 #undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
 
-static const uint qt_meta_data_DialogLinearity[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSDialogLinearityENDCLASS[] = {
 
  // content:
-       7,       // revision
+      11,       // revision
        0,       // classname
        0,    0, // classinfo
        3,   14, // methods
@@ -54,10 +86,10 @@ static const uint qt_meta_data_DialogLinearity[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x0a /* Public */,
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   32,    2, 0x0a,    1 /* Public */,
+       3,    0,   33,    2, 0x08,    2 /* Private */,
+       4,    0,   34,    2, 0x08,    3 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -67,11 +99,30 @@ static const uint qt_meta_data_DialogLinearity[] = {
        0        // eod
 };
 
+Q_CONSTINIT const QMetaObject DialogLinearity::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_meta_stringdata_CLASSDialogLinearityENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSDialogLinearityENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSDialogLinearityENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<DialogLinearity, std::true_type>,
+        // method 'onHistogramCompleted'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushRun_pressed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushSave_pressed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+    >,
+    nullptr
+} };
+
 void DialogLinearity::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        DialogLinearity *_t = static_cast<DialogLinearity *>(_o);
-        Q_UNUSED(_t)
+        auto *_t = static_cast<DialogLinearity *>(_o);
+        (void)_t;
         switch (_id) {
         case 0: _t->onHistogramCompleted(); break;
         case 1: _t->on_pushRun_pressed(); break;
@@ -79,14 +130,8 @@ void DialogLinearity::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         default: ;
         }
     }
-    Q_UNUSED(_a);
+    (void)_a;
 }
-
-const QMetaObject DialogLinearity::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_DialogLinearity.data,
-      qt_meta_data_DialogLinearity,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
-
 
 const QMetaObject *DialogLinearity::metaObject() const
 {
@@ -95,9 +140,9 @@ const QMetaObject *DialogLinearity::metaObject() const
 
 void *DialogLinearity::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_DialogLinearity.stringdata0))
-        return static_cast<void*>(const_cast< DialogLinearity*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSDialogLinearityENDCLASS.stringdata0))
+        return static_cast<void*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
@@ -112,9 +157,9 @@ int DialogLinearity::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 3)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 3;
     }
     return _id;
 }
-QT_END_MOC_NAMESPACE
+QT_WARNING_POP

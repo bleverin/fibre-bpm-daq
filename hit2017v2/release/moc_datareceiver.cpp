@@ -1,60 +1,114 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'datareceiver.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../datareceiver.h"
-#include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#if __has_include(<QtCore/qtmochelpers.h>)
+#include <QtCore/qtmochelpers.h>
+#else
+QT_BEGIN_MOC_NAMESPACE
+#endif
+
+
+#include <memory>
+
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'datareceiver.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.7.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.5.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
-QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_DataReceiver_t {
-    QByteArrayData data[13];
-    char stringdata0[143];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_DataReceiver_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_DataReceiver_t qt_meta_stringdata_DataReceiver = {
-    {
-QT_MOC_LITERAL(0, 0, 12), // "DataReceiver"
-QT_MOC_LITERAL(1, 13, 7), // "sigInit"
-QT_MOC_LITERAL(2, 21, 0), // ""
-QT_MOC_LITERAL(3, 22, 9), // "sigDeinit"
-QT_MOC_LITERAL(4, 32, 23), // "sigConfigureEthSettings"
-QT_MOC_LITERAL(5, 56, 12), // "sigDataReady"
-QT_MOC_LITERAL(6, 69, 13), // "DataReceiver*"
-QT_MOC_LITERAL(7, 83, 3), // "ptr"
-QT_MOC_LITERAL(8, 87, 7), // "onTimer"
-QT_MOC_LITERAL(9, 95, 8), // "readData"
-QT_MOC_LITERAL(10, 104, 6), // "onInit"
-QT_MOC_LITERAL(11, 111, 8), // "onDeinit"
-QT_MOC_LITERAL(12, 120, 22) // "onConfigureEthSettings"
+#ifndef Q_CONSTINIT
+#define Q_CONSTINIT
+#endif
 
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSDataReceiverENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSDataReceiverENDCLASS = QtMocHelpers::stringData(
+    "DataReceiver",
+    "sigInit",
+    "",
+    "sigDeinit",
+    "sigConfigureEthSettings",
+    "sigDataReady",
+    "DataReceiver*",
+    "ptr",
+    "onTimer",
+    "readData",
+    "onInit",
+    "onDeinit",
+    "onConfigureEthSettings"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSDataReceiverENDCLASS_t {
+    uint offsetsAndSizes[26];
+    char stringdata0[13];
+    char stringdata1[8];
+    char stringdata2[1];
+    char stringdata3[10];
+    char stringdata4[24];
+    char stringdata5[13];
+    char stringdata6[14];
+    char stringdata7[4];
+    char stringdata8[8];
+    char stringdata9[9];
+    char stringdata10[7];
+    char stringdata11[9];
+    char stringdata12[23];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSDataReceiverENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSDataReceiverENDCLASS_t qt_meta_stringdata_CLASSDataReceiverENDCLASS = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "DataReceiver"
+        QT_MOC_LITERAL(13, 7),  // "sigInit"
+        QT_MOC_LITERAL(21, 0),  // ""
+        QT_MOC_LITERAL(22, 9),  // "sigDeinit"
+        QT_MOC_LITERAL(32, 23),  // "sigConfigureEthSettings"
+        QT_MOC_LITERAL(56, 12),  // "sigDataReady"
+        QT_MOC_LITERAL(69, 13),  // "DataReceiver*"
+        QT_MOC_LITERAL(83, 3),  // "ptr"
+        QT_MOC_LITERAL(87, 7),  // "onTimer"
+        QT_MOC_LITERAL(95, 8),  // "readData"
+        QT_MOC_LITERAL(104, 6),  // "onInit"
+        QT_MOC_LITERAL(111, 8),  // "onDeinit"
+        QT_MOC_LITERAL(120, 22)   // "onConfigureEthSettings"
     },
-    "DataReceiver\0sigInit\0\0sigDeinit\0"
-    "sigConfigureEthSettings\0sigDataReady\0"
-    "DataReceiver*\0ptr\0onTimer\0readData\0"
-    "onInit\0onDeinit\0onConfigureEthSettings"
+    "DataReceiver",
+    "sigInit",
+    "",
+    "sigDeinit",
+    "sigConfigureEthSettings",
+    "sigDataReady",
+    "DataReceiver*",
+    "ptr",
+    "onTimer",
+    "readData",
+    "onInit",
+    "onDeinit",
+    "onConfigureEthSettings"
 };
 #undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
 
-static const uint qt_meta_data_DataReceiver[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSDataReceiverENDCLASS[] = {
 
  // content:
-       7,       // revision
+      11,       // revision
        0,       // classname
        0,    0, // classinfo
        9,   14, // methods
@@ -64,18 +118,18 @@ static const uint qt_meta_data_DataReceiver[] = {
        0,       // flags
        4,       // signalCount
 
- // signals: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x06 /* Public */,
-       3,    0,   60,    2, 0x06 /* Public */,
-       4,    0,   61,    2, 0x06 /* Public */,
-       5,    1,   62,    2, 0x06 /* Public */,
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   68,    2, 0x06,    1 /* Public */,
+       3,    0,   69,    2, 0x06,    2 /* Public */,
+       4,    0,   70,    2, 0x06,    3 /* Public */,
+       5,    1,   71,    2, 0x06,    4 /* Public */,
 
- // slots: name, argc, parameters, tag, flags
-       8,    0,   65,    2, 0x0a /* Public */,
-       9,    0,   66,    2, 0x09 /* Protected */,
-      10,    0,   67,    2, 0x09 /* Protected */,
-      11,    0,   68,    2, 0x09 /* Protected */,
-      12,    0,   69,    2, 0x09 /* Protected */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       8,    0,   74,    2, 0x0a,    6 /* Public */,
+       9,    0,   75,    2, 0x09,    7 /* Protected */,
+      10,    0,   76,    2, 0x09,    8 /* Protected */,
+      11,    0,   77,    2, 0x09,    9 /* Protected */,
+      12,    0,   78,    2, 0x09,   10 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,
@@ -93,16 +147,48 @@ static const uint qt_meta_data_DataReceiver[] = {
        0        // eod
 };
 
+Q_CONSTINIT const QMetaObject DataReceiver::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_CLASSDataReceiverENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSDataReceiverENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSDataReceiverENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<DataReceiver, std::true_type>,
+        // method 'sigInit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigDeinit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigConfigureEthSettings'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigDataReady'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<DataReceiver *, std::false_type>,
+        // method 'onTimer'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'readData'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onInit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onDeinit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onConfigureEthSettings'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+    >,
+    nullptr
+} };
+
 void DataReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        DataReceiver *_t = static_cast<DataReceiver *>(_o);
-        Q_UNUSED(_t)
+        auto *_t = static_cast<DataReceiver *>(_o);
+        (void)_t;
         switch (_id) {
         case 0: _t->sigInit(); break;
         case 1: _t->sigDeinit(); break;
         case 2: _t->sigConfigureEthSettings(); break;
-        case 3: _t->sigDataReady((*reinterpret_cast< DataReceiver*(*)>(_a[1]))); break;
+        case 3: _t->sigDataReady((*reinterpret_cast< std::add_pointer_t<DataReceiver*>>(_a[1]))); break;
         case 4: _t->onTimer(); break;
         case 5: _t->readData(); break;
         case 6: _t->onInit(); break;
@@ -112,54 +198,47 @@ void DataReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
-        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 3:
             switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< DataReceiver* >(); break;
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< DataReceiver* >(); break;
             }
             break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (DataReceiver::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DataReceiver::sigInit)) {
+            using _t = void (DataReceiver::*)();
+            if (_t _q_method = &DataReceiver::sigInit; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
         }
         {
-            typedef void (DataReceiver::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DataReceiver::sigDeinit)) {
+            using _t = void (DataReceiver::*)();
+            if (_t _q_method = &DataReceiver::sigDeinit; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
             }
         }
         {
-            typedef void (DataReceiver::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DataReceiver::sigConfigureEthSettings)) {
+            using _t = void (DataReceiver::*)();
+            if (_t _q_method = &DataReceiver::sigConfigureEthSettings; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
         }
         {
-            typedef void (DataReceiver::*_t)(DataReceiver * );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DataReceiver::sigDataReady)) {
+            using _t = void (DataReceiver::*)(DataReceiver * );
+            if (_t _q_method = &DataReceiver::sigDataReady; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 3;
                 return;
             }
         }
     }
 }
-
-const QMetaObject DataReceiver::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_DataReceiver.data,
-      qt_meta_data_DataReceiver,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
-
 
 const QMetaObject *DataReceiver::metaObject() const
 {
@@ -168,9 +247,9 @@ const QMetaObject *DataReceiver::metaObject() const
 
 void *DataReceiver::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_DataReceiver.stringdata0))
-        return static_cast<void*>(const_cast< DataReceiver*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSDataReceiverENDCLASS.stringdata0))
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
@@ -194,25 +273,25 @@ int DataReceiver::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void DataReceiver::sigInit()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
 void DataReceiver::sigDeinit()
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
 void DataReceiver::sigConfigureEthSettings()
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 
 // SIGNAL 3
 void DataReceiver::sigDataReady(DataReceiver * _t1)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
-QT_END_MOC_NAMESPACE
+QT_WARNING_POP

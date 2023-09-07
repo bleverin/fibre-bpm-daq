@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QVector>
+#include <QRadioButton>
+#include <QButtonGroup>
 
 namespace Ui {
 class display;
@@ -25,12 +27,17 @@ public:
 
 public slots:
     void showEvent(QShowEvent *event);
+    void onButtonClicked(QAbstractButton *button);
+
 protected:
     int nrPoints = 0;
     QVector<double> dataX;
     QVector<double> dataY;
 private:
     Ui::display *ui;
+    QRadioButton *radioButtonFixedScale; // Pointer to the Fixed Scale radio button
+    QRadioButton *radioButtonAutoscale;  // Pointer to the Autoscale radio button
+    QButtonGroup *buttonGroup;
 
 };
 

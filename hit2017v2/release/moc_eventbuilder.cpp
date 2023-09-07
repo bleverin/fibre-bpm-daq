@@ -1,69 +1,138 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'eventbuilder.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../eventbuilder.h"
-#include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#if __has_include(<QtCore/qtmochelpers.h>)
+#include <QtCore/qtmochelpers.h>
+#else
+QT_BEGIN_MOC_NAMESPACE
+#endif
+
+
+#include <memory>
+
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'eventbuilder.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.7.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.5.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
-QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_EventBuilder_t {
-    QByteArrayData data[19];
-    char stringdata0[252];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_EventBuilder_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_EventBuilder_t qt_meta_stringdata_EventBuilder = {
-    {
-QT_MOC_LITERAL(0, 0, 12), // "EventBuilder"
-QT_MOC_LITERAL(1, 13, 7), // "sigInit"
-QT_MOC_LITERAL(2, 21, 0), // ""
-QT_MOC_LITERAL(3, 22, 9), // "sigDeinit"
-QT_MOC_LITERAL(4, 32, 15), // "sigStartLogging"
-QT_MOC_LITERAL(5, 48, 14), // "sigStopLogging"
-QT_MOC_LITERAL(6, 63, 20), // "sigStartTakingHistos"
-QT_MOC_LITERAL(7, 84, 19), // "sigStopTakingHistos"
-QT_MOC_LITERAL(8, 104, 17), // "sigHistoCompleted"
-QT_MOC_LITERAL(9, 122, 9), // "onNewData"
-QT_MOC_LITERAL(10, 132, 13), // "DataReceiver*"
-QT_MOC_LITERAL(11, 146, 8), // "receiver"
-QT_MOC_LITERAL(12, 155, 6), // "onInit"
-QT_MOC_LITERAL(13, 162, 8), // "onDeinit"
-QT_MOC_LITERAL(14, 171, 14), // "onStartLogging"
-QT_MOC_LITERAL(15, 186, 13), // "onStopLogging"
-QT_MOC_LITERAL(16, 200, 19), // "onStartTakingHistos"
-QT_MOC_LITERAL(17, 220, 12), // "sample_count"
-QT_MOC_LITERAL(18, 233, 18) // "onStopTakingHistos"
+#ifndef Q_CONSTINIT
+#define Q_CONSTINIT
+#endif
 
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSEventBuilderENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSEventBuilderENDCLASS = QtMocHelpers::stringData(
+    "EventBuilder",
+    "sigInit",
+    "",
+    "sigDeinit",
+    "sigStartLogging",
+    "sigStopLogging",
+    "sigStartTakingHistos",
+    "sigStopTakingHistos",
+    "sigHistoCompleted",
+    "onNewData",
+    "DataReceiver*",
+    "receiver",
+    "onInit",
+    "onDeinit",
+    "onStartLogging",
+    "onStopLogging",
+    "onStartTakingHistos",
+    "sample_count",
+    "onStopTakingHistos"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSEventBuilderENDCLASS_t {
+    uint offsetsAndSizes[38];
+    char stringdata0[13];
+    char stringdata1[8];
+    char stringdata2[1];
+    char stringdata3[10];
+    char stringdata4[16];
+    char stringdata5[15];
+    char stringdata6[21];
+    char stringdata7[20];
+    char stringdata8[18];
+    char stringdata9[10];
+    char stringdata10[14];
+    char stringdata11[9];
+    char stringdata12[7];
+    char stringdata13[9];
+    char stringdata14[15];
+    char stringdata15[14];
+    char stringdata16[20];
+    char stringdata17[13];
+    char stringdata18[19];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSEventBuilderENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSEventBuilderENDCLASS_t qt_meta_stringdata_CLASSEventBuilderENDCLASS = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "EventBuilder"
+        QT_MOC_LITERAL(13, 7),  // "sigInit"
+        QT_MOC_LITERAL(21, 0),  // ""
+        QT_MOC_LITERAL(22, 9),  // "sigDeinit"
+        QT_MOC_LITERAL(32, 15),  // "sigStartLogging"
+        QT_MOC_LITERAL(48, 14),  // "sigStopLogging"
+        QT_MOC_LITERAL(63, 20),  // "sigStartTakingHistos"
+        QT_MOC_LITERAL(84, 19),  // "sigStopTakingHistos"
+        QT_MOC_LITERAL(104, 17),  // "sigHistoCompleted"
+        QT_MOC_LITERAL(122, 9),  // "onNewData"
+        QT_MOC_LITERAL(132, 13),  // "DataReceiver*"
+        QT_MOC_LITERAL(146, 8),  // "receiver"
+        QT_MOC_LITERAL(155, 6),  // "onInit"
+        QT_MOC_LITERAL(162, 8),  // "onDeinit"
+        QT_MOC_LITERAL(171, 14),  // "onStartLogging"
+        QT_MOC_LITERAL(186, 13),  // "onStopLogging"
+        QT_MOC_LITERAL(200, 19),  // "onStartTakingHistos"
+        QT_MOC_LITERAL(220, 12),  // "sample_count"
+        QT_MOC_LITERAL(233, 18)   // "onStopTakingHistos"
     },
-    "EventBuilder\0sigInit\0\0sigDeinit\0"
-    "sigStartLogging\0sigStopLogging\0"
-    "sigStartTakingHistos\0sigStopTakingHistos\0"
-    "sigHistoCompleted\0onNewData\0DataReceiver*\0"
-    "receiver\0onInit\0onDeinit\0onStartLogging\0"
-    "onStopLogging\0onStartTakingHistos\0"
-    "sample_count\0onStopTakingHistos"
+    "EventBuilder",
+    "sigInit",
+    "",
+    "sigDeinit",
+    "sigStartLogging",
+    "sigStopLogging",
+    "sigStartTakingHistos",
+    "sigStopTakingHistos",
+    "sigHistoCompleted",
+    "onNewData",
+    "DataReceiver*",
+    "receiver",
+    "onInit",
+    "onDeinit",
+    "onStartLogging",
+    "onStopLogging",
+    "onStartTakingHistos",
+    "sample_count",
+    "onStopTakingHistos"
 };
 #undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
 
-static const uint qt_meta_data_EventBuilder[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSEventBuilderENDCLASS[] = {
 
  // content:
-       7,       // revision
+      11,       // revision
        0,       // classname
        0,    0, // classinfo
       14,   14, // methods
@@ -73,23 +142,23 @@ static const uint qt_meta_data_EventBuilder[] = {
        0,       // flags
        7,       // signalCount
 
- // signals: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x06 /* Public */,
-       3,    0,   85,    2, 0x06 /* Public */,
-       4,    0,   86,    2, 0x06 /* Public */,
-       5,    0,   87,    2, 0x06 /* Public */,
-       6,    1,   88,    2, 0x06 /* Public */,
-       7,    0,   91,    2, 0x06 /* Public */,
-       8,    0,   92,    2, 0x06 /* Public */,
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   98,    2, 0x06,    1 /* Public */,
+       3,    0,   99,    2, 0x06,    2 /* Public */,
+       4,    0,  100,    2, 0x06,    3 /* Public */,
+       5,    0,  101,    2, 0x06,    4 /* Public */,
+       6,    1,  102,    2, 0x06,    5 /* Public */,
+       7,    0,  105,    2, 0x06,    7 /* Public */,
+       8,    0,  106,    2, 0x06,    8 /* Public */,
 
- // slots: name, argc, parameters, tag, flags
-       9,    1,   93,    2, 0x0a /* Public */,
-      12,    0,   96,    2, 0x09 /* Protected */,
-      13,    0,   97,    2, 0x09 /* Protected */,
-      14,    0,   98,    2, 0x09 /* Protected */,
-      15,    0,   99,    2, 0x09 /* Protected */,
-      16,    1,  100,    2, 0x09 /* Protected */,
-      18,    0,  103,    2, 0x09 /* Protected */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       9,    1,  107,    2, 0x0a,    9 /* Public */,
+      12,    0,  110,    2, 0x09,   11 /* Protected */,
+      13,    0,  111,    2, 0x09,   12 /* Protected */,
+      14,    0,  112,    2, 0x09,   13 /* Protected */,
+      15,    0,  113,    2, 0x09,   14 /* Protected */,
+      16,    1,  114,    2, 0x09,   15 /* Protected */,
+      18,    0,  117,    2, 0x09,   17 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,
@@ -112,99 +181,136 @@ static const uint qt_meta_data_EventBuilder[] = {
        0        // eod
 };
 
+Q_CONSTINIT const QMetaObject EventBuilder::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_CLASSEventBuilderENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSEventBuilderENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSEventBuilderENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<EventBuilder, std::true_type>,
+        // method 'sigInit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigDeinit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigStartLogging'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigStopLogging'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigStartTakingHistos'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'sigStopTakingHistos'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigHistoCompleted'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onNewData'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<DataReceiver *, std::false_type>,
+        // method 'onInit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onDeinit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onStartLogging'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onStopLogging'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onStartTakingHistos'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'onStopTakingHistos'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+    >,
+    nullptr
+} };
+
 void EventBuilder::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        EventBuilder *_t = static_cast<EventBuilder *>(_o);
-        Q_UNUSED(_t)
+        auto *_t = static_cast<EventBuilder *>(_o);
+        (void)_t;
         switch (_id) {
         case 0: _t->sigInit(); break;
         case 1: _t->sigDeinit(); break;
         case 2: _t->sigStartLogging(); break;
         case 3: _t->sigStopLogging(); break;
-        case 4: _t->sigStartTakingHistos((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->sigStartTakingHistos((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->sigStopTakingHistos(); break;
         case 6: _t->sigHistoCompleted(); break;
-        case 7: _t->onNewData((*reinterpret_cast< DataReceiver*(*)>(_a[1]))); break;
+        case 7: _t->onNewData((*reinterpret_cast< std::add_pointer_t<DataReceiver*>>(_a[1]))); break;
         case 8: _t->onInit(); break;
         case 9: _t->onDeinit(); break;
         case 10: _t->onStartLogging(); break;
         case 11: _t->onStopLogging(); break;
-        case 12: _t->onStartTakingHistos((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->onStartTakingHistos((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 13: _t->onStopTakingHistos(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
-        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 7:
             switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< DataReceiver* >(); break;
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< DataReceiver* >(); break;
             }
             break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigInit)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigInit; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigDeinit)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigDeinit; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigStartLogging)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigStartLogging; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigStopLogging)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigStopLogging; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 3;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)(int );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigStartTakingHistos)) {
+            using _t = void (EventBuilder::*)(int );
+            if (_t _q_method = &EventBuilder::sigStartTakingHistos; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 4;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigStopTakingHistos)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigStopTakingHistos; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 5;
                 return;
             }
         }
         {
-            typedef void (EventBuilder::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&EventBuilder::sigHistoCompleted)) {
+            using _t = void (EventBuilder::*)();
+            if (_t _q_method = &EventBuilder::sigHistoCompleted; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 6;
                 return;
             }
         }
     }
 }
-
-const QMetaObject EventBuilder::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_EventBuilder.data,
-      qt_meta_data_EventBuilder,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
-};
-
 
 const QMetaObject *EventBuilder::metaObject() const
 {
@@ -213,9 +319,9 @@ const QMetaObject *EventBuilder::metaObject() const
 
 void *EventBuilder::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_EventBuilder.stringdata0))
-        return static_cast<void*>(const_cast< EventBuilder*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSEventBuilderENDCLASS.stringdata0))
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
@@ -239,43 +345,43 @@ int EventBuilder::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void EventBuilder::sigInit()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
 void EventBuilder::sigDeinit()
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
 void EventBuilder::sigStartLogging()
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 
 // SIGNAL 3
 void EventBuilder::sigStopLogging()
 {
-    QMetaObject::activate(this, &staticMetaObject, 3, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
 
 // SIGNAL 4
 void EventBuilder::sigStartTakingHistos(int _t1)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
 void EventBuilder::sigStopTakingHistos()
 {
-    QMetaObject::activate(this, &staticMetaObject, 5, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 
 // SIGNAL 6
 void EventBuilder::sigHistoCompleted()
 {
-    QMetaObject::activate(this, &staticMetaObject, 6, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
 }
-QT_END_MOC_NAMESPACE
+QT_WARNING_POP

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'display.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,16 +10,16 @@
 #define UI_DISPLAY_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QCheckBox>
-#include <QDialog>
-#include <QHBoxLayout>
-#include <QHeaderView>
-#include <QLineEdit>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -32,21 +32,28 @@ public:
     QLineEdit *lineTitle;
     QCustomPlot *plot;
     QHBoxLayout *horizontalLayout;
-    QCheckBox *checkAutoscale;
+    QRadioButton *radioButtonAutoscale;
+    QFrame *line;
+    QRadioButton *radioButtonMaxScale;
+    QFrame *line_2;
+    QRadioButton *radioButtonFixedScale;
+    QSpinBox *spinBox_fixedmin;
+    QSpinBox *spinBox_fixedmax;
+    QButtonGroup *buttonGroup;
 
     void setupUi(QDialog *display)
     {
         if (display->objectName().isEmpty())
-            display->setObjectName(QStringLiteral("display"));
+            display->setObjectName("display");
         display->resize(602, 360);
         verticalLayoutWidget = new QWidget(display);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
         verticalLayoutWidget->setGeometry(QRect(9, 10, 581, 341));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         lineTitle = new QLineEdit(verticalLayoutWidget);
-        lineTitle->setObjectName(QStringLiteral("lineTitle"));
+        lineTitle->setObjectName("lineTitle");
         lineTitle->setFrame(false);
         lineTitle->setAlignment(Qt::AlignCenter);
         lineTitle->setReadOnly(true);
@@ -54,7 +61,7 @@ public:
         verticalLayout->addWidget(lineTitle);
 
         plot = new QCustomPlot(verticalLayoutWidget);
-        plot->setObjectName(QStringLiteral("plot"));
+        plot->setObjectName("plot");
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -64,11 +71,59 @@ public:
         verticalLayout->addWidget(plot);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        checkAutoscale = new QCheckBox(verticalLayoutWidget);
-        checkAutoscale->setObjectName(QStringLiteral("checkAutoscale"));
+        horizontalLayout->setObjectName("horizontalLayout");
+        radioButtonAutoscale = new QRadioButton(verticalLayoutWidget);
+        buttonGroup = new QButtonGroup(display);
+        buttonGroup->setObjectName("buttonGroup");
+        buttonGroup->addButton(radioButtonAutoscale);
+        radioButtonAutoscale->setObjectName("radioButtonAutoscale");
 
-        horizontalLayout->addWidget(checkAutoscale);
+        horizontalLayout->addWidget(radioButtonAutoscale);
+
+        line = new QFrame(verticalLayoutWidget);
+        line->setObjectName("line");
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout->addWidget(line);
+
+        radioButtonMaxScale = new QRadioButton(verticalLayoutWidget);
+        buttonGroup->addButton(radioButtonMaxScale);
+        radioButtonMaxScale->setObjectName("radioButtonMaxScale");
+
+        horizontalLayout->addWidget(radioButtonMaxScale);
+
+        line_2 = new QFrame(verticalLayoutWidget);
+        line_2->setObjectName("line_2");
+        line_2->setFrameShape(QFrame::VLine);
+        line_2->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout->addWidget(line_2);
+
+        radioButtonFixedScale = new QRadioButton(verticalLayoutWidget);
+        buttonGroup->addButton(radioButtonFixedScale);
+        radioButtonFixedScale->setObjectName("radioButtonFixedScale");
+
+        horizontalLayout->addWidget(radioButtonFixedScale);
+
+        spinBox_fixedmin = new QSpinBox(verticalLayoutWidget);
+        spinBox_fixedmin->setObjectName("spinBox_fixedmin");
+        spinBox_fixedmin->setMinimum(-1000);
+        spinBox_fixedmin->setMaximum(66000);
+        spinBox_fixedmin->setSingleStep(100);
+        spinBox_fixedmin->setValue(-1000);
+        spinBox_fixedmin->setDisplayIntegerBase(10);
+
+        horizontalLayout->addWidget(spinBox_fixedmin);
+
+        spinBox_fixedmax = new QSpinBox(verticalLayoutWidget);
+        spinBox_fixedmax->setObjectName("spinBox_fixedmax");
+        spinBox_fixedmax->setMinimum(1000);
+        spinBox_fixedmax->setMaximum(65000);
+        spinBox_fixedmax->setSingleStep(100);
+        spinBox_fixedmax->setValue(65000);
+
+        horizontalLayout->addWidget(spinBox_fixedmax);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -81,8 +136,10 @@ public:
 
     void retranslateUi(QDialog *display)
     {
-        display->setWindowTitle(QApplication::translate("display", "Online Display", 0));
-        checkAutoscale->setText(QApplication::translate("display", "Autoscale", 0));
+        display->setWindowTitle(QCoreApplication::translate("display", "Online Display", nullptr));
+        radioButtonAutoscale->setText(QCoreApplication::translate("display", "Auto Y-Scale", nullptr));
+        radioButtonMaxScale->setText(QCoreApplication::translate("display", "Max Y-Scale", nullptr));
+        radioButtonFixedScale->setText(QCoreApplication::translate("display", "Fixed Y-Scale", nullptr));
     } // retranslateUi
 
 };

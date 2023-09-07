@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialoglogsettings.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,16 +10,15 @@
 #define UI_DIALOGLOGSETTINGS_H
 
 #include <QtCore/QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QCheckBox>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QGridLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QWidget>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -52,71 +51,71 @@ public:
     void setupUi(QDialog *DialogLogSettings)
     {
         if (DialogLogSettings->objectName().isEmpty())
-            DialogLogSettings->setObjectName(QStringLiteral("DialogLogSettings"));
+            DialogLogSettings->setObjectName("DialogLogSettings");
         DialogLogSettings->resize(284, 239);
         buttonBox = new QDialogButtonBox(DialogLogSettings);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(80, 190, 181, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         gridLayoutWidget = new QWidget(DialogLogSettings);
-        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setObjectName("gridLayoutWidget");
         gridLayoutWidget->setGeometry(QRect(20, 20, 241, 161));
         gridLayout = new QGridLayout(gridLayoutWidget);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(gridLayoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName("label_3");
 
         gridLayout->addWidget(label_3, 0, 2, 1, 1);
 
         label_4 = new QLabel(gridLayoutWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName("label_4");
         label_4->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label_4, 1, 0, 1, 1);
 
         label_6 = new QLabel(gridLayoutWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setObjectName("label_6");
         label_6->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label_6, 3, 0, 1, 1);
 
         label = new QLabel(gridLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName("label");
         label->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
         label_7 = new QLabel(gridLayoutWidget);
-        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setObjectName("label_7");
         label_7->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label_7, 4, 0, 1, 1);
 
         label_5 = new QLabel(gridLayoutWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName("label_5");
         label_5->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label_5, 2, 0, 1, 1);
 
         label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName("label_2");
 
         gridLayout->addWidget(label_2, 0, 1, 1, 1);
 
         label_8 = new QLabel(gridLayoutWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setObjectName("label_8");
         label_8->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(label_8, 5, 0, 1, 1);
 
         checkDisplayDebug = new QCheckBox(gridLayoutWidget);
         buttonGroup = new QButtonGroup(DialogLogSettings);
-        buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
+        buttonGroup->setObjectName("buttonGroup");
         buttonGroup->setExclusive(false);
         buttonGroup->addButton(checkDisplayDebug);
-        checkDisplayDebug->setObjectName(QStringLiteral("checkDisplayDebug"));
+        checkDisplayDebug->setObjectName("checkDisplayDebug");
         QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -127,7 +126,7 @@ public:
 
         checkDetailsDebug = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDetailsDebug);
-        checkDetailsDebug->setObjectName(QStringLiteral("checkDetailsDebug"));
+        checkDetailsDebug->setObjectName("checkDetailsDebug");
         sizePolicy.setHeightForWidth(checkDetailsDebug->sizePolicy().hasHeightForWidth());
         checkDetailsDebug->setSizePolicy(sizePolicy);
 
@@ -135,7 +134,7 @@ public:
 
         checkDisplayInfo = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDisplayInfo);
-        checkDisplayInfo->setObjectName(QStringLiteral("checkDisplayInfo"));
+        checkDisplayInfo->setObjectName("checkDisplayInfo");
         sizePolicy.setHeightForWidth(checkDisplayInfo->sizePolicy().hasHeightForWidth());
         checkDisplayInfo->setSizePolicy(sizePolicy);
 
@@ -143,7 +142,7 @@ public:
 
         checkDetailsInfo = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDetailsInfo);
-        checkDetailsInfo->setObjectName(QStringLiteral("checkDetailsInfo"));
+        checkDetailsInfo->setObjectName("checkDetailsInfo");
         sizePolicy.setHeightForWidth(checkDetailsInfo->sizePolicy().hasHeightForWidth());
         checkDetailsInfo->setSizePolicy(sizePolicy);
 
@@ -151,7 +150,7 @@ public:
 
         checkDisplayWarning = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDisplayWarning);
-        checkDisplayWarning->setObjectName(QStringLiteral("checkDisplayWarning"));
+        checkDisplayWarning->setObjectName("checkDisplayWarning");
         sizePolicy.setHeightForWidth(checkDisplayWarning->sizePolicy().hasHeightForWidth());
         checkDisplayWarning->setSizePolicy(sizePolicy);
 
@@ -159,7 +158,7 @@ public:
 
         checkDetailsWarning = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDetailsWarning);
-        checkDetailsWarning->setObjectName(QStringLiteral("checkDetailsWarning"));
+        checkDetailsWarning->setObjectName("checkDetailsWarning");
         sizePolicy.setHeightForWidth(checkDetailsWarning->sizePolicy().hasHeightForWidth());
         checkDetailsWarning->setSizePolicy(sizePolicy);
 
@@ -167,7 +166,7 @@ public:
 
         checkDisplayCritical = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDisplayCritical);
-        checkDisplayCritical->setObjectName(QStringLiteral("checkDisplayCritical"));
+        checkDisplayCritical->setObjectName("checkDisplayCritical");
         sizePolicy.setHeightForWidth(checkDisplayCritical->sizePolicy().hasHeightForWidth());
         checkDisplayCritical->setSizePolicy(sizePolicy);
 
@@ -175,7 +174,7 @@ public:
 
         checkDetailsCritical = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDetailsCritical);
-        checkDetailsCritical->setObjectName(QStringLiteral("checkDetailsCritical"));
+        checkDetailsCritical->setObjectName("checkDetailsCritical");
         sizePolicy.setHeightForWidth(checkDetailsCritical->sizePolicy().hasHeightForWidth());
         checkDetailsCritical->setSizePolicy(sizePolicy);
 
@@ -183,7 +182,7 @@ public:
 
         checkDisplayFatal = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDisplayFatal);
-        checkDisplayFatal->setObjectName(QStringLiteral("checkDisplayFatal"));
+        checkDisplayFatal->setObjectName("checkDisplayFatal");
         sizePolicy.setHeightForWidth(checkDisplayFatal->sizePolicy().hasHeightForWidth());
         checkDisplayFatal->setSizePolicy(sizePolicy);
 
@@ -191,7 +190,7 @@ public:
 
         checkDetailsFatal = new QCheckBox(gridLayoutWidget);
         buttonGroup->addButton(checkDetailsFatal);
-        checkDetailsFatal->setObjectName(QStringLiteral("checkDetailsFatal"));
+        checkDetailsFatal->setObjectName("checkDetailsFatal");
         sizePolicy.setHeightForWidth(checkDetailsFatal->sizePolicy().hasHeightForWidth());
         checkDetailsFatal->setSizePolicy(sizePolicy);
 
@@ -199,23 +198,23 @@ public:
 
 
         retranslateUi(DialogLogSettings);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DialogLogSettings, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DialogLogSettings, SLOT(reject()));
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, DialogLogSettings, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, DialogLogSettings, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(DialogLogSettings);
     } // setupUi
 
     void retranslateUi(QDialog *DialogLogSettings)
     {
-        DialogLogSettings->setWindowTitle(QApplication::translate("DialogLogSettings", "Log window settings", 0));
-        label_3->setText(QApplication::translate("DialogLogSettings", "Details", 0));
-        label_4->setText(QApplication::translate("DialogLogSettings", "Debug", 0));
-        label_6->setText(QApplication::translate("DialogLogSettings", "Warning", 0));
-        label->setText(QApplication::translate("DialogLogSettings", "Message type", 0));
-        label_7->setText(QApplication::translate("DialogLogSettings", "Critical", 0));
-        label_5->setText(QApplication::translate("DialogLogSettings", "Info", 0));
-        label_2->setText(QApplication::translate("DialogLogSettings", "Display", 0));
-        label_8->setText(QApplication::translate("DialogLogSettings", "Fatal", 0));
+        DialogLogSettings->setWindowTitle(QCoreApplication::translate("DialogLogSettings", "Log window settings", nullptr));
+        label_3->setText(QCoreApplication::translate("DialogLogSettings", "Details", nullptr));
+        label_4->setText(QCoreApplication::translate("DialogLogSettings", "Debug", nullptr));
+        label_6->setText(QCoreApplication::translate("DialogLogSettings", "Warning", nullptr));
+        label->setText(QCoreApplication::translate("DialogLogSettings", "Message type", nullptr));
+        label_7->setText(QCoreApplication::translate("DialogLogSettings", "Critical", nullptr));
+        label_5->setText(QCoreApplication::translate("DialogLogSettings", "Info", nullptr));
+        label_2->setText(QCoreApplication::translate("DialogLogSettings", "Display", nullptr));
+        label_8->setText(QCoreApplication::translate("DialogLogSettings", "Fatal", nullptr));
         checkDisplayDebug->setText(QString());
         checkDetailsDebug->setText(QString());
         checkDisplayInfo->setText(QString());
