@@ -1,5 +1,5 @@
 #include "eventbuilder.h"
-#include "udpserver.h" // Include the UDP server header
+#include "udpserver.h"
 
 EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
 {
@@ -9,9 +9,6 @@ EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
     connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
     connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
     connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
-
-    // Create an instance of your UDP server class
-    udpServer = new UdpServer(this);
 
     moveToThread(&thread);
     thread.start();
@@ -88,7 +85,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         // Call sendData method of the UDP server
         QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
         QByteArray data = dataString.toUtf8();
-        udpServer->sendData(data);
+        udpServer.sendData(data);
 
     }
 

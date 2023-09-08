@@ -5,6 +5,8 @@
 #include <QUdpSocket>
 #include <QTimer> // Add this line to include QTimer
 
+
+
 class UdpServer : public QObject
 {
     Q_OBJECT
@@ -22,5 +24,8 @@ private:
     QTimer timer;
 
 };
+
+// Declare the global UdpServer object as an external variable
+extern UdpServer udpServer;
 
 #endif // UDPSERVER_H

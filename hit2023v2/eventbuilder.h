@@ -88,7 +88,6 @@ protected slots:
     void onStartTakingHistos(int sample_count);
     void onStopTakingHistos();
 private:
-    UdpServer* udpServer; // Declare a member variable for the UDP server
     double intensity = 0.0;
     double position = 0.0;
     double focus = 0.0;
