@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     dialogtiscan.cpp \
     dialogprofiler.cpp \
     stepper.cpp \
-    dialogbeta.cpp
+    dialogbeta.cpp \
+    udpserver.cpp
 
 HEADERS  += mainwindow.h \
     Q_DebugStream.h \
@@ -61,7 +62,8 @@ HEADERS  += mainwindow.h \
     dialogtiscan.h \
     dialogprofiler.h \
     stepper.h \
-    dialogbeta.h
+    dialogbeta.h \
+    udpserver.h
 
 FORMS    += mainwindow.ui \
     dialoglogsettings.ui \

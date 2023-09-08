@@ -7,6 +7,7 @@
 #include <QButtonGroup>
 #include <QTextStream>
 #include <QFile>
+#include <QCheckBox>
 
 namespace Ui {
 class display;
@@ -33,6 +34,10 @@ public slots:
     void onSaveBackgroundClicked();
     void onLoadBackgroundClicked();
     void onCheckBoxStateChanged(int state);
+    void onSaveCalibrationClicked();
+    void onLoadCalibrationClicked();
+    void onCalibrationCheckBoxChanged(int state);
+    void onExpertModeStateChanged(int state);
 
 protected:
     int nrPoints = 0;
@@ -46,7 +51,11 @@ private:
     QMap<QString, QVector<unsigned short>> backgroundDataMap; // Map to store background data for each plane
     bool subtractBackground = false; // Flag to track if background subtraction is enabled
 
-
+    QMap<QString, QVector<unsigned short>> calibrationDataMap; // Map to store calibration data for each plane
+    bool applyCalibration = false; // Flag to track if calibration should be applied
+    QVector<unsigned short> calibrationData; // Stores the loaded calibration data
+    QCheckBox *checkBoxExpertMode; // Expert Mode checkbox
+    bool expertModeEnabled = false; // Flag to track if expert mode is enabled
 };
 
 #endif // DISPLAY_H

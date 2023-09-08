@@ -41,16 +41,28 @@ public:
     QRadioButton *radioButtonFixedScale;
     QSpinBox *spinBox_fixedmin;
     QSpinBox *spinBox_fixedmax;
-    QPushButton *pushButton_savebkg;
-    QPushButton *pushButton_loadbkg;
+    QFrame *line_3;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout_2;
+    QCheckBox *checkBox_expertmode;
+    QCheckBox *checkBox_enablecalib;
+    QPushButton *pushButton_loadcalib;
+    QPushButton *pushButton_savecalib;
     QCheckBox *checkBox_subbkg;
+    QPushButton *pushButton_loadbkg;
+    QPushButton *pushButton_savebkg;
     QButtonGroup *buttonGroup;
 
     void setupUi(QDialog *display)
     {
         if (display->objectName().isEmpty())
             display->setObjectName("display");
-        display->resize(602, 390);
+        display->resize(609, 418);
+        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(display->sizePolicy().hasHeightForWidth());
+        display->setSizePolicy(sizePolicy);
         verticalLayoutWidget = new QWidget(display);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
         verticalLayoutWidget->setGeometry(QRect(9, 10, 581, 341));
@@ -67,11 +79,11 @@ public:
 
         plot = new QCustomPlot(verticalLayoutWidget);
         plot->setObjectName("plot");
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(plot->sizePolicy().hasHeightForWidth());
-        plot->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(plot->sizePolicy().hasHeightForWidth());
+        plot->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(plot);
 
@@ -133,15 +145,59 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        pushButton_savebkg = new QPushButton(display);
-        pushButton_savebkg->setObjectName("pushButton_savebkg");
-        pushButton_savebkg->setGeometry(QRect(510, 360, 80, 24));
-        pushButton_loadbkg = new QPushButton(display);
-        pushButton_loadbkg->setObjectName("pushButton_loadbkg");
-        pushButton_loadbkg->setGeometry(QRect(420, 360, 80, 24));
-        checkBox_subbkg = new QCheckBox(display);
+        line_3 = new QFrame(display);
+        line_3->setObjectName("line_3");
+        line_3->setGeometry(QRect(10, 350, 581, 20));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(line_3->sizePolicy().hasHeightForWidth());
+        line_3->setSizePolicy(sizePolicy2);
+        line_3->setFrameShape(QFrame::HLine);
+        line_3->setFrameShadow(QFrame::Sunken);
+        horizontalLayoutWidget = new QWidget(display);
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
+        horizontalLayoutWidget->setGeometry(QRect(10, 370, 581, 41));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        checkBox_expertmode = new QCheckBox(horizontalLayoutWidget);
+        checkBox_expertmode->setObjectName("checkBox_expertmode");
+
+        horizontalLayout_2->addWidget(checkBox_expertmode);
+
+        checkBox_enablecalib = new QCheckBox(horizontalLayoutWidget);
+        checkBox_enablecalib->setObjectName("checkBox_enablecalib");
+
+        horizontalLayout_2->addWidget(checkBox_enablecalib);
+
+        pushButton_loadcalib = new QPushButton(horizontalLayoutWidget);
+        pushButton_loadcalib->setObjectName("pushButton_loadcalib");
+
+        horizontalLayout_2->addWidget(pushButton_loadcalib);
+
+        pushButton_savecalib = new QPushButton(horizontalLayoutWidget);
+        pushButton_savecalib->setObjectName("pushButton_savecalib");
+        pushButton_savecalib->setEnabled(false);
+
+        horizontalLayout_2->addWidget(pushButton_savecalib);
+
+        checkBox_subbkg = new QCheckBox(horizontalLayoutWidget);
         checkBox_subbkg->setObjectName("checkBox_subbkg");
-        checkBox_subbkg->setGeometry(QRect(330, 360, 77, 22));
+
+        horizontalLayout_2->addWidget(checkBox_subbkg);
+
+        pushButton_loadbkg = new QPushButton(horizontalLayoutWidget);
+        pushButton_loadbkg->setObjectName("pushButton_loadbkg");
+
+        horizontalLayout_2->addWidget(pushButton_loadbkg);
+
+        pushButton_savebkg = new QPushButton(horizontalLayoutWidget);
+        pushButton_savebkg->setObjectName("pushButton_savebkg");
+        pushButton_savebkg->setEnabled(false);
+
+        horizontalLayout_2->addWidget(pushButton_savebkg);
+
 
         retranslateUi(display);
 
@@ -154,9 +210,15 @@ public:
         radioButtonAutoscale->setText(QCoreApplication::translate("display", "Auto Y-Scale", nullptr));
         radioButtonMaxScale->setText(QCoreApplication::translate("display", "Max Y-Scale", nullptr));
         radioButtonFixedScale->setText(QCoreApplication::translate("display", "Fixed Y-Scale", nullptr));
-        pushButton_savebkg->setText(QCoreApplication::translate("display", "save bkg", nullptr));
-        pushButton_loadbkg->setText(QCoreApplication::translate("display", "load bkg", nullptr));
+        checkBox_expertmode->setText(QCoreApplication::translate("display", "expert\n"
+"mode", nullptr));
+        checkBox_enablecalib->setText(QCoreApplication::translate("display", "enable\n"
+"calibration", nullptr));
+        pushButton_loadcalib->setText(QCoreApplication::translate("display", "Load calib", nullptr));
+        pushButton_savecalib->setText(QCoreApplication::translate("display", "save calib", nullptr));
         checkBox_subbkg->setText(QCoreApplication::translate("display", "sub bkg", nullptr));
+        pushButton_loadbkg->setText(QCoreApplication::translate("display", "load bkg", nullptr));
+        pushButton_savebkg->setText(QCoreApplication::translate("display", "save bkg", nullptr));
     } // retranslateUi
 
 };

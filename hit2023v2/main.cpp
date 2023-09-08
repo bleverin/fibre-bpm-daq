@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include <QApplication>
-
+#include "udpserver.h"        // Include udpserver header
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    // Create and start the UDP server
+    UdpServer udpServer; // Assuming your UdpServer class is properly defined
+    udpServer.startServer();
 
     // Apply the stylesheet to each display
     qDebug() << "App path : " << qApp->applicationDirPath();

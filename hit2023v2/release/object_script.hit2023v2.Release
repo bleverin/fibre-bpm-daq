@@ -21,6 +21,7 @@ release/dialogtiscan.o
 release/dialogprofiler.o
 release/stepper.o
 release/dialogbeta.o
+release/udpserver.o
 release/moc_mainwindow.o
 release/moc_dialoglogsettings.o
 release/moc_device.o
@@ -39,3 +40,4 @@ release/moc_dialogtiscan.o
 release/moc_dialogprofiler.o
 release/moc_stepper.o
 release/moc_dialogbeta.o
+release/moc_udpserver.o

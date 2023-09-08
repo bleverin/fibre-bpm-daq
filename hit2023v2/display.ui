@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>602</width>
-    <height>390</height>
+    <width>609</width>
+    <height>418</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Online Display</string>
@@ -131,44 +137,93 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton_savebkg">
+  <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>360</y>
-     <width>80</width>
-     <height>24</height>
+     <x>10</x>
+     <y>350</y>
+     <width>581</width>
+     <height>20</height>
     </rect>
    </property>
-   <property name="text">
-    <string>save bkg</string>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_loadbkg">
+  <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>360</y>
-     <width>80</width>
-     <height>24</height>
+     <x>10</x>
+     <y>370</y>
+     <width>581</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="text">
-    <string>load bkg</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="checkBox_subbkg">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>360</y>
-     <width>77</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>sub bkg</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QCheckBox" name="checkBox_expertmode">
+      <property name="text">
+       <string>expert
+mode</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_enablecalib">
+      <property name="text">
+       <string>enable
+calibration</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_loadcalib">
+      <property name="text">
+       <string>Load calib</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_savecalib">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>save calib</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_subbkg">
+      <property name="text">
+       <string>sub bkg</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_loadbkg">
+      <property name="text">
+       <string>load bkg</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_savebkg">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>save bkg</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>

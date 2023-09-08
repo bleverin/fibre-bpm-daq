@@ -1,4 +1,5 @@
 #include "eventbuilder.h"
+#include "udpserver.h" // Include the UDP server header
 
 EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
 {
@@ -8,6 +9,9 @@ EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
     connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
     connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
     connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
+
+    // Create an instance of your UDP server class
+    udpServer = new UdpServer(this);
 
     moveToThread(&thread);
     thread.start();
@@ -21,6 +25,7 @@ EventBuilder::~EventBuilder()
    thread.quit();
    thread.wait();
 }
+
 
 //************************* Data processing framework ********************
 
@@ -76,6 +81,14 @@ void EventBuilder::onNewData(DataReceiver* receiver)
 
         //************ TODO ************
         //Here we can do something more with the complete frame
+        // I probably want to find the position and focus with the linear regression algorithm, but first, just send data to the udpserver to test.
+        intensity+=1.0;
+        position+=0.1;
+        focus+=0.01;
+        // Call sendData method of the UDP server
+        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+        QByteArray data = dataString.toUtf8();
+        udpServer->sendData(data);
 
     }
 

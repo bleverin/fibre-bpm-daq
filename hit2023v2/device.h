@@ -45,9 +45,9 @@ public:
     }
     int max_channels() {return 64*max_sensors();}
     int nr_channels() {return 64*nr_sensors;}
-    DeviceConfig() : own_ip({10,0,7,1}), device_ip({10,0,7,2}),
-                        device_id(0), hardware_ver(0), master(1), plane(0), position(0), nr_sensors(0),
-                        period(65535), tint(1), master_delay(1), slave_delay(1), gain(0), dma_bunch(1), eth_bunch(1) {}
+    DeviceConfig() : own_ip{10,0,7,1}, device_ip{10,0,7,2},
+        device_id{0}, hardware_ver{0}, master{1}, plane{0}, position{0}, nr_sensors{0},
+        period{65535}, tint{1}, master_delay{1}, slave_delay{1}, gain{0}, dma_bunch{1}, eth_bunch{1} {}
 
 };
 

@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QMutexLocker>
+#include "udpserver.h" // Include the UDP server header
 
 //#include "hw.h"
 #include "datareceiver.h"
@@ -86,6 +87,12 @@ protected slots:
     void onStopLogging();
     void onStartTakingHistos(int sample_count);
     void onStopTakingHistos();
+private:
+    UdpServer* udpServer; // Declare a member variable for the UDP server
+    double intensity = 0.0;
+    double position = 0.0;
+    double focus = 0.0;
+
 };
 
 #endif // EVENTBUILDER_H

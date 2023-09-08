@@ -21,6 +21,7 @@ debug/dialogtiscan.o
 debug/dialogprofiler.o
 debug/stepper.o
 debug/dialogbeta.o
+debug/udpserver.o
 debug/moc_mainwindow.o
 debug/moc_dialoglogsettings.o
 debug/moc_device.o
@@ -39,3 +40,4 @@ debug/moc_dialogtiscan.o
 debug/moc_dialogprofiler.o
 debug/moc_stepper.o
 debug/moc_dialogbeta.o
+debug/moc_udpserver.o
