@@ -1,21 +1,36 @@
+// udpclient.cpp
+
 #include "udpclient.h"
 
 UdpClient::UdpClient(QObject *parent) : QObject(parent)
 {
-    // Create a UDP socket
- //   udpSocket.bind(QHostAddress::Any, 12345); // Bind to any available port
-    udpSocket.bind(QHostAddress("10.0.7.1"), 0); // Use the desired host address and let the OS choose an available port
+    // Create a QHostAddress for the server's IP address
+    QHostAddress serverAddress("10.0.7.1");
 
-    // Set up a signal-slot connection to handle incoming data
-    connect(&udpSocket, &QUdpSocket::readyRead, this, &UdpClient::processPendingDatagrams);
+    // Bind the UDP socket to a specific port for receiving data (replace with your desired port)
+    udpSocket.bind(QHostAddress::Any, 12345); // Replace 12345 with your desired port
+
+    // Connect the UDP socket's readyRead signal to the receiveData slot
+    connect(&udpSocket, &QUdpSocket::readyRead, this, &UdpClient::receiveData);
+
+    // Set the server's address and port for sending data
+    udpSocket.connectToHost(serverAddress, 12345); // Replace 12345 with the server's port
 }
 
 void UdpClient::startClient()
 {
-    qDebug() << "UDP Client is listening for data...";
-
-    // You can add additional client-specific logic here if needed.
+    // Start any client functionality here
+    // This method can be used to initialize the client if needed.
+        qDebug() << "UDP Client is listening for data...";
 }
+
+void UdpClient::receiveData()
+{
+    // Process pending datagrams
+    processPendingDatagrams();
+}
+
+
 
 void UdpClient::processPendingDatagrams()
 {
