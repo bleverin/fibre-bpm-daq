@@ -1,4 +1,4 @@
-.qtc_clangd
+*.qtc_clangd*
 # C++ objects and libs
 *.slo
 *.lo
