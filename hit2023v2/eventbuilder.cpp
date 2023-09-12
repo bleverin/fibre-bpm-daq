@@ -60,12 +60,6 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         //************ TODO ************
         //Here we can do something more with the complete frame
         // I probably want to find the position and focus with the linear regression algorithm, but first, just send data to the udpserver to test.
-
-        //currentFrame[dev_nr].sensor_data[ch]
-        //currentFrame is BufferData
-        //    unsigned short* sensor_data;
-
-
         //ToDo:
         //1. Background subtraction.
 
@@ -114,11 +108,11 @@ void EventBuilder::onNewData(DataReceiver* receiver)
 
         //log data
         if (loggingData) logDataToFile();
-        HIT_ANALYSE_V2 hit_analyse_v2;//create the object
-        QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
+        //HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+       // QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
 
         // Call sendData method of the UDP server
-        //QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
         QByteArray data = dataString.toUtf8();
         udpServer.sendData(data);
 
