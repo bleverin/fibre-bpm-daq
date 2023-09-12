@@ -64,7 +64,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         //1. Background subtraction.
 
         frame_counter++;
-
+/*
         while (frame_counter<10000){
             for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
                 for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
@@ -84,7 +84,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
                 currentFrame[dev_nr].sensor_data[ch]-=backgroundFrame[dev_nr].sensor_data[ch] ;
             }
         }
-
+*/
 
 
         lastFrameMutex.lock();
@@ -108,13 +108,13 @@ void EventBuilder::onNewData(DataReceiver* receiver)
 
         //log data
         if (loggingData) logDataToFile();
-        //HIT_ANALYSE_V2 hit_analyse_v2;//create the object
-       // QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
-
+        HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+        QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
+        std::cerr << dataString.toStdString() << std::endl;
         // Call sendData method of the UDP server
-        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
-        QByteArray data = dataString.toUtf8();
-        udpServer.sendData(data);
+       // QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+        //QByteArray data = dataString.toUtf8();
+       // udpServer.sendData(data);
 
     }
 
