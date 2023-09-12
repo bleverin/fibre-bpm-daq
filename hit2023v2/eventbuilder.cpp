@@ -1,5 +1,6 @@
 #include "eventbuilder.h"
 #include "udpserver.h"
+#include "hit_analyse_v2.h"
 
 EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
 {
@@ -9,6 +10,7 @@ EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
     connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
     connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
     connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
+
 
     moveToThread(&thread);
     thread.start();
@@ -52,18 +54,57 @@ void EventBuilder::onNewData(DataReceiver* receiver)
 
         }
 
+
+
+
+        //************ TODO ************
+        //Here we can do something more with the complete frame
+        // I probably want to find the position and focus with the linear regression algorithm, but first, just send data to the udpserver to test.
+
+        //currentFrame[dev_nr].sensor_data[ch]
+        //currentFrame is BufferData
+        //    unsigned short* sensor_data;
+
+
+        //ToDo:
+        //1. Background subtraction.
+
+        frame_counter++;
+
+        while (frame_counter<10000){
+            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
+                    backgroundFrame[dev_nr].sensor_data[ch]+= currentFrame[dev_nr].sensor_data[ch];
+
+            }
+        }
+        if (frame_counter==10000){
+            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
+                backgroundFrame[dev_nr].sensor_data[ch]/= 10000 ;
+            }
+        }
+        if (frame_counter>10000){
+            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
+                currentFrame[dev_nr].sensor_data[ch]-=backgroundFrame[dev_nr].sensor_data[ch] ;
+            }
+        }
+
+
+
         lastFrameMutex.lock();
         if (newDataSemaphore.available() == 0)
             newDataSemaphore.release(1);
         lastFrame = currentFrame;
         lastFrameMutex.unlock();
 
-            //histogram stuff
+        //histogram stuff
         if (histogramSamplesToTake)
         {
             for (int dev_nr = 0; dev_nr < nrReceivers; dev_nr++)
                 for (int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                    histograms[baseAddresses[dev_nr] + ch].shoot(currentFrame[dev_nr].sensor_data[ch]);
+                histograms[baseAddresses[dev_nr] + ch].shoot(currentFrame[dev_nr].sensor_data[ch]);
 
             if (histogramSamplesToTake != -1)
                 histogramSamplesToTake--;
@@ -71,19 +112,13 @@ void EventBuilder::onNewData(DataReceiver* receiver)
                 emit sigHistoCompleted();
         }
 
-            //log data
-        if (loggingData)
-            logDataToFile();
+        //log data
+        if (loggingData) logDataToFile();
+        HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+        QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
 
-
-        //************ TODO ************
-        //Here we can do something more with the complete frame
-        // I probably want to find the position and focus with the linear regression algorithm, but first, just send data to the udpserver to test.
-        intensity+=1.0;
-        position+=0.1;
-        focus+=0.01;
         // Call sendData method of the UDP server
-        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+        //QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
         QByteArray data = dataString.toUtf8();
         udpServer.sendData(data);
 
@@ -252,6 +287,7 @@ void EventBuilder::addSource(DataReceiver* source)
     receivers.append(source);
     nrReceivers = receivers.length();
     currentFrame.resize(nrReceivers);
+    backgroundFrame.resize(nrReceivers);
     connect(source, DataReceiver::sigDataReady, this, EventBuilder::onNewData);
 }
 

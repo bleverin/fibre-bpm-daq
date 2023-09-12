@@ -15,6 +15,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
+    hit_analyse_v2.cpp \
         mainwindow.cpp \
     q_debugstream.cpp \
     dialoglogsettings.cpp \
@@ -45,6 +46,7 @@ HEADERS  += mainwindow.h \
     device.h \
     dev_commands.h \
     datareceiver.h \
+    hit_analyse_v2.h \
     hw.h \
     dialoghostip.h \
     dialogtriggersettings.h \
@@ -63,7 +65,8 @@ HEADERS  += mainwindow.h \
     dialogprofiler.h \
     stepper.h \
     dialogbeta.h \
-    udpserver.h
+    udpserver.h \
+    hitreader.h
 
 FORMS    += mainwindow.ui \
     dialoglogsettings.ui \

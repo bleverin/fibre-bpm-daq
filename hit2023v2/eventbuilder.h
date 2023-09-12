@@ -64,6 +64,8 @@ protected:
     QVector<DataReceiver*> receivers;
 
     QVector<BufferData> currentFrame;
+    QVector<BufferData> backgroundFrame;
+
     QVector<BufferData> lastFrame;
 
     QVector<Histogram> histograms;
@@ -88,6 +90,7 @@ protected slots:
     void onStartTakingHistos(int sample_count);
     void onStopTakingHistos();
 private:
+    long unsigned int frame_counter = 0;
     double intensity = 0.0;
     double position = 0.0;
     double focus = 0.0;
