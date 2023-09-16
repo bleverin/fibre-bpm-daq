@@ -58,7 +58,7 @@ public:
     double getCurrent();
     void ps_flush();
 
-    QThread workerThread;
+    QThread udpThread;
 
     double lastCurrentReadout;
     QString portName;

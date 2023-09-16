@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QUdpSocket>
+#include <QTime>
 
 class UdpClient : public QObject
 {
@@ -15,7 +16,9 @@ public:
 
 private:
     QUdpSocket udpSocket;
-
+    int messageCount = 0;
+    int startTime=0;
+    int elapsedTimeInmSeconds=0;
 public slots:
     void receiveData();
     void processPendingDatagrams();

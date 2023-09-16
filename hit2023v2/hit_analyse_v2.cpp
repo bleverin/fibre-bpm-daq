@@ -38,7 +38,7 @@ QString HIT_ANALYSE_V2::analyseBeamData(QVector<BufferData> dataframe){
 
     double position=0.1;
     double focus=8;
-    double intensity=10000.0;
+    double intensity=1000.0;
     QString dataString;
 
 
@@ -57,23 +57,27 @@ QString HIT_ANALYSE_V2::analyseBeamData(QVector<BufferData> dataframe){
     // Create a vector to store the generated values
     std::vector<short int> result(vector_length);
 
-    // Fill the vector with random values
+    // Fill the vector with random noise values
+    //add a gaussian profile, focus is FWHM, position is random between 50 and 250
+    bool fixeddata = true;
+    if (!fixeddata){
+    position = 50 + (rand() % (int)(250 - 50 + 1));
+
     for (int i = 0; i < vector_length; i++) {
         double randomValue = dist(gen);
-        result[i] = static_cast<short int>(std::round(randomValue));
-        signal_list[i] = result[i];
+        signal_list[i] = static_cast<short int>(std::round(randomValue));
         channel_list[i] = i;
-        //std::cerr << vector_length<< " " << channel_list[i] << " " << signal_list[i] <<std::endl;
+        signal_list[i] += static_cast<short int>(std::round(intensity*exp(-4*log(2)*pow((channel_list[i]-position)/focus,2))));
 
-    }
-    //add a gaussian profile, focus is FWHM, position is random between 50 and 250
-    position = 50 + (rand() % (int)(250 - 50 + 1));
-    for  (int i = 0; i < vector_length; i++) {
-        signal_list[i] += intensity*exp(-4*log(2)*pow((channel_list[i]-position)/focus,2));
-      //  std::cerr << vector_length<< " " << channel_list[i] << " " << signal_list[i] <<std::endl;
+       // std::cerr << channel_list[i] << ", ";
     }
 
-
+   // std::cerr <<std::endl;
+    }
+    else{
+    signal_list = fixed_signal[0];
+    channel_list = fixed_channel;
+    }
 
 /*
     // Fill signal_list and channel_list with your data
@@ -185,7 +189,7 @@ QString HIT_ANALYSE_V2::analyseBeamData(QVector<BufferData> dataframe){
             Ymax = signal_list[i];
             Pomax = channel_list[i];
         }
-        if (i > 0 && signal_list[i] > 20) {
+        if (i > 0 && signal_list[i] > 34) {
             SumArea += signal_list[i] * (channel_list[i] - channel_list[i - 1]);
         }
     }
@@ -200,7 +204,7 @@ QString HIT_ANALYSE_V2::analyseBeamData(QVector<BufferData> dataframe){
 
 
     for (int i = 0; i < vector_length; i++) {
-        if (signal_list[i] > 20 && channel_list[i] > window_start && channel_list[i] < window_end) {
+        if (signal_list[i] > 34 && channel_list[i] > window_start && channel_list[i] < window_end) {
             short_signal_list.push_back(signal_list[i]);
             short_channel_list.push_back(channel_list[i]);
         }

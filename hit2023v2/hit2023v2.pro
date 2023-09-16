@@ -37,8 +37,7 @@ SOURCES += main.cpp\
     dialogtiscan.cpp \
     dialogprofiler.cpp \
     stepper.cpp \
-    dialogbeta.cpp \
-    udpserver.cpp
+    dialogbeta.cpp
 
 HEADERS  += mainwindow.h \
     Q_DebugStream.h \
@@ -54,6 +53,7 @@ HEADERS  += mainwindow.h \
     helpers.h \
     cbuffer.h \
     eventbuilder.h \
+    networkthread.h \
     qcustomplot.h \
     display.h \
     displayserver.h \
@@ -65,7 +65,6 @@ HEADERS  += mainwindow.h \
     dialogprofiler.h \
     stepper.h \
     dialogbeta.h \
-    udpserver.h \
     hitreader.h
 
 FORMS    += mainwindow.ui \
