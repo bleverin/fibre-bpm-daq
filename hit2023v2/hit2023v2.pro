@@ -5,14 +5,13 @@
 #-------------------------------------------------
 
 QT       += core gui network serialport
-QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
 unix {
-   QMAKE_CXXFLAGS += -Wa
+   QMAKE_CXXFLAGS += -W -std=c++17
 }
 
 win32 {
-   QMAKE_CXXFLAGS += -Wa,-mbig-obj
+   QMAKE_CXXFLAGS += -Wa,-mbig-obj -std=c++17
 }
 
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets printsupport
