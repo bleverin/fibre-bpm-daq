@@ -13,13 +13,13 @@ namespace Ui {
 class display;
 }
 
-class Display : public QDialog
+class BPMDisplay : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Display(QWidget *parent = 0);
-    ~Display();
+    explicit BPMDisplay(QWidget *parent = 0);
+    ~BPMDisplay();
 
 
     void plot(const QVector<unsigned short> &data);

@@ -4,7 +4,7 @@
 #include <QFileDialog>
 #include <QCheckBox>
 
-Display::Display(QWidget *parent) :
+BPMDisplay::BPMDisplay(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::display)
 {
@@ -27,12 +27,12 @@ Display::Display(QWidget *parent) :
     // Connect the buttonClicked signal of the button group
     connect(buttonGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onButtonClicked(QAbstractButton*)));
 
-    connect(ui->pushButton_savebkg, &QPushButton::clicked, this, &Display::onSaveBackgroundClicked);
-    connect(ui->pushButton_loadbkg, &QPushButton::clicked, this, &Display::onLoadBackgroundClicked);
-    connect(ui->checkBox_subbkg, &QCheckBox::stateChanged, this, &Display::onCheckBoxStateChanged);
-    connect(ui->pushButton_savecalib, &QPushButton::clicked, this, &Display::onSaveCalibrationClicked);
-    connect(ui->pushButton_loadcalib, &QPushButton::clicked, this, &Display::onLoadCalibrationClicked);
-    connect(ui->checkBox_expertmode, &QCheckBox::stateChanged, this, &Display::onExpertModeStateChanged);
+    connect(ui->pushButton_savebkg, &QPushButton::clicked, this, &BPMDisplay::onSaveBackgroundClicked);
+    connect(ui->pushButton_loadbkg, &QPushButton::clicked, this, &BPMDisplay::onLoadBackgroundClicked);
+    connect(ui->checkBox_subbkg, &QCheckBox::stateChanged, this, &BPMDisplay::onCheckBoxStateChanged);
+    connect(ui->pushButton_savecalib, &QPushButton::clicked, this, &BPMDisplay::onSaveCalibrationClicked);
+    connect(ui->pushButton_loadcalib, &QPushButton::clicked, this, &BPMDisplay::onLoadCalibrationClicked);
+    connect(ui->checkBox_expertmode, &QCheckBox::stateChanged, this, &BPMDisplay::onExpertModeStateChanged);
 
     // Enable or disable the "Save Background" and "Save Calib" buttons accordingly
     ui->pushButton_savebkg->setEnabled(expertModeEnabled);
@@ -45,12 +45,12 @@ Display::Display(QWidget *parent) :
 
 }
 
-Display::~Display()
+BPMDisplay::~BPMDisplay()
 {
     delete ui;
 }
 
-void Display::showEvent(QShowEvent * event)
+void BPMDisplay::showEvent(QShowEvent * event)
 {
     if (!event->spontaneous())
     {
@@ -62,7 +62,7 @@ void Display::showEvent(QShowEvent * event)
 
 //***********************************************
 
-void Display::plot(const QVector<unsigned short> &data)
+void BPMDisplay::plot(const QVector<unsigned short> &data)
 {
         //resize data vectors and fill X values - only if needed
     if (data.length() != nrPoints)
@@ -138,18 +138,18 @@ void Display::plot(const QVector<unsigned short> &data)
     ui->plot->replot();
 }
 
-void Display::plot()
+void BPMDisplay::plot()
 {
     plot(buffer);
 }
 
-void Display::setTitle(QString title)
+void BPMDisplay::setTitle(QString title)
 {
     ui->lineTitle->setText(title);
 }
 
 // Slot to handle button clicks
-void Display::onButtonClicked(QAbstractButton *button)
+void BPMDisplay::onButtonClicked(QAbstractButton *button)
 {
     // Handle button clicks here
     if (button == radioButtonFixedScale)
@@ -170,7 +170,7 @@ void Display::onButtonClicked(QAbstractButton *button)
     }
 }
 
-void Display::onSaveBackgroundClicked()
+void BPMDisplay::onSaveBackgroundClicked()
 {
     // Check if there is data to save
     if (buffer.isEmpty()) {
@@ -208,7 +208,7 @@ void Display::onSaveBackgroundClicked()
     }
 }
 
-void Display::onLoadBackgroundClicked()
+void BPMDisplay::onLoadBackgroundClicked()
 {
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
@@ -246,13 +246,13 @@ void Display::onLoadBackgroundClicked()
     }
 }
 
-void Display::onCheckBoxStateChanged(int state)
+void BPMDisplay::onCheckBoxStateChanged(int state)
 {
     // The state argument will be Qt::Unchecked (0) or Qt::Checked (2)
     subtractBackground = (state == Qt::Checked);
 }
 
-void Display::onSaveCalibrationClicked()
+void BPMDisplay::onSaveCalibrationClicked()
 {
 
     // Check if there is data to save
@@ -291,7 +291,7 @@ void Display::onSaveCalibrationClicked()
     }
 }
 
-void Display::onLoadCalibrationClicked()
+void BPMDisplay::onLoadCalibrationClicked()
 {
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
@@ -361,14 +361,14 @@ void Display::onLoadCalibrationClicked()
     }
 }
 
-void Display::onCalibrationCheckBoxChanged(int state) {
+void BPMDisplay::onCalibrationCheckBoxChanged(int state) {
     // Check the state and update the subtractCalibration flag accordingly
     applyCalibration = (state == Qt::Checked);
 }
 
 
 // Slot to handle the state change of the "Expert Mode" checkbox
-void Display::onExpertModeStateChanged(int state)
+void BPMDisplay::onExpertModeStateChanged(int state)
 {
     // Check if the checkbox is checked (Expert Mode enabled)
     expertModeEnabled = (state == Qt::Checked);
