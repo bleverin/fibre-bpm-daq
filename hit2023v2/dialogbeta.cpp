@@ -22,7 +22,7 @@ DialogBeta::DialogBeta(QWidget *parent) :
 DialogBeta::~DialogBeta()
 {
     timer.stop();
-    disconnect(&timer, QTimer::timeout, this, &DialogBeta::onTimer);
+    disconnect(&timer, &QTimer::timeout, this, &DialogBeta::onTimer);
 
     delete ui;
 }
@@ -35,9 +35,9 @@ void DialogBeta::showEvent(QShowEvent * event)
         ui->lineRunsDone->setText(QString("%1").arg(nrRunsDone));
             //data logging possible only if global data logging is switched off
         if (theHW->eventBuilder.isLogging())
-            ui->checkSaveRawData->setEnabled(FALSE);
+            ui->checkSaveRawData->setEnabled(false);
 
-        connect(&timer, QTimer::timeout, this, &DialogBeta::onTimer);
+        connect(&timer, &QTimer::timeout, this, &DialogBeta::onTimer);
         timer.start(250);
     }
 }
