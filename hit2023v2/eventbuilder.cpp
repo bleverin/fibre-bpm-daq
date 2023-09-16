@@ -1,14 +1,14 @@
 #include "eventbuilder.h"
 #include "hit_analyse_v2.h"
-#include <QTime>;
+#include <QTime>
 EventBuilder::EventBuilder( QObject *parent) : QObject(parent)
 {
-    connect(this, EventBuilder::sigInit, this, EventBuilder::onInit);
-    connect(this, EventBuilder::sigDeinit, this, EventBuilder::onDeinit);
-    connect(this, EventBuilder::sigStartLogging, this, EventBuilder::onStartLogging);
-    connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
-    connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
-    connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
+    connect(this, &EventBuilder::sigInit, this, &EventBuilder::onInit);
+    connect(this, &EventBuilder::sigDeinit, this, &EventBuilder::onDeinit);
+    connect(this, &EventBuilder::sigStartLogging, this, &EventBuilder::onStartLogging);
+    connect(this, &EventBuilder::sigStopLogging, this, &EventBuilder::onStopLogging);
+    connect(this, &EventBuilder::sigStartTakingHistos, this, &EventBuilder::onStartTakingHistos);
+    connect(this, &EventBuilder::sigStopTakingHistos, this, &EventBuilder::onStopTakingHistos);
 
     moveToThread(&thread);
     thread.start();
@@ -292,13 +292,13 @@ void EventBuilder::addSource(DataReceiver* source)
     nrReceivers = receivers.length();
     currentFrame.resize(nrReceivers);
     backgroundFrame.resize(nrReceivers);
-    connect(source, DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+    connect(source, &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 }
 
 void EventBuilder::deleteSources()
 {
     for (int i = 0; i < receivers.length(); i++)
-        disconnect(receivers[i], DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+        disconnect(receivers[i], &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 
     receivers.clear();
     nrReceivers = receivers.length();
