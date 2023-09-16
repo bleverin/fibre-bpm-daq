@@ -4,9 +4,9 @@
 
 DataReceiver::DataReceiver(QObject *parent) : QObject(parent), dataBuffer(RECEIVER_BUFFER_SIZE)
 {
-    connect(this, DataReceiver::sigInit, this, DataReceiver::onInit);
-    connect(this, DataReceiver::sigDeinit, this, DataReceiver::onDeinit);
-    connect(this, DataReceiver::sigConfigureEthSettings, this, DataReceiver::onConfigureEthSettings);
+    connect(this, &DataReceiver::sigInit, this, &DataReceiver::onInit);
+    connect(this, &DataReceiver::sigDeinit, this, &DataReceiver::onDeinit);
+    connect(this, &DataReceiver::sigConfigureEthSettings, this, &DataReceiver::onConfigureEthSettings);
 
     moveToThread(&thread);
     thread.start();
