@@ -97,13 +97,13 @@ void DataReceiver::onInit()
     if (dataSocket == NULL)
     {
         dataSocket = new QUdpSocket(this);
-        connect(dataSocket, QUdpSocket::readyRead, this, DataReceiver::readData);
+        connect(dataSocket, &QUdpSocket::readyRead, this, &DataReceiver::readData);
     }
 
     if (timer == NULL)
     {
         timer = new QTimer(this);
-        connect(timer, QTimer::timeout, this, onTimer);
+        connect(timer, &QTimer::timeout, this, &DataReceiver::onTimer);
         timer->start(RECEIVER_TIMER_PERIOD_MS);
     }
 
