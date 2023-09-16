@@ -92,7 +92,7 @@ keithley_thr::~keithley_thr()
 //************************** slots for communication with worker thread ******************
 
     //called on each current readout
-keithley_thr::on_currentReadout(const double value)
+void keithley_thr::on_currentReadout(const double value)
 {
     lastCurrentReadout = value;
     emit esig_newCurrentReadout(lastCurrentReadout);
