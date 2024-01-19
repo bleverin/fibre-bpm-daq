@@ -106,14 +106,14 @@ void DialogTiScan::run()
 
             //Collect sensor data
         histoReady = 0;
-        connect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogTiScan::onHistogramCompleted);
+        connect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogTiScan::onHistogramCompleted);
         theHW->eventBuilder.startTakingHistos(nacqs);
         while (!histoReady)
         {
              QCoreApplication::processEvents();
              QThread::msleep(10);
         }
-        disconnect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogTiScan::onHistogramCompleted);
+        disconnect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogTiScan::onHistogramCompleted);
         QVector<Histogram> histos = theHW->eventBuilder.getHistos();
 
         result.mean.fill(0, nr_devices*128);

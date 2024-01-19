@@ -5,8 +5,14 @@
 #-------------------------------------------------
 
 QT       += core gui network serialport
-QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
+unix {
+   QMAKE_CXXFLAGS += -W -std=c++17
+}
+
+win32 {
+   QMAKE_CXXFLAGS += -Wa,-mbig-obj -std=c++17
+}
 
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets printsupport
 
@@ -37,8 +43,7 @@ SOURCES += main.cpp\
     dialogtiscan.cpp \
     dialogprofiler.cpp \
     stepper.cpp \
-    dialogbeta.cpp \
-    udpserver.cpp
+    dialogbeta.cpp
 
 HEADERS  += mainwindow.h \
     Q_DebugStream.h \
@@ -54,6 +59,7 @@ HEADERS  += mainwindow.h \
     helpers.h \
     cbuffer.h \
     eventbuilder.h \
+    networkthread.h \
     qcustomplot.h \
     display.h \
     displayserver.h \
@@ -65,7 +71,6 @@ HEADERS  += mainwindow.h \
     dialogprofiler.h \
     stepper.h \
     dialogbeta.h \
-    udpserver.h \
     hitreader.h
 
 FORMS    += mainwindow.ui \

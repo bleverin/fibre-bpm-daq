@@ -1,20 +1,19 @@
 #include "eventbuilder.h"
-#include "udpserver.h"
 #include "hit_analyse_v2.h"
-
-EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
+#include <QTime>
+EventBuilder::EventBuilder( QObject *parent) : QObject(parent)
 {
-    connect(this, EventBuilder::sigInit, this, EventBuilder::onInit);
-    connect(this, EventBuilder::sigDeinit, this, EventBuilder::onDeinit);
-    connect(this, EventBuilder::sigStartLogging, this, EventBuilder::onStartLogging);
-    connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
-    connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
-    connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
-
+    connect(this, &EventBuilder::sigInit, this, &EventBuilder::onInit);
+    connect(this, &EventBuilder::sigDeinit, this, &EventBuilder::onDeinit);
+    connect(this, &EventBuilder::sigStartLogging, this, &EventBuilder::onStartLogging);
+    connect(this, &EventBuilder::sigStopLogging, this, &EventBuilder::onStopLogging);
+    connect(this, &EventBuilder::sigStartTakingHistos, this, &EventBuilder::onStartTakingHistos);
+    connect(this, &EventBuilder::sigStopTakingHistos, this, &EventBuilder::onStopTakingHistos);
 
     moveToThread(&thread);
     thread.start();
     init();
+    //get the network thread
 }
 
 EventBuilder::~EventBuilder()
@@ -23,6 +22,8 @@ EventBuilder::~EventBuilder()
 
    thread.quit();
    thread.wait();
+ //  networkThread.stopThread();
+  // networkThread.wait(); // Wait for the network thread to finish gracefully
 }
 
 
@@ -64,7 +65,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         //1. Background subtraction.
 
         frame_counter++;
-
+/*
         while (frame_counter<10000){
             for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
                 for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
@@ -84,7 +85,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
                 currentFrame[dev_nr].sensor_data[ch]-=backgroundFrame[dev_nr].sensor_data[ch] ;
             }
         }
-
+*/
 
 
         lastFrameMutex.lock();
@@ -92,7 +93,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
             newDataSemaphore.release(1);
         lastFrame = currentFrame;
         lastFrameMutex.unlock();
-
+/*
         //histogram stuff
         if (histogramSamplesToTake)
         {
@@ -105,16 +106,25 @@ void EventBuilder::onNewData(DataReceiver* receiver)
             if (histogramSamplesToTake == 0)
                 emit sigHistoCompleted();
         }
-
+*/
         //log data
         if (loggingData) logDataToFile();
-        //HIT_ANALYSE_V2 hit_analyse_v2;//create the object
-       // QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
-
+        HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+        QString dataString;
+        for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+            dataString += hit_analyse_v2.analyseBeamData(currentFrame);
+            dataString +=',';
+        }
+        QTime currentTime = QTime::currentTime();
+            //Calculate the time since midnight in milliseconds
+        int millisecondsSinceMidnight = currentTime.msecsSinceStartOfDay();
+        dataString += QString::number(millisecondsSinceMidnight);
+        receiveData(dataString.toUtf8());
+ //       std::cerr << dataString.toStdString() << std::endl;
         // Call sendData method of the UDP server
-        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
-        QByteArray data = dataString.toUtf8();
-        udpServer.sendData(data);
+       // QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+
+
 
     }
 
@@ -282,13 +292,13 @@ void EventBuilder::addSource(DataReceiver* source)
     nrReceivers = receivers.length();
     currentFrame.resize(nrReceivers);
     backgroundFrame.resize(nrReceivers);
-    connect(source, DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+    connect(source, &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 }
 
 void EventBuilder::deleteSources()
 {
     for (int i = 0; i < receivers.length(); i++)
-        disconnect(receivers[i], DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+        disconnect(receivers[i], &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 
     receivers.clear();
     nrReceivers = receivers.length();
@@ -341,4 +351,22 @@ QVector<BufferData> EventBuilder::getNewFrame()
     newDataSemaphore.acquire(1);
         //and return it
     return getLastFrame();
+}
+
+void EventBuilder::receiveData(const QByteArray &data)
+{
+    QMutexLocker locker(&mutex);
+    dataQueue.enqueue(data);
+    QString dataString = QString(data);
+ //   std::cerr << dataString.toStdString() << std::endl;
+
+    dataAvailable.wakeOne();
+}
+
+QByteArray EventBuilder::getNextData()
+{
+    QMutexLocker locker(&mutex);
+    if (dataQueue.isEmpty())
+        return QByteArray(); // Return an empty QByteArray if no data is available
+    return dataQueue.dequeue();
 }

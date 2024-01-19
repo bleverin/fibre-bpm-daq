@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Online Display</string>
+   <string>Online BPMDisplay</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">

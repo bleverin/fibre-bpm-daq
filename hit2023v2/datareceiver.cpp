@@ -4,9 +4,9 @@
 
 DataReceiver::DataReceiver(QObject *parent) : QObject(parent), dataBuffer(RECEIVER_BUFFER_SIZE)
 {
-    connect(this, DataReceiver::sigInit, this, DataReceiver::onInit);
-    connect(this, DataReceiver::sigDeinit, this, DataReceiver::onDeinit);
-    connect(this, DataReceiver::sigConfigureEthSettings, this, DataReceiver::onConfigureEthSettings);
+    connect(this, &DataReceiver::sigInit, this, &DataReceiver::onInit);
+    connect(this, &DataReceiver::sigDeinit, this, &DataReceiver::onDeinit);
+    connect(this, &DataReceiver::sigConfigureEthSettings, this, &DataReceiver::onConfigureEthSettings);
 
     moveToThread(&thread);
     thread.start();
@@ -97,13 +97,13 @@ void DataReceiver::onInit()
     if (dataSocket == NULL)
     {
         dataSocket = new QUdpSocket(this);
-        connect(dataSocket, QUdpSocket::readyRead, this, DataReceiver::readData);
+        connect(dataSocket, &QUdpSocket::readyRead, this, &DataReceiver::readData);
     }
 
     if (timer == NULL)
     {
         timer = new QTimer(this);
-        connect(timer, QTimer::timeout, this, onTimer);
+        connect(timer, &QTimer::timeout, this, &DataReceiver::onTimer);
         timer->start(RECEIVER_TIMER_PERIOD_MS);
     }
 

@@ -8,8 +8,8 @@
 #include <QThread>
 #include <QMutex>
 #include <QMutexLocker>
-#include "udpserver.h" // Include the UDP server header
-
+#include <QQueue>
+#include <QWaitCondition>
 //#include "hw.h"
 #include "datareceiver.h"
 #include "histogram.h"
@@ -24,7 +24,7 @@ class EventBuilder : public QObject
 {
     Q_OBJECT
 public:
-    explicit EventBuilder(QObject *parent = 0);
+    explicit EventBuilder( QObject *parent = 0);
     ~EventBuilder();
 
     void addSource(DataReceiver *source);
@@ -48,9 +48,18 @@ signals:
     void sigStopTakingHistos();
 
     void sigHistoCompleted();   //this is a public signal which can be used to notify user that the histo is ready
-
+    // Define a signal to notify when postdata is updated
+    void dataReady(const QByteArray& data); // Define a signal for data readiness
 public slots:
     void onNewData(DataReceiver *receiver);
+    // Add a public slot to receive and store data
+    void receiveData(const QByteArray &data);
+
+
+    // Add a method to get data from the queue
+    QByteArray getNextData();
+
+
 protected:
     int checkBufferOccupancies();
     int findLowestId();
@@ -94,6 +103,9 @@ private:
     double intensity = 0.0;
     double position = 0.0;
     double focus = 0.0;
+    QQueue<QByteArray> dataQueue;
+    QMutex mutex;
+    QWaitCondition dataAvailable;
 
 };
 

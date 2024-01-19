@@ -57,14 +57,14 @@ void DialogProfiler::run(int nr_loops)
 
             //Collect sensor data
         histoReady = 0;
-        connect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogProfiler::onHistogramCompleted);
+        connect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogProfiler::onHistogramCompleted);
         theHW->eventBuilder.startTakingHistos(nacqs);
         while (!histoReady)
         {
              QCoreApplication::processEvents();
              QThread::msleep(10);
         }
-        disconnect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogProfiler::onHistogramCompleted);
+        disconnect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogProfiler::onHistogramCompleted);
         QVector<Histogram> histos = theHW->eventBuilder.getHistos();
 
         result.mean.fill(0, nr_devices*128);

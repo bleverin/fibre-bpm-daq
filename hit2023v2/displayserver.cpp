@@ -66,7 +66,7 @@ void DisplayServer::show()
     displays.clear();
     for (int plane = 0; plane < planeConfig.length(); plane++)
     {
-        Display* newDisplay = new Display;
+        BPMDisplay* newDisplay = new BPMDisplay;
         newDisplay->setTitle(planeConfig[plane]->name);
         newDisplay->show();
         displays.append(newDisplay);

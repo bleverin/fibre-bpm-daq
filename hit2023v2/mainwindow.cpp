@@ -29,8 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
     theKeithley = new keithley_thr;
     theStepper = new Stepper;
 
-    connect(&timer, QTimer::timeout, this, on_timer);
-    connect(theKeithley, keithley_thr::esig_newCurrentReadout, this, MainWindow::on_newCurrentReadout);
+//    connect(&timer, QTimer::timeout, this, on_timer);
+    connect(&timer, &QTimer::timeout, this, &MainWindow::on_timer);
+
+ //   connect(theKeithley, keithley_thr::esig_newCurrentReadout, this, MainWindow::on_newCurrentReadout);
+    connect(theKeithley, &keithley_thr::esig_newCurrentReadout, this, &MainWindow::on_newCurrentReadout);
+
+
 
 }
 
@@ -41,6 +46,7 @@ MainWindow::~MainWindow()
     delete theHW;
     delete theDisplay;
     delete theKeithley;
+
 }
 
 //***************** Initialization ******************
@@ -477,5 +483,16 @@ void MainWindow::on_actionDisconnect_Stepper_triggered()
 {
     theStepper->disconnect();
     qInfo("Stepper controller disconnected.");
+}
+
+
+void MainWindow::on_pushButton_exit_clicked()
+{
+    if(running) stop();
+    theHW->stop();
+
+    theHW->disconnectDevices();
+
+    QApplication::exit(); //close the application;
 }
 
