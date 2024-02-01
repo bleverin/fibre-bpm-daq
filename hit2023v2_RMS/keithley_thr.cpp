@@ -64,11 +64,11 @@ keithley_thr::keithley_thr()
 
    keithleyWorker *worker = new keithleyWorker;
    //worker->theKeithley = &theKeithley;
-   worker->moveToThread(&workerThread);
-   worker->timer.moveToThread(&workerThread);
-   worker->theKeithley.serialPort.moveToThread(&workerThread);
+   worker->moveToThread(&udpThread);
+   worker->timer.moveToThread(&udpThread);
+   worker->theKeithley.serialPort.moveToThread(&udpThread);
         //controller -> worker
-   QObject::connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
+   QObject::connect(&udpThread, &QThread::finished, worker, &QObject::deleteLater);
    QObject::connect(this, &keithley_thr::sig_connect, worker, &keithleyWorker::connect);
    QObject::connect(this, &keithley_thr::sig_disconnect, worker, &keithleyWorker::disconnect);
    QObject::connect(this, &keithley_thr::sig_on, worker, &keithleyWorker::on);
@@ -78,13 +78,13 @@ keithley_thr::keithley_thr()
         //worker -> controller
    QObject::connect(worker, &keithleyWorker::sig_currentReadout, this, &keithley_thr::on_currentReadout);
    QObject::connect(worker, &keithleyWorker::sig_isOpen, this, &keithley_thr::on_isOpen);
-   workerThread.start();
+   udpThread.start();
 }
 
 keithley_thr::~keithley_thr()
 {
-    workerThread.quit();
-    workerThread.wait();
+    udpThread.quit();
+    udpThread.wait();
 }
 
 
@@ -92,7 +92,7 @@ keithley_thr::~keithley_thr()
 //************************** slots for communication with worker thread ******************
 
     //called on each current readout
-keithley_thr::on_currentReadout(const double value)
+void keithley_thr::on_currentReadout(const double value)
 {
     lastCurrentReadout = value;
     emit esig_newCurrentReadout(lastCurrentReadout);

@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCheckBox>
+#include <iostream>
 
 BPMDisplay::BPMDisplay(QWidget *parent) :
     QDialog(parent),
@@ -32,6 +33,7 @@ BPMDisplay::BPMDisplay(QWidget *parent) :
     connect(ui->checkBox_subbkg, &QCheckBox::stateChanged, this, &BPMDisplay::onCheckBoxStateChanged);
     connect(ui->pushButton_savecalib, &QPushButton::clicked, this, &BPMDisplay::onSaveCalibrationClicked);
     connect(ui->pushButton_loadcalib, &QPushButton::clicked, this, &BPMDisplay::onLoadCalibrationClicked);
+    connect(ui->checkBox_enablecalib, &QCheckBox::stateChanged, this, &BPMDisplay::onCalibrationCheckBoxChanged);
     connect(ui->checkBox_expertmode, &QCheckBox::stateChanged, this, &BPMDisplay::onExpertModeStateChanged);
 
     // Enable or disable the "Save Background" and "Save Calib" buttons accordingly
@@ -54,7 +56,7 @@ void BPMDisplay::showEvent(QShowEvent * event)
 {
     if (!event->spontaneous())
     {
-       ui->plot->addGraph();
+        ui->plot->addGraph();
 
     }
     QDialog::showEvent(event);
@@ -64,7 +66,7 @@ void BPMDisplay::showEvent(QShowEvent * event)
 
 void BPMDisplay::plot(const QVector<unsigned short> &data)
 {
-        //resize data vectors and fill X values - only if needed
+    //resize data vectors and fill X values - only if needed
     if (data.length() != nrPoints)
     {
         nrPoints = data.length();
@@ -80,7 +82,7 @@ void BPMDisplay::plot(const QVector<unsigned short> &data)
             dataX[i] = i;
     }
 
-        //fill Y values
+    //fill Y values
     double min = 65535;
     double max = 0;
     for (int i = 0; i < nrPoints; i++)
@@ -112,17 +114,16 @@ void BPMDisplay::plot(const QVector<unsigned short> &data)
         // Check if calibration is enabled and the checkbox is checked
         // Check if calibration data exists
         if (calibrationDataMap.contains(planeName) ){
-            const QVector<unsigned short> &calibrationData = calibrationDataMap[planeName];
-
+            const QVector<float> &calibrationData = calibrationDataMap[planeName];
             // Apply calibration to the current data
             for (int i = 0; i < nrPoints; ++i) {
-                dataY[i] = dataY[i] / calibrationData[i];
+                dataY[i] = int(dataY[i] * calibrationData[i]);
             }
         }
 
     }
 
-        //set Y range
+    //set Y range
 
     if (ui->radioButtonAutoscale->isChecked())
         ui->plot->yAxis->setRange(min-0.05*(max-min),max+0.05*(max-min));
@@ -131,10 +132,10 @@ void BPMDisplay::plot(const QVector<unsigned short> &data)
     else
         ui->plot->yAxis->setRange(-1000,66000);
 
-        //feed plotter
+    //feed plotter
     ui->plot->graph(0)->setData(dataX, dataY);
 
-        //plot
+    //plot
     ui->plot->replot();
 }
 
@@ -261,6 +262,10 @@ void BPMDisplay::onSaveCalibrationClicked()
         return;
     }
 
+
+
+
+
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
 
@@ -272,12 +277,16 @@ void BPMDisplay::onSaveCalibrationClicked()
 
     // Open the file for writing
     QFile file(filename);
+
+    const QVector<unsigned short> &backgroundData = backgroundDataMap[planeName];
+
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream stream(&file);
 
+
         // Write the data to the file
         for (int i = 0; i < buffer.size(); ++i) {
-            stream << QString::number(buffer[i]) << "\n";
+            stream << QString::number(buffer[i] - backgroundData[i]) << "\n";
         }
 
         // Close the file
@@ -308,10 +317,10 @@ void BPMDisplay::onLoadCalibrationClicked()
         QTextStream stream(&file);
 
         // Read the data from the file and store it in a vector
-        QVector<unsigned short> calibrationData;
+        QVector<float> calibrationData;
         while (!stream.atEnd()) {
             QString line = stream.readLine();
-            unsigned short value = line.toUShort();
+            float value = line.toFloat();
             calibrationData.append(value);
         }
 
@@ -319,8 +328,8 @@ void BPMDisplay::onLoadCalibrationClicked()
         file.close();
 
         // Normalize the calibration data to the median value of all values greater than zero
-        QVector<unsigned short> normalizedCalibrationData = calibrationData; // Copy the data
-        QVector<unsigned short> normalizedCalibrationData2 = calibrationData; // Copy the data again
+        QVector<float> normalizedCalibrationData = calibrationData; // Copy the data
+        QVector<float> normalizedCalibrationData2 = calibrationData; // Copy the data again
 
         // Remove values less than 50 (noise or dead channels) before determining the median for live channels
         normalizedCalibrationData.erase(std::remove_if(normalizedCalibrationData.begin(), normalizedCalibrationData.end(), [](unsigned short value) {
@@ -329,7 +338,7 @@ void BPMDisplay::onLoadCalibrationClicked()
         std::sort(normalizedCalibrationData.begin(), normalizedCalibrationData.end()); // Sort the data
 
         int size = normalizedCalibrationData.size();
-        unsigned short medianValue = 0;
+        float medianValue = 0;
 
         if (size % 2 == 0) {
             // If the size is even, take the average of the two middle values
@@ -339,25 +348,33 @@ void BPMDisplay::onLoadCalibrationClicked()
             medianValue = normalizedCalibrationData[size / 2];
         }
 
-        //use the second copy to return the scaled calibration values.
-        for (unsigned short &value : normalizedCalibrationData2) {
-            if (value > 50) {
-                value /= medianValue;
+        if (medianValue>100){
+
+            //use the second copy to return the scaled calibration values.
+            for (auto &value : normalizedCalibrationData2) {
+                if (value > 50) {
+                    value = medianValue / value;
+                }
+                else
+                {
+                    value = 0;
+                }
+               // std::cerr << value << " ";
             }
-            else
-            {
-                value = 0;
-            }
+
+           // std::cerr << std::endl;
+            // Store the normalized calibration data in the map
+            calibrationDataMap[planeName] = normalizedCalibrationData2;
+
+            // Notify the user that the data has been loaded and normalized
+            qInfo() << "Calibration data loaded and normalized for" << planeName;
         }
-
-        // Store the normalized calibration data in the map
-        calibrationDataMap[planeName] = normalizedCalibrationData2;
-
-        // Notify the user that the data has been loaded and normalized
-        qInfo() << "Calibration data loaded and normalized for" << planeName;
+        else{
+            qWarning() << " Warning: MedianValue of calibration data too low. Not applied.  ";
+        }
     } else {
         // Failed to open the file
-        qWarning() << "Error: Failed to open" << filename << "for reading";
+        qWarning() << "Warning: Failed to open" << filename << "for reading";
     }
 }
 

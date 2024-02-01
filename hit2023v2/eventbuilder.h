@@ -13,6 +13,8 @@
 //#include "hw.h"
 #include "datareceiver.h"
 #include "histogram.h"
+#include <immintrin.h> // Include for Intel Intrinsics
+#include <emmintrin.h> // Include for SSE2
 
     //The event builder will constantly keep some data in the buffers to enable synchronization of the devices. So:
 #define EVB_MIN_BUFFER_OCCUPANCY    (RECEIVER_BUFFER_SIZE / 8)      //the EVB will wait until so much data is in each device buffer
@@ -73,6 +75,7 @@ protected:
     QVector<DataReceiver*> receivers;
 
     QVector<BufferData> currentFrame;
+    signed short * copy_sensor_data;
     QVector<BufferData> backgroundFrame;
 
     QVector<BufferData> lastFrame;
@@ -99,7 +102,7 @@ protected slots:
     void onStartTakingHistos(int sample_count);
     void onStopTakingHistos();
 private:
-    long unsigned int frame_counter = 0;
+    long long int frame_counter = 0;
     double intensity = 0.0;
     double position = 0.0;
     double focus = 0.0;

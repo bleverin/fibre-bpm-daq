@@ -1,16 +1,21 @@
 #include "hw.h"
-
-HW::HW(QObject *parent) : QObject(parent)
+HW::HW(QObject *parent) : QObject(parent), eventBuilder()// , networkThread(eventBuilder)
 {
 
     /*eventBuilder.moveToThread(&eventBuilderThread);
     eventBuilderThread.start();
     eventBuilder.init();*/
 
+    // Create and start the network thread
+   // networkThread.start();
 }
 
 HW::~HW()
 {
+ //   if (networkThread.isRunning()){
+ //       networkThread.stopThread();
+ //       networkThread.wait(); // Wait for the network thread to finish gracefully
+ //   }
     eventBuilder.stopLogging();
     removeDevices();
 
@@ -64,7 +69,7 @@ void HW::disconnectDevices()
 void HW::run()
 {
     //No need to start EVB. It's running all the time.
-
+    // Start the UDP server when an instance of HW is created
         //run slave(s)
     for (int i = 0; i < devices.length(); i++)
         if (devices[i]->deviceConfig.master == 0)
@@ -78,6 +83,11 @@ void HW::run()
 
 void HW::stop()
 {
+    // Application cleanup
+    //if (networkThread.isRunning()){
+ //   networkThread.stopThread();
+ //   networkThread.wait(); // Wait for the network thread to finish gracefully
+ //   }
         //stop master(s)
     for (int i = 0; i < devices.length(); i++)
         if (devices[i]->deviceConfig.master != 0)

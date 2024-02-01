@@ -58,14 +58,14 @@ public:
     double getCurrent();
     void ps_flush();
 
-    QThread workerThread;
+    QThread udpThread;
 
     double lastCurrentReadout;
     QString portName;
 
     int recognizeSpillState(double current);
 public slots:
-    on_currentReadout(const double value);
+    void on_currentReadout(const double value);
     int on_isOpen(const int state, const QString givenPortName);
 signals:
     void sig_connect();

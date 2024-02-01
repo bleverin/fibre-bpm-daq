@@ -27,12 +27,71 @@ EventBuilder::~EventBuilder()
 }
 
 
+void addArrays(unsigned short int* arr1, const unsigned short int* arr2, int length) {
+    int simdLength = length / 8; // Process 8 elements at a time (SSE2)
+
+    for (int i = 0; i < simdLength; ++i) {
+        __m128i xmm1 = _mm_loadu_si128((__m128i*)(arr1 + i * 8)); // Load 8 elements from arr1
+        __m128i xmm2 = _mm_loadu_si128((__m128i*)(arr2 + i * 8)); // Load 8 elements from arr2
+        __m128i xmmResult = _mm_add_epi16(xmm1, xmm2); // Add arr1 to arr2
+        _mm_storeu_si128((__m128i*)(arr1 + i * 8), xmmResult); // Store the result
+    }
+
+    // Process the remaining elements
+    for (int i = simdLength * 8; i < length; ++i) {
+        arr1[i] = arr1[i] + arr2[i];
+    }
+}
+
+
+void subtractArrays( unsigned short int* arr1, const  unsigned short int* arr2, const int length, short int* result) {
+    int simdLength = length / 8; // Process 8 elements at a time (SSE2)
+
+    for (int i = 0; i < simdLength; ++i) {
+        __m128i xmm1 = _mm_loadu_si128((__m128i*)(arr1 + i * 8)); // Load 8 elements from arr1
+        __m128i xmm2 = _mm_loadu_si128((__m128i*)(arr2 + i * 8)); // Load 8 elements from arr2
+        __m128i xmmResult = _mm_sub_epi16(xmm1, xmm2); // Subtract arr2 from arr1
+        _mm_storeu_si128((__m128i*)(result + i * 8), xmmResult); // Store the result
+    }
+
+    // Process the remaining elements
+    for (int i = simdLength * 8; i < length; ++i) {
+        result[i] = (arr2[i] > arr1[i]) ? 0 : (arr1[i] - arr2[i]);
+    }
+
+
+}
+
+void divideArray(unsigned short int* arr, int length, const short int divisor) {
+    int simdLength = length / 8; // Process 8 elements at a time (SSE2)
+
+    // Load the divisor into a SIMD register
+    __m128i divisorVector = _mm_set1_epi16(divisor);
+
+    for (int i = 0; i < simdLength; ++i) {
+        // Load 8 elements from 'arr' into a SIMD register
+        __m128i arrVector = _mm_loadu_si128((__m128i*)(arr + i * 8));
+
+        // Multiply each element by the reciprocal of the divisor using SIMD
+        __m128i resultVector = _mm_mullo_epi16(arrVector, divisorVector);
+
+        // Store the result back to 'result'
+        _mm_storeu_si128((__m128i*)(arr + i * 8), resultVector);
+    }
+
+    // Process the remaining elements
+    for (int i = simdLength * 8; i < length; ++i) {
+        arr[i] = arr[i] / divisor;
+    }
+}
+
+
 //************************* Data processing framework ********************
 
 //main processing slot
 void EventBuilder::onNewData(DataReceiver* receiver)
 {
-
+    short * newcopy_sensor_data  = new short int[320];
     while (checkBufferOccupancies())
     {
         //find lowest global sync value
@@ -54,7 +113,7 @@ void EventBuilder::onNewData(DataReceiver* receiver)
             currentFrame[dev_nr] = data;
 
         }
-
+        lastFrameMutex.lock();
 
 
 
@@ -64,36 +123,46 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         //ToDo:
         //1. Background subtraction.
 
-        frame_counter++;
-        /*
-        while (frame_counter<10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                    backgroundFrame[dev_nr].sensor_data[ch]+= currentFrame[dev_nr].sensor_data[ch];
+        if (newDataSemaphore.available() == 1){
+            frame_counter++;
 
+            if (frame_counter<=32){
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                    if (frame_counter<=1)  backgroundFrame[dev_nr].resize(channelCounts[dev_nr]);
+                  //  backgroundFrame[dev_nr].sensor_data =  currentFrame[dev_nr].sensor_data;
+                    addArrays(backgroundFrame[dev_nr].sensor_data, currentFrame[dev_nr].sensor_data, channelCounts[dev_nr]);
+
+                  //  std::cerr << " set bkg" << std::endl;
+                }
+            }
+            else if (frame_counter==33){
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                    for (int i = 0; i < channelCounts[dev_nr]; ++i) {
+                        backgroundFrame[dev_nr].sensor_data[i] /= 32; // Right-shift by 5 positions (equivalent to dividing by 32)
+                    }
+                }
+            }
+
+            else if (frame_counter>33){
+                HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+                QString dataString;
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                 //   subtractArrays(currentFrame[dev_nr].sensor_data, backgroundFrame[dev_nr].sensor_data, channelCounts[dev_nr], newcopy_sensor_data  );
+                  //  std::cerr << currentFrame[dev_nr].sensor_data[0] << " " << backgroundFrame[dev_nr].sensor_data[0] << " " << channelCounts[dev_nr] << " " <<  newcopy_sensor_data[0] << std::endl;
+
+
+                    //  for (unsigned int dev_nrsim = 0; dev_nrsim < 3; dev_nrsim++){
+                    //simulate 6 planes instead of just 2
+                  //  for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+
+                 //  dataString += hit_analyse_v2.analyseBeamData(newcopy_sensor_data, dev_nr, channelCounts[dev_nr]);
+                   // dataString += char(nrReceivers);
+                    //}
+                     //   if (frame_counter%1000==0) std::cerr << dataString.toStdString() << std::endl;
+                }
             }
         }
-        if (frame_counter==10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                backgroundFrame[dev_nr].sensor_data[ch]/= 10000 ;
-            }
-        }
-        if (frame_counter>10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                currentFrame[dev_nr].sensor_data[ch]-=backgroundFrame[dev_nr].sensor_data[ch] ;
-            }
-        }
-*/
-
-
-        lastFrameMutex.lock();
-        if (newDataSemaphore.available() == 0)
-            newDataSemaphore.release(1);
-        lastFrame = currentFrame;
-        lastFrameMutex.unlock();
-        /*
+            /*
         //histogram stuff
         if (histogramSamplesToTake)
         {
@@ -107,25 +176,24 @@ void EventBuilder::onNewData(DataReceiver* receiver)
                 emit sigHistoCompleted();
         }
 */
-        //log data
-        if (loggingData) logDataToFile();
-        HIT_ANALYSE_V2 hit_analyse_v2;//create the object
-        QString dataString;
-      //  for (unsigned int dev_nrsim = 0; dev_nrsim < 3; dev_nrsim++){
-            //simulate 6 planes instead of just 2
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                dataString += hit_analyse_v2.analyseBeamData(currentFrame);
-                dataString +=',';
-            }
-       // }
-        QTime currentTime = QTime::currentTime();
-            //Calculate the time since midnight in milliseconds
-        int millisecondsSinceMidnight = currentTime.msecsSinceStartOfDay();
-        dataString += QString::number(millisecondsSinceMidnight);
-        receiveData(dataString.toUtf8());
-        //       std::cerr << dataString.toStdString() << std::endl;
-        // Call sendData method of the UDP server
-        // QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
+
+
+
+            // }
+           // QTime currentTime = QTime::currentTime();
+                //Calculate the time since midnight in milliseconds
+           // int millisecondsSinceMidnight = currentTime.msecsSinceStartOfDay();
+           // dataString += QString::number(millisecondsSinceMidnight);
+           // receiveData(dataString.toUtf8());
+
+        if (newDataSemaphore.available() == 0)
+            newDataSemaphore.release(1);
+        lastFrame = currentFrame;
+        lastFrameMutex.unlock();
+
+
+            //log data
+            if (loggingData) logDataToFile();
 
 
 
