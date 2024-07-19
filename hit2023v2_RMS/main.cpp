@@ -1,16 +1,10 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "udpserver.h"        // Include udpserver header
-
-// Define the global UdpServer object
-UdpServer udpServer; // This allocates memory for udpServer
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    // Create the UdpServer object on the heap and store a pointer to it
-    udpServer.startServer();
 
     // Apply the stylesheet to each display
     qDebug() << "App path : " << qApp->applicationDirPath();

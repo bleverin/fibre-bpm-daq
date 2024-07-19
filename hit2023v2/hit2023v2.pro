@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network serialport
-
+#CONFIG += static
 unix {
    QMAKE_CXXFLAGS += -W -std=c++17
 }

@@ -215,6 +215,21 @@ void MainWindow::startLogging()
     }
 }
 
+void MainWindow::startAnalysing(){
+    if (analysing)
+        stopAnalysing();
+
+    analysing = 1;
+
+}
+
+void MainWindow::stopAnalysing()
+{
+    analysing = 0;
+
+}
+
+
 void MainWindow::stopLogging()
 {
     theHW->eventBuilder.stopLogging();
@@ -326,6 +341,14 @@ void MainWindow::on_pushLogging_pressed()
         startLogging();
     else
         stopLogging();
+}
+
+void MainWindow::on_pushAnalysing_pressed()
+{
+    if (!analysing)
+        startAnalysing();
+    else
+        stopAnalysing();
 }
 
 void MainWindow::on_pushDisplay_pressed()

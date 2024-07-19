@@ -1,5 +1,5 @@
 #include "hw.h"
-HW::HW(QObject *parent) : QObject(parent), eventBuilder(), networkThread(eventBuilder)
+HW::HW(QObject *parent) : QObject(parent), eventBuilder()// , networkThread(eventBuilder)
 {
 
     /*eventBuilder.moveToThread(&eventBuilderThread);
@@ -7,15 +7,15 @@ HW::HW(QObject *parent) : QObject(parent), eventBuilder(), networkThread(eventBu
     eventBuilder.init();*/
 
     // Create and start the network thread
-    networkThread.start();
+   // networkThread.start();
 }
 
 HW::~HW()
 {
-    if (networkThread.isRunning()){
-        networkThread.stopThread();
-        networkThread.wait(); // Wait for the network thread to finish gracefully
-    }
+ //   if (networkThread.isRunning()){
+ //       networkThread.stopThread();
+ //       networkThread.wait(); // Wait for the network thread to finish gracefully
+ //   }
     eventBuilder.stopLogging();
     removeDevices();
 
@@ -84,10 +84,10 @@ void HW::run()
 void HW::stop()
 {
     // Application cleanup
-    if (networkThread.isRunning()){
-    networkThread.stopThread();
-    networkThread.wait(); // Wait for the network thread to finish gracefully
-    }
+    //if (networkThread.isRunning()){
+ //   networkThread.stopThread();
+ //   networkThread.wait(); // Wait for the network thread to finish gracefully
+ //   }
         //stop master(s)
     for (int i = 0; i < devices.length(); i++)
         if (devices[i]->deviceConfig.master != 0)

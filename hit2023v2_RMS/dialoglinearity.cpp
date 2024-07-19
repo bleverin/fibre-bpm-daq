@@ -80,14 +80,14 @@ void DialogLinearity::run()
 
             //Collect sensor data
         histoReady = 0;
-        connect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogLinearity::onHistogramCompleted);
+        connect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogLinearity::onHistogramCompleted);
         theHW->eventBuilder.startTakingHistos(nacqs);
         while (!histoReady)
         {
              QCoreApplication::processEvents();
              QThread::msleep(10);
         }
-        disconnect(&(theHW->eventBuilder), EventBuilder::sigHistoCompleted, this, DialogLinearity::onHistogramCompleted);
+        disconnect(&(theHW->eventBuilder), &EventBuilder::sigHistoCompleted, this, &DialogLinearity::onHistogramCompleted);
         QVector<Histogram> histos = theHW->eventBuilder.getHistos();
 
         result.mean.fill(0, nr_devices*128);

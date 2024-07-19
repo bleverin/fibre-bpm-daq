@@ -38,7 +38,7 @@ protected:
     int active = 0;
     HW* theHW;
     QVector<PlaneConfig*> planeConfig;
-    QVector<Display*> displays;
+    QVector<BPMDisplay*> displays;
 
     PlaneConfig *findPlane(int plane_nr);
 };

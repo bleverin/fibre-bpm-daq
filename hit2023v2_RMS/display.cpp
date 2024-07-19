@@ -3,8 +3,9 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCheckBox>
+#include <iostream>
 
-Display::Display(QWidget *parent) :
+BPMDisplay::BPMDisplay(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::display)
 {
@@ -27,34 +28,31 @@ Display::Display(QWidget *parent) :
     // Connect the buttonClicked signal of the button group
     connect(buttonGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onButtonClicked(QAbstractButton*)));
 
-    connect(ui->pushButton_savebkg, &QPushButton::clicked, this, &Display::onSaveBackgroundClicked);
-    connect(ui->pushButton_loadbkg, &QPushButton::clicked, this, &Display::onLoadBackgroundClicked);
-    connect(ui->checkBox_subbkg, &QCheckBox::stateChanged, this, &Display::onCheckBoxStateChanged);
-    connect(ui->pushButton_savecalib, &QPushButton::clicked, this, &Display::onSaveCalibrationClicked);
-    connect(ui->pushButton_loadcalib, &QPushButton::clicked, this, &Display::onLoadCalibrationClicked);
-    connect(ui->checkBox_expertmode, &QCheckBox::stateChanged, this, &Display::onExpertModeStateChanged);
+
+    connect(ui->pushButton_savecalib, &QPushButton::clicked, this, &BPMDisplay::onSaveCalibrationClicked);
+    connect(ui->pushButton_loadcalib, &QPushButton::clicked, this, &BPMDisplay::onLoadCalibrationClicked);
+    connect(ui->checkBox_enablecalib, &QCheckBox::stateChanged, this, &BPMDisplay::onCalibrationCheckBoxChanged);
+    connect(ui->checkBox_expertmode, &QCheckBox::stateChanged, this, &BPMDisplay::onExpertModeStateChanged);
 
     // Enable or disable the "Save Background" and "Save Calib" buttons accordingly
-    ui->pushButton_savebkg->setEnabled(expertModeEnabled);
     ui->pushButton_savecalib->setEnabled(expertModeEnabled);
     // Gray out the buttons when they are disabled
-    ui->pushButton_savebkg->setStyleSheet(expertModeEnabled ? "" : "background-color: gray;");
     ui->pushButton_savecalib->setStyleSheet(expertModeEnabled ? "" : "background-color: gray;");
 
 
 
 }
 
-Display::~Display()
+BPMDisplay::~BPMDisplay()
 {
     delete ui;
 }
 
-void Display::showEvent(QShowEvent * event)
+void BPMDisplay::showEvent(QShowEvent * event)
 {
     if (!event->spontaneous())
     {
-       ui->plot->addGraph();
+        ui->plot->addGraph();
 
     }
     QDialog::showEvent(event);
@@ -62,9 +60,9 @@ void Display::showEvent(QShowEvent * event)
 
 //***********************************************
 
-void Display::plot(const QVector<signed short> &data)
+void BPMDisplay::plot(const QVector<signed short> &data, const QVector<signed short> &rmsdata)
 {
-        //resize data vectors and fill X values - only if needed
+    //resize data vectors and fill X values - only if needed
     if (data.length() != nrPoints)
     {
         nrPoints = data.length();
@@ -80,7 +78,7 @@ void Display::plot(const QVector<signed short> &data)
             dataX[i] = i;
     }
 
-        //fill Y values
+    //fill Y values
     double min = 65535;
     double max = 0;
     for (int i = 0; i < nrPoints; i++)
@@ -95,34 +93,20 @@ void Display::plot(const QVector<signed short> &data)
     QString planeName = ui->lineTitle->text();
     planeName.remove(QChar(' '));
 
-    if (subtractBackground && ui->checkBox_subbkg->isChecked()) {
-        // Check if background subtraction is enabled and the checkbox is checked
-        // Check if background data exists for this plane
-        if (backgroundDataMap.contains(planeName)) {
-            const QVector<signed short> &backgroundData = backgroundDataMap[planeName];
-
-            // Subtract background data from the current data
-            for (int i = 0; i < nrPoints; ++i) {
-                dataY[i] -= backgroundData[i];
-            }
-        }
-    }
-
     if (applyCalibration && ui->checkBox_enablecalib->isChecked()) {
         // Check if calibration is enabled and the checkbox is checked
         // Check if calibration data exists
         if (calibrationDataMap.contains(planeName) ){
-            const QVector<signed short> &calibrationData = calibrationDataMap[planeName];
-
+            const QVector<float> &calibrationData = calibrationDataMap[planeName];
             // Apply calibration to the current data
             for (int i = 0; i < nrPoints; ++i) {
-                dataY[i] = dataY[i] / calibrationData[i];
+                dataY[i] = int(dataY[i] * calibrationData[i]);
             }
         }
 
     }
 
-        //set Y range
+    //set Y range
 
     if (ui->radioButtonAutoscale->isChecked())
         ui->plot->yAxis->setRange(min-0.05*(max-min),max+0.05*(max-min));
@@ -131,25 +115,94 @@ void Display::plot(const QVector<signed short> &data)
     else
         ui->plot->yAxis->setRange(-1000,66000);
 
-        //feed plotter
+    //feed plotter
     ui->plot->graph(0)->setData(dataX, dataY);
+    updateMean((rmsdata[0]));
+    updateRms((rmsdata[1]));
+    updateMax((rmsdata[2]));
+    updateStatus((rmsdata[3]));
 
-        //plot
+    //plot
+
     ui->plot->replot();
 }
 
-void Display::plot()
+
+void BPMDisplay::plot(const QVector<signed short> &data)
 {
-    plot(buffer);
+    //resize data vectors and fill X values - only if needed
+    if (data.length() != nrPoints)
+    {
+        nrPoints = data.length();
+        dataX.clear();
+        dataY.clear();
+        dataX.resize(nrPoints);
+        dataY.resize(nrPoints);
+
+        ui->plot->xAxis->setRange(0,nrPoints-1);
+        //ui->plot->yAxis->setRange(-1000,66000);
+
+        for (int i = 0; i < nrPoints; i++)
+            dataX[i] = i;
+    }
+
+    //fill Y values
+    double min = 65535;
+    double max = 0;
+    for (int i = 0; i < nrPoints; i++)
+    {
+        dataY[i] = /*65535 -*/ data[i];
+        if (dataY[i] < min)
+            min = dataY[i];
+        if (dataY[i] > max)
+            max = dataY[i];
+    }
+
+    QString planeName = ui->lineTitle->text();
+    planeName.remove(QChar(' '));
+
+       if (applyCalibration && ui->checkBox_enablecalib->isChecked()) {
+        // Check if calibration is enabled and the checkbox is checked
+        // Check if calibration data exists
+        if (calibrationDataMap.contains(planeName) ){
+            const QVector<float> &calibrationData = calibrationDataMap[planeName];
+            // Apply calibration to the current data
+            for (int i = 0; i < nrPoints; ++i) {
+                dataY[i] = int(dataY[i] * calibrationData[i]);
+            }
+        }
+
+    }
+
+    //set Y range
+
+    if (ui->radioButtonAutoscale->isChecked())
+        ui->plot->yAxis->setRange(min-0.05*(max-min),max+0.05*(max-min));
+    else if (ui->radioButtonFixedScale ->isChecked())
+        ui->plot->yAxis->setRange(ui->spinBox_fixedmin->value(), ui->spinBox_fixedmax->value());
+    else
+        ui->plot->yAxis->setRange(-1000,66000);
+
+    //feed plotter
+    ui->plot->graph(0)->setData(dataX, dataY);
+
+    //plot
+    ui->plot->replot();
 }
 
-void Display::setTitle(QString title)
+void BPMDisplay::plot()
+{
+    plot(buffer, rmsbuffer);
+}
+
+
+void BPMDisplay::setTitle(QString title)
 {
     ui->lineTitle->setText(title);
 }
 
 // Slot to handle button clicks
-void Display::onButtonClicked(QAbstractButton *button)
+void BPMDisplay::onButtonClicked(QAbstractButton *button)
 {
     // Handle button clicks here
     if (button == radioButtonFixedScale)
@@ -170,7 +223,7 @@ void Display::onButtonClicked(QAbstractButton *button)
     }
 }
 
-void Display::onSaveBackgroundClicked()
+void BPMDisplay::onSaveBackgroundClicked()
 {
     // Check if there is data to save
     if (buffer.isEmpty()) {
@@ -208,7 +261,7 @@ void Display::onSaveBackgroundClicked()
     }
 }
 
-void Display::onLoadBackgroundClicked()
+void BPMDisplay::onLoadBackgroundClicked()
 {
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
@@ -228,7 +281,7 @@ void Display::onLoadBackgroundClicked()
         QVector<signed short> backgroundData;
         while (!stream.atEnd()) {
             QString line = stream.readLine();
-            signed short value = line.toShort();
+            unsigned short value = line.toUShort();
             backgroundData.append(value);
         }
 
@@ -246,13 +299,13 @@ void Display::onLoadBackgroundClicked()
     }
 }
 
-void Display::onCheckBoxStateChanged(int state)
+void BPMDisplay::onCheckBoxStateChanged(int state)
 {
     // The state argument will be Qt::Unchecked (0) or Qt::Checked (2)
     subtractBackground = (state == Qt::Checked);
 }
 
-void Display::onSaveCalibrationClicked()
+void BPMDisplay::onSaveCalibrationClicked()
 {
 
     // Check if there is data to save
@@ -260,6 +313,10 @@ void Display::onSaveCalibrationClicked()
         // No data to save
         return;
     }
+
+
+
+
 
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
@@ -272,12 +329,16 @@ void Display::onSaveCalibrationClicked()
 
     // Open the file for writing
     QFile file(filename);
+
+    const QVector<signed short> &backgroundData = backgroundDataMap[planeName];
+
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream stream(&file);
 
+
         // Write the data to the file
         for (int i = 0; i < buffer.size(); ++i) {
-            stream << QString::number(buffer[i]) << "\n";
+            stream << QString::number(buffer[i] - backgroundData[i]) << "\n";
         }
 
         // Close the file
@@ -291,7 +352,7 @@ void Display::onSaveCalibrationClicked()
     }
 }
 
-void Display::onLoadCalibrationClicked()
+void BPMDisplay::onLoadCalibrationClicked()
 {
     // Get the plane's name (you might need to adjust how you retrieve it)
     QString planeName = ui->lineTitle->text();
@@ -308,10 +369,10 @@ void Display::onLoadCalibrationClicked()
         QTextStream stream(&file);
 
         // Read the data from the file and store it in a vector
-        QVector<signed short> calibrationData;
+        QVector<float> calibrationData;
         while (!stream.atEnd()) {
             QString line = stream.readLine();
-            signed short value = line.toShort();
+            float value = line.toFloat();
             calibrationData.append(value);
         }
 
@@ -319,17 +380,17 @@ void Display::onLoadCalibrationClicked()
         file.close();
 
         // Normalize the calibration data to the median value of all values greater than zero
-        QVector<signed short> normalizedCalibrationData = calibrationData; // Copy the data
-        QVector<signed short> normalizedCalibrationData2 = calibrationData; // Copy the data again
+        QVector<float> normalizedCalibrationData = calibrationData; // Copy the data
+        QVector<float> normalizedCalibrationData2 = calibrationData; // Copy the data again
 
         // Remove values less than 50 (noise or dead channels) before determining the median for live channels
-        normalizedCalibrationData.erase(std::remove_if(normalizedCalibrationData.begin(), normalizedCalibrationData.end(), [](signed short value) {
+        normalizedCalibrationData.erase(std::remove_if(normalizedCalibrationData.begin(), normalizedCalibrationData.end(), [](unsigned short value) {
                                             return value < 50;
                                         }), normalizedCalibrationData.end());
         std::sort(normalizedCalibrationData.begin(), normalizedCalibrationData.end()); // Sort the data
 
         int size = normalizedCalibrationData.size();
-        signed short medianValue = 0;
+        float medianValue = 0;
 
         if (size % 2 == 0) {
             // If the size is even, take the average of the two middle values
@@ -339,45 +400,68 @@ void Display::onLoadCalibrationClicked()
             medianValue = normalizedCalibrationData[size / 2];
         }
 
-        //use the second copy to return the scaled calibration values.
-        for (signed short &value : normalizedCalibrationData2) {
-            if (value > 50) {
-                value /= medianValue;
+        if (medianValue>100){
+
+            //use the second copy to return the scaled calibration values.
+            for (auto &value : normalizedCalibrationData2) {
+                if (value > 50) {
+                    value = medianValue / value;
+                }
+                else
+                {
+                    value = 0;
+                }
+               // std::cerr << value << " ";
             }
-            else
-            {
-                value = 0;
-            }
+
+           // std::cerr << std::endl;
+            // Store the normalized calibration data in the map
+            calibrationDataMap[planeName] = normalizedCalibrationData2;
+
+            // Notify the user that the data has been loaded and normalized
+            qInfo() << "Calibration data loaded and normalized for" << planeName;
         }
-
-        // Store the normalized calibration data in the map
-        calibrationDataMap[planeName] = normalizedCalibrationData2;
-
-        // Notify the user that the data has been loaded and normalized
-        qInfo() << "Calibration data loaded and normalized for" << planeName;
+        else{
+            qWarning() << " Warning: MedianValue of calibration data too low. Not applied.  ";
+        }
     } else {
         // Failed to open the file
-        qWarning() << "Error: Failed to open" << filename << "for reading";
+        qWarning() << "Warning: Failed to open" << filename << "for reading";
     }
 }
 
-void Display::onCalibrationCheckBoxChanged(int state) {
+void BPMDisplay::onCalibrationCheckBoxChanged(int state) {
     // Check the state and update the subtractCalibration flag accordingly
     applyCalibration = (state == Qt::Checked);
 }
 
 
 // Slot to handle the state change of the "Expert Mode" checkbox
-void Display::onExpertModeStateChanged(int state)
+void BPMDisplay::onExpertModeStateChanged(int state)
 {
     // Check if the checkbox is checked (Expert Mode enabled)
     expertModeEnabled = (state == Qt::Checked);
 
     // Enable or disable the "Save Background" and "Save Calib" buttons accordingly
-    ui->pushButton_savebkg->setEnabled(expertModeEnabled);
     ui->pushButton_savecalib->setEnabled(expertModeEnabled);
     // Gray out the buttons when they are disabled
-    ui->pushButton_savebkg->setStyleSheet(expertModeEnabled ? "" : "background-color: gray;");
     ui->pushButton_savecalib->setStyleSheet(expertModeEnabled ? "" : "background-color: gray;");
 
+}
+
+void BPMDisplay::updateMean(unsigned short value)
+{
+    ui->lcdNumber_mean->display((value));
+}
+void BPMDisplay::updateRms(unsigned short value)
+{
+    ui->lcdNumber_focus->display(value);
+}
+void BPMDisplay::updateMax(unsigned short value)
+{
+    ui->lcdNumber_max->display((value));
+}
+void BPMDisplay::updateStatus(unsigned short value)
+{
+    ui->lcdNumber_status->display((value));
 }

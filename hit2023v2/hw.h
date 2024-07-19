@@ -18,7 +18,7 @@ public:
 
     QVector<Device*> devices;
     EventBuilder eventBuilder;
-    NetworkThread networkThread;
+  //  NetworkThread networkThread;
 
     Device &operator [](int nr);
     void addDevices(int nr_devices);

@@ -1,12 +1,13 @@
 #include "datareceiver.h"
 #include "dev_commands.h"
 #include "helpers.h"
+#include <iostream>
 
 DataReceiver::DataReceiver(QObject *parent) : QObject(parent), dataBuffer(RECEIVER_BUFFER_SIZE)
 {
-    connect(this, DataReceiver::sigInit, this, DataReceiver::onInit);
-    connect(this, DataReceiver::sigDeinit, this, DataReceiver::onDeinit);
-    connect(this, DataReceiver::sigConfigureEthSettings, this, DataReceiver::onConfigureEthSettings);
+    connect(this, &DataReceiver::sigInit, this, &DataReceiver::onInit);
+    connect(this, &DataReceiver::sigDeinit, this, &DataReceiver::onDeinit);
+    connect(this, &DataReceiver::sigConfigureEthSettings, this, &DataReceiver::onConfigureEthSettings);
 
     moveToThread(&thread);
     thread.start();
@@ -32,13 +33,15 @@ void DataReceiver::readData()
     while ((size_received_bytes = dataSocket->readDatagram(tmpBuffer, DATA_PACKET_SIZE)) > 0)
     {
         //look if the packet isn't too short
-        int expected_size_bytes = ethBunch * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + dmaBunch*DATA_BLOCK_SIZE);
-        if (size_received_bytes < expected_size_bytes)
+        int expected_size_bytes = ethBunch * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + dmaBunch*DATA_BLOCK_SIZE + DATA_RMS_FRAME_SIZE);
+        if (size_received_bytes != expected_size_bytes)
+        {
+            std::cout << "packet error. Got" << size_received_bytes << " bytes expected" << expected_size_bytes << std::endl;
             continue;
-
+        }
         for (int ethb = 0; ethb < ethBunch; ethb++)
         {
-            int baseaddr = ethb * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + dmaBunch*DATA_BLOCK_SIZE);
+            int baseaddr = ethb * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + dmaBunch*DATA_BLOCK_SIZE + DATA_RMS_FRAME_SIZE);
 
                 //check the header
             if (BYTES2SHORT(tmpBuffer+baseaddr+0) != 0x5555)
@@ -56,6 +59,8 @@ void DataReceiver::readData()
             sync.device_nr = devNr;
             sync.data_ok = 1;
 
+            RMSFrame rms;
+
             for (int dmab=0; dmab<dmaBunch; dmab++)
             {
                 framesReceived++;
@@ -63,15 +68,18 @@ void DataReceiver::readData()
 
                 if (outputEnabled)
                 {
-                    BufferData data_to_push(sensorsPerBoard * DATA_SAMPLES_PER_SENSOR); //todo is this big enough
+                    BufferData data_to_push(sensorsPerBoard * DATA_SAMPLES_PER_SENSOR);
                     data_to_push.sync_frame = sync;
                     int baseaddr3 = baseaddr2 + DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE;
 
                     for (int s = 0; s < (sensorsPerBoard * DATA_SAMPLES_PER_SENSOR); s++)
                         data_to_push.sensor_data[s] = 65535 - BYTES2SHORT(tmpBuffer + baseaddr3 + 2*s);
 
-                    for (int i = 0; i < DATA_RMS_SIZE/4; i++)
-                        data_to_push.rms_data[i] = BYTES2INT(tmpBuffer + baseaddr3 + 2 * sensorsPerBoard * DATA_SAMPLES_PER_SENSOR + 4 * i); //what is baseaddr3?
+                    rms.mean = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE);
+                    rms.sigma = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 2);
+                    rms.max = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 4);
+                    rms.status = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 6);
+                    data_to_push.rms_frame = rms;
 
                     dataBuffer.push(data_to_push);
                     framesFromLastSig++;
@@ -100,13 +108,13 @@ void DataReceiver::onInit()
     if (dataSocket == NULL)
     {
         dataSocket = new QUdpSocket(this);
-        connect(dataSocket, QUdpSocket::readyRead, this, DataReceiver::readData);
+        connect(dataSocket, &QUdpSocket::readyRead, this, &DataReceiver::readData);
     }
 
     if (timer == NULL)
     {
         timer = new QTimer(this);
-        connect(timer, QTimer::timeout, this, onTimer);
+        connect(timer, &QTimer::timeout, this, &DataReceiver::onTimer);
         timer->start(RECEIVER_TIMER_PERIOD_MS);
     }
 

@@ -1,43 +1,46 @@
 #include "eventbuilder.h"
-#include "udpserver.h"
 #include "hit_analyse_v2.h"
-
-EventBuilder::EventBuilder(QObject *parent) : QObject(parent)
+#include <QTime>
+EventBuilder::EventBuilder( QObject *parent) : QObject(parent)
 {
-    connect(this, EventBuilder::sigInit, this, EventBuilder::onInit);
-    connect(this, EventBuilder::sigDeinit, this, EventBuilder::onDeinit);
-    connect(this, EventBuilder::sigStartLogging, this, EventBuilder::onStartLogging);
-    connect(this, EventBuilder::sigStopLogging, this, EventBuilder::onStopLogging);
-    connect(this, EventBuilder::sigStartTakingHistos, this, EventBuilder::onStartTakingHistos);
-    connect(this, EventBuilder::sigStopTakingHistos, this, EventBuilder::onStopTakingHistos);
-
+    connect(this, &EventBuilder::sigInit, this, &EventBuilder::onInit);
+    connect(this, &EventBuilder::sigDeinit, this, &EventBuilder::onDeinit);
+    connect(this, &EventBuilder::sigStartLogging, this, &EventBuilder::onStartLogging);
+    connect(this, &EventBuilder::sigStopLogging, this, &EventBuilder::onStopLogging);
+    connect(this, &EventBuilder::sigStartTakingHistos, this, &EventBuilder::onStartTakingHistos);
+    connect(this, &EventBuilder::sigStopTakingHistos, this, &EventBuilder::onStopTakingHistos);
 
     moveToThread(&thread);
     thread.start();
     init();
+    //get the network thread
 }
 
 EventBuilder::~EventBuilder()
 {
-   deinit();
+    deinit();
 
-   thread.quit();
-   thread.wait();
+    thread.quit();
+    thread.wait();
+    //  networkThread.stopThread();
+    // networkThread.wait(); // Wait for the network thread to finish gracefully
 }
+
+
 
 
 //************************* Data processing framework ********************
 
-    //main processing slot
+//main processing slot
 void EventBuilder::onNewData(DataReceiver* receiver)
 {
-
+    short * newcopy_sensor_data  = new short int[320];
     while (checkBufferOccupancies())
     {
-            //find lowest global sync value
+        //find lowest global sync value
         int lowest_id = findLowestId();
 
-            //get and validate data from buffers
+        //get and validate data from buffers
         for (int dev_nr = 0; dev_nr < nrReceivers; dev_nr++)
         {
             BufferData data = receivers[dev_nr]->dataBuffer.look();
@@ -49,11 +52,11 @@ void EventBuilder::onNewData(DataReceiver* receiver)
             {
                 data.sync_frame.data_ok = 0;            //wrong data, mark as bad
             }
-                //store data for complete frame
+            //store data for complete frame
             currentFrame[dev_nr] = data;
 
         }
-
+        lastFrameMutex.lock();
 
 
 
@@ -63,36 +66,46 @@ void EventBuilder::onNewData(DataReceiver* receiver)
         //ToDo:
         //1. Background subtraction.
 
-        frame_counter++;
+        if (newDataSemaphore.available() == 1){
+            frame_counter++;
 
-        while (frame_counter<10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                    backgroundFrame[dev_nr].sensor_data[ch]+= currentFrame[dev_nr].sensor_data[ch];
+            if (frame_counter<=32){
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                    if (frame_counter<=1)  backgroundFrame[dev_nr].resize(channelCounts[dev_nr]);
+                  //  backgroundFrame[dev_nr].sensor_data =  currentFrame[dev_nr].sensor_data;
+                 //   addArrays(backgroundFrame[dev_nr].sensor_data, currentFrame[dev_nr].sensor_data, channelCounts[dev_nr]);
 
+                  //  std::cerr << " set bkg" << std::endl;
+                }
+            }
+            else if (frame_counter==33){
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                    for (int i = 0; i < channelCounts[dev_nr]; ++i) {
+                   //     backgroundFrame[dev_nr].sensor_data[i] /= 32; // Right-shift by 5 positions (equivalent to dividing by 32)
+                    }
+                }
+            }
+
+            else if (frame_counter>33){
+                HIT_ANALYSE_V2 hit_analyse_v2;//create the object
+                QString dataString;
+                for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+                 //   subtractArrays(currentFrame[dev_nr].sensor_data, backgroundFrame[dev_nr].sensor_data, channelCounts[dev_nr], newcopy_sensor_data  );
+                  //  std::cerr << currentFrame[dev_nr].sensor_data[0] << " " << backgroundFrame[dev_nr].sensor_data[0] << " " << channelCounts[dev_nr] << " " <<  newcopy_sensor_data[0] << std::endl;
+
+
+                    //  for (unsigned int dev_nrsim = 0; dev_nrsim < 3; dev_nrsim++){
+                    //simulate 6 planes instead of just 2
+                  //  for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
+
+                 //  dataString += hit_analyse_v2.analyseBeamData(newcopy_sensor_data, dev_nr, channelCounts[dev_nr]);
+                   // dataString += char(nrReceivers);
+                    //}
+                     //   if (frame_counter%1000==0) std::cerr << dataString.toStdString() << std::endl;
+                }
             }
         }
-        if (frame_counter==10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                backgroundFrame[dev_nr].sensor_data[ch]/= 10000 ;
-            }
-        }
-        if (frame_counter>10000){
-            for (unsigned int dev_nr = 0; dev_nr < nrReceivers; dev_nr++){
-                for (unsigned int ch = 0; ch < channelCounts[dev_nr]; ch++)
-                currentFrame[dev_nr].sensor_data[ch]-=backgroundFrame[dev_nr].sensor_data[ch] ;
-            }
-        }
-
-
-
-        lastFrameMutex.lock();
-        if (newDataSemaphore.available() == 0)
-            newDataSemaphore.release(1);
-        lastFrame = currentFrame;
-        lastFrameMutex.unlock();
-
+            /*
         //histogram stuff
         if (histogramSamplesToTake)
         {
@@ -105,16 +118,27 @@ void EventBuilder::onNewData(DataReceiver* receiver)
             if (histogramSamplesToTake == 0)
                 emit sigHistoCompleted();
         }
+*/
 
-        //log data
-        if (loggingData) logDataToFile();
-        //HIT_ANALYSE_V2 hit_analyse_v2;//create the object
-       // QString dataString = hit_analyse_v2.analyseBeamData(currentFrame);
 
-        // Call sendData method of the UDP server
-        QString dataString = QString::number(intensity) + ',' + QString::number(position) + ',' + QString::number(focus);
-        QByteArray data = dataString.toUtf8();
-        udpServer.sendData(data);
+
+            // }
+           // QTime currentTime = QTime::currentTime();
+                //Calculate the time since midnight in milliseconds
+           // int millisecondsSinceMidnight = currentTime.msecsSinceStartOfDay();
+           // dataString += QString::number(millisecondsSinceMidnight);
+           // receiveData(dataString.toUtf8());
+
+        if (newDataSemaphore.available() == 0)
+            newDataSemaphore.release(1);
+        lastFrame = currentFrame;
+        lastFrameMutex.unlock();
+
+
+            //log data
+            if (loggingData) logDataToFile();
+
+
 
     }
 
@@ -146,7 +170,7 @@ int EventBuilder::findLowestId()
             //for non-zero-crossing case
         if (value < min1) min1 = value;
         if (value > max1) max1 = value;
-            //for zero-crossing case
+        //for zero-crossing case
         if (value > 256) value -= 512;
         if (value < min2) min2 = value;
         if (value > max2) max2 = value;
@@ -172,7 +196,7 @@ void EventBuilder::logDataToFile()
      * - number of channels per each board Cn: N x unsigned short
      * - N times the following sequence:
      *   - SyncFrame S = 1 x SyncFrame (== 16 bytes)
-     *   - Data D = Cn x signed short
+     *   - Data D = Cn x unsigned short
      */
 
     logFile.write((const char*)&totalBoards, sizeof(unsigned short));
@@ -181,10 +205,12 @@ void EventBuilder::logDataToFile()
     for (int board = 0; board < totalBoards; board++)
     {
         logFile.write((const char*)&(currentFrame[board].sync_frame), sizeof(SyncFrame));
-        logFile.write((const char*)currentFrame[board].sensor_data, currentFrame[board].buffer_size*sizeof(signed short));
+        logFile.write((const char*)currentFrame[board].sensor_data, currentFrame[board].buffer_size*sizeof(unsigned short));
+        logFile.write((const char*)&(currentFrame[board].rms_frame), sizeof(RMSFrame));
+
     }
 
-        //write data in native binary format. All devices written as 5-sensor-wide!
+    //write data in native binary format. All devices written as 5-sensor-wide!
     //logFile.write((const char*)currentFrame.constData(), nrReceivers*sizeof(BufferData));
 }
 
@@ -282,13 +308,13 @@ void EventBuilder::addSource(DataReceiver* source)
     nrReceivers = receivers.length();
     currentFrame.resize(nrReceivers);
     backgroundFrame.resize(nrReceivers);
-    connect(source, DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+    connect(source, &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 }
 
 void EventBuilder::deleteSources()
 {
     for (int i = 0; i < receivers.length(); i++)
-        disconnect(receivers[i], DataReceiver::sigDataReady, this, EventBuilder::onNewData);
+        disconnect(receivers[i], &DataReceiver::sigDataReady, this, &EventBuilder::onNewData);
 
     receivers.clear();
     nrReceivers = receivers.length();
@@ -337,8 +363,26 @@ QVector<BufferData> EventBuilder::getLastFrame()
 
 QVector<BufferData> EventBuilder::getNewFrame()
 {
-        //wait for new data
+    //wait for new data
     newDataSemaphore.acquire(1);
         //and return it
     return getLastFrame();
+}
+
+void EventBuilder::receiveData(const QByteArray &data)
+{
+    QMutexLocker locker(&mutex);
+    dataQueue.enqueue(data);
+    QString dataString = QString(data);
+    //   std::cerr << dataString.toStdString() << std::endl;
+
+    dataAvailable.wakeOne();
+}
+
+QByteArray EventBuilder::getNextData()
+{
+    QMutexLocker locker(&mutex);
+    if (dataQueue.isEmpty())
+        return QByteArray(); // Return an empty QByteArray if no data is available
+    return dataQueue.dequeue();
 }

@@ -66,7 +66,7 @@ void DisplayServer::show()
     displays.clear();
     for (int plane = 0; plane < planeConfig.length(); plane++)
     {
-        Display* newDisplay = new Display;
+        BPMDisplay* newDisplay = new BPMDisplay;
         newDisplay->setTitle(planeConfig[plane]->name);
         newDisplay->show();
         displays.append(newDisplay);
@@ -102,6 +102,8 @@ void DisplayServer::plot()
     {
             //initialize buffer
         displays[plane]->buffer.resize(planeConfig[plane]->nr_sensors*64);
+        displays[plane]->rmsbuffer.resize(4);
+
             //fill with data
         int current_base = 0;
         for (int dev_nr = 0; dev_nr < planeConfig[plane]->nr_devices; dev_nr++)
@@ -114,6 +116,11 @@ void DisplayServer::plot()
             for (int i = 0; i < nr_channels; i++)
                 displays[plane]->buffer[current_base+i] = lastFrame[dev_id].sensor_data[i];
             current_base += nr_channels;
+            displays[plane]->rmsbuffer[0] = lastFrame[dev_id].rms_frame.mean;
+            displays[plane]->rmsbuffer[1] = lastFrame[dev_id].rms_frame.sigma;
+            displays[plane]->rmsbuffer[2] = lastFrame[dev_id].rms_frame.max;
+            displays[plane]->rmsbuffer[3] = lastFrame[dev_id].rms_frame.status;
+
         }
             //plot
         displays[plane]->plot();

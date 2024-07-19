@@ -16,19 +16,13 @@
 #define SHORT2BYTES(sh,by)  {by[0] = (sh>>8) & 0xFF; by[1] = sh & 0xFF;}
 #define LO(x)               (x & 0xFF)
 #define HI(x)               ((x>>8) & 0xFF)
-#define BYTES2SHORT(by) \
+#define BYTES2SHORT(by)     ( ((unsigned short)(unsigned char)((by)[0]) << 8) | ((unsigned short)(unsigned char)((by)[1])) )    //safe way
+#define BYTES2SIGNSHORT(by)     ( *((signed short*)by) )                                          //faster
+#define BYTES2SIGNEDSHORT(by) \
     ( \
         (static_cast<short>(static_cast<unsigned char>((by)[0])) << 8) | \
         (static_cast<short>(static_cast<unsigned char>((by)[1]))) \
         )
-#define BYTES2INT(by) \
-    ( \
-        (static_cast<int>(static_cast<unsigned char>((by)[0])) << 24) | \
-        (static_cast<int>(static_cast<unsigned char>((by)[1])) << 16) | \
-        (static_cast<int>(static_cast<unsigned char>((by)[2])) << 8) | \
-        (static_cast<int>(static_cast<unsigned char>((by)[3]))) \
-        )
-
     //convert textual representation of IP to array of numbers and/or well-formatted string
 QString ip2num(QString input, unsigned char* numbers = NULL);
 

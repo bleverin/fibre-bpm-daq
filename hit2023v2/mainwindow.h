@@ -36,11 +36,13 @@ public:
     QSettings* deviceSettings;
     int running = 0;
     int logging = 0;
-
+    int analysing = 0;
     void run();
     void stop();
     void startLogging();
     void stopLogging();
+    void startAnalysing();
+    void stopAnalysing();
     void startDisplay();
     void stopDisplay();
 public slots:
@@ -59,6 +61,7 @@ protected:
 private slots:
 
     void on_pushLogSettings_pressed();
+
     void on_actionConnect_triggered();
     void on_actionDisconnect_triggered();
     void on_actionHost_IP_triggered();
@@ -66,6 +69,8 @@ private slots:
     void on_actionDevices_triggered();
     void on_pushRun_pressed();
     void on_pushLogging_pressed();
+    void on_pushAnalysing_pressed();
+
     void on_pushDisplay_pressed();
     void on_actionConnect_Keithley_triggered();
     void on_actionDisconnect_Keithley_triggered();

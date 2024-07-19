@@ -11,24 +11,18 @@
 
 #define DATA_PACKET_HEADER_SIZE     6
 #define DATA_SYNC_HEADER_SIZE       6
+#define DATA_RMS_FRAME_SIZE         16  //8 unsigned short
 #define DATA_BYTES_PER_SAMPLE       2
 #define DATA_SAMPLES_PER_SENSOR     64
 #define DATA_MAX_SENSORS_PER_BOARD  5
 #define DATA_MAX_BUNCH              16  //max. product of dmaBunch * ethBunch
-//new for RMS
-#define DATA_RMS_MEAN               4  //bytes, 32 bits
-#define DATA_RMS_STD                4
-#define DATA_RMS_MAX                4
-#define DATA_RMS_STATUS             4
-#define DATA_RMS_SIZE               (DATA_RMS_MEAN + DATA_RMS_STD + DATA_RMS_MAX + DATA_RMS_STATUS)
-//end new for RMS
 
 //#define DATA_BLOCK_SIZE             (DATA_SENSORS_PER_BOARD * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE)
-#define DATA_BLOCK_SIZE             (sensorsPerBoard * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE + DATA_RMS_SIZE)
-#define DATA_PACKET_SIZE            ( DATA_MAX_BUNCH * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + DATA_BLOCK_SIZE) )
+#define DATA_BLOCK_SIZE             (sensorsPerBoard * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE)
+#define DATA_PACKET_SIZE            ( DATA_MAX_BUNCH * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + DATA_BLOCK_SIZE + DATA_RMS_FRAME_SIZE ) )
 
-#define DATA_MAX_BLOCK_SIZE         (DATA_MAX_SENSORS_PER_BOARD * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE + DATA_RMS_SIZE)
-#define DATA_MAX_PACKET_SIZE        ( DATA_MAX_BUNCH * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + DATA_MAX_BLOCK_SIZE) )
+#define DATA_MAX_BLOCK_SIZE         (DATA_MAX_SENSORS_PER_BOARD * DATA_SAMPLES_PER_SENSOR * DATA_BYTES_PER_SAMPLE)
+#define DATA_MAX_PACKET_SIZE        ( DATA_MAX_BUNCH * (DATA_PACKET_HEADER_SIZE + DATA_SYNC_HEADER_SIZE + DATA_MAX_BLOCK_SIZE + DATA_RMS_FRAME_SIZE ) )
 
 #define RECEIVER_BUFFER_SIZE        10000
 
@@ -47,13 +41,21 @@ typedef struct
     int data_ok;
 } SyncFrame;
 
+typedef struct{
+    unsigned short mean;
+    unsigned short sigma;
+    unsigned short max;
+    unsigned short status;
+    unsigned short registers[4];
+} RMSFrame;
+
 class BufferData
 {
 public:
     SyncFrame sync_frame;
+    RMSFrame rms_frame;
     int buffer_size;
     signed short* sensor_data;
-    int rms_data[DATA_RMS_SIZE/4];
 
     BufferData() : buffer_size(0), sensor_data(NULL) {}
 
@@ -79,9 +81,9 @@ public:
     BufferData(const BufferData& master) : buffer_size(0), sensor_data(NULL)
     {
         sync_frame = master.sync_frame;
+        rms_frame = master.rms_frame;
         resize(master.buffer_size);
         memcpy(sensor_data, master.sensor_data, buffer_size*sizeof(signed short));
-        memcpy(rms_data, master.rms_data, DATA_RMS_SIZE);
     }
 
     BufferData& operator=(const BufferData& master)
@@ -89,9 +91,9 @@ public:
         if (this == &master)
             return *this;    //self-assignment
         sync_frame = master.sync_frame;
+        rms_frame = master.rms_frame;
         resize(master.buffer_size);
         memcpy(sensor_data, master.sensor_data, buffer_size*sizeof(signed short));
-        memcpy(rms_data, master.rms_data, DATA_RMS_SIZE);
         return *this;
     }
 
