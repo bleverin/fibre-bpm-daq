@@ -110,6 +110,10 @@
 	//D:[]											D: [(Readout of 5 ADC channels as 32-bit integers)]
 	//Slow control snapshot - read all channels of ADC
 
+#define COMMAND_SET_CLUSTER_THRESHOLD 0x4001
+    //L: ?
+    //D: []
+    //Send 8 bit beam cluster selection threshold
 
 // ***DATA TRANSFER - SOCKET 1!!!!***
 

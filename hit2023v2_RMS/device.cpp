@@ -109,6 +109,7 @@ void Device::configure(DeviceConfig &cfg)
         ctrlSetMasterDelay(deviceConfig.master_delay);
         ctrlSetSlaveDelay(deviceConfig.slave_delay);
         ctrlSetGain(deviceConfig.gain);
+        ctrlSetClusterThreshold(deviceConfig.threshold);
         ctrlConfigBunch(deviceConfig.dma_bunch, deviceConfig.eth_bunch);
         ctrlConfigPeer(ipshort, DEV_BASE_DATA_PORT+ deviceConfig.device_id);
     }
@@ -479,4 +480,18 @@ int Device::ctrlConfigBunch(int dma, int eth)
         return queryCtrl(COMMAND_DAQ_ENABLE, txdata, rxdata);
     else
         return queryCtrl(COMMAND_DAQ_DISABLE, txdata, rxdata);*/
+}
+
+int Device::ctrlSetClusterThreshold(int threshold)
+{
+    QVector<unsigned short> rxdata;
+    QVector<unsigned short> txdata;
+    txdata.append((unsigned short)threshold);
+
+    if (threshold)
+        return queryCtrl(COMMAND_SET_CLUSTER_THRESHOLD, txdata, rxdata);
+    else
+        return queryCtrl(COMMAND_SET_CLUSTER_THRESHOLD, txdata, rxdata);
+}
+
 }

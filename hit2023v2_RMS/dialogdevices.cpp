@@ -28,7 +28,7 @@ void DialogDevices::showEvent(QShowEvent * event)
 
             ui->spinNrDevices->setValue(deviceSettings->value("NrDevices", int(1)).toInt());
 
-            ui->tableDevices->setColumnCount(8);
+            ui->tableDevices->setColumnCount(9);
             QStringList h_header;
             h_header.append("IP Address");
             h_header.append("Hardware ver.");
@@ -38,6 +38,7 @@ void DialogDevices::showEvent(QShowEvent * event)
             h_header.append("Master");
             h_header.append("Master dly");
             h_header.append("Slave dly");
+            h_header.append("Threshold");
             ui->tableDevices->setHorizontalHeaderLabels(h_header);
 
             importSettings();
@@ -89,6 +90,8 @@ void DialogDevices::importSettings()
             ui->tableDevices->setItem(dev_nr, 6, newItem );
             newItem = new QTableWidgetItem(deviceSettings->value("SlaveDelay","1").toString());
             ui->tableDevices->setItem(dev_nr, 7, newItem );
+            newItem = new QTableWidgetItem(deviceSettings->value("ClusThresh","10").toString());
+            ui->tableDevices->setItem(dev_nr, 8, newItem );
         }
     }
 
@@ -201,6 +204,20 @@ int DialogDevices::validateAndSave()
         if (generated.compare(user_data) != 0)
             data_ok = 0;
         ui->tableDevices->item(dev_nr,7)->setText(generated);
+
+        //now cluster threshold
+        user_data = ui->tableDevices->item(dev_nr,8)->text();
+        num_value = user_data.toInt();
+        if (num_value < 1)
+            num_value = 1;
+        if (num_value > 255)
+            num_value = 255;
+        generated = QString("%1").arg(num_value);
+            //if the strings are identical, save the value and return 1
+        if (generated.compare(user_data) != 0)
+            data_ok = 0;
+        ui->tableDevices->item(dev_nr,8)->setText(generated);
+
     }
 
         //now store the data
@@ -225,6 +242,9 @@ int DialogDevices::validateAndSave()
         deviceSettings->setValue("Master", ui->tableDevices->item(dev_nr,5)->text());
         deviceSettings->setValue("MasterDelay", ui->tableDevices->item(dev_nr,6)->text());
         deviceSettings->setValue("SlaveDelay", ui->tableDevices->item(dev_nr,7)->text());
+        deviceSettings->setValue("Threshold", ui->tableDevices->item(dev_nr,8)->text());
+
+
 }
 
     return 1;

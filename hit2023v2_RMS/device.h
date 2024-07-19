@@ -34,7 +34,9 @@ public:
     int gain;               //0 (low) or 1 (high); TO BE DONE
     int dma_bunch;
     int eth_bunch;
+    int threshold;
     int max_sensors()
+
     {
         switch(hardware_ver)
         {
@@ -47,7 +49,7 @@ public:
     int nr_channels() {return 64*nr_sensors;}
     DeviceConfig() : own_ip{10,0,7,1}, device_ip{10,0,7,2},
         device_id{0}, hardware_ver{0}, master{1}, plane{0}, position{0}, nr_sensors{0},
-        period{65535}, tint{1}, master_delay{1}, slave_delay{1}, gain{0}, dma_bunch{1}, eth_bunch{1} {}
+        period{65535}, tint{1}, master_delay{1}, slave_delay{1}, gain{0}, dma_bunch{1}, eth_bunch{1}, threshold{10} {}
 
 };
 
@@ -100,6 +102,7 @@ protected:
     int ctrlConfigBunch(int dma, int eth);
     int ctrlSetMasterDelay(int tint);
     int ctrlSetSlaveDelay(int tint);
+    int ctrlSetClusterThreshold(int threshold);
 protected slots:
     void onConnected();
     void onSocketError(QAbstractSocket::SocketError socketError);
