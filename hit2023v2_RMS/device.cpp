@@ -494,4 +494,4 @@ int Device::ctrlSetClusterThreshold(int threshold)
         return queryCtrl(COMMAND_SET_CLUSTER_THRESHOLD, txdata, rxdata);
 }
 
-}
+
