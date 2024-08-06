@@ -1,6 +1,12 @@
 #include "dialogdevices.h"
 #include "ui_dialogdevices.h"
 #include "helpers.h"
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QVector>
+#include <QPushButton> // Include QPushButton header for button creation
 
 DialogDevices::DialogDevices(QWidget *parent) :
     QDialog(parent),
@@ -28,7 +34,7 @@ void DialogDevices::showEvent(QShowEvent * event)
 
             ui->spinNrDevices->setValue(deviceSettings->value("NrDevices", int(1)).toInt());
 
-            ui->tableDevices->setColumnCount(9);
+            ui->tableDevices->setColumnCount(12);
             QStringList h_header;
             h_header.append("IP Address");
             h_header.append("Hardware ver.");
@@ -39,6 +45,11 @@ void DialogDevices::showEvent(QShowEvent * event)
             h_header.append("Master dly");
             h_header.append("Slave dly");
             h_header.append("Threshold");
+            h_header.append("ClusterSize");
+            h_header.append("CalibFile"); // Column for showing file path
+            h_header.append("Select Calib File"); // New column for the button
+
+
             ui->tableDevices->setHorizontalHeaderLabels(h_header);
 
             importSettings();
@@ -58,6 +69,66 @@ void DialogDevices::accept()
     if (validateAndSave())
         QDialog::accept();
 }
+
+
+void DialogDevices::selectCalibrationFile(int dev_nr)
+{
+    // Open a file dialog to select a calibration file
+    QString filename = QFileDialog::getOpenFileName(this, "Select Calibration File", "", "Text Files (*.txt);;All Files (*)");
+
+    if (filename.isEmpty())
+    {
+        return; // User canceled the dialog
+    }
+
+    // Set the file name in the table for the corresponding device
+    QTableWidgetItem* calibItem = new QTableWidgetItem(filename);
+    ui->tableDevices->setItem(dev_nr, 10, calibItem);
+
+    // Load calibration data from the file
+    QVector<unsigned short> calibrationData;
+    QFile file(filename);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox::critical(this, "Error", "Could not open file for reading");
+        return;
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+        bool ok;
+        unsigned short value = line.toUShort(&ok);
+
+        if (ok)
+        {
+            calibrationData.append(value);
+        }
+        else
+        {
+            calibrationData.append(32768); // assume calibration range is 0 = and 1 = 65536
+            QMessageBox::warning(this, "Warning", "Invalid data in file. Skipping line.");
+        }
+    }
+
+    file.close();
+
+    // Store the calibration data for the device
+    applyCalibrationDataToDevice(dev_nr, calibrationData);
+}
+
+void DialogDevices::applyCalibrationDataToDevice(int dev_nr, const QVector<unsigned short>& data)
+{
+    // Implementation for applying the calibration data to the specific device
+    // For example, updating device settings or performing calculations
+    qDebug() << "Calibration data loaded for Device" << dev_nr << ":" << data;
+
+    // Example: Set the calibration data in your application logic
+    // deviceSettings->setValue("Device%1/CalibrationData", data); // if storing in settings
+}
+
 
 void DialogDevices::importSettings()
 {
@@ -92,6 +163,19 @@ void DialogDevices::importSettings()
             ui->tableDevices->setItem(dev_nr, 7, newItem );
             newItem = new QTableWidgetItem(deviceSettings->value("ClusThresh","10").toString());
             ui->tableDevices->setItem(dev_nr, 8, newItem );
+            newItem = new QTableWidgetItem(deviceSettings->value("ClusSize","4").toString());
+            ui->tableDevices->setItem(dev_nr, 9, newItem );
+
+            // Add an item for the calibration file path (optional, for display)
+            newItem = new QTableWidgetItem(deviceSettings->value("CalibFile", "").toString());
+            ui->tableDevices->setItem(dev_nr, 10, newItem);
+
+            // Add a button for selecting calibration files
+            QPushButton* calibButton = new QPushButton("Select File");
+            ui->tableDevices->setCellWidget(dev_nr, 11, calibButton); // Column index 11 for button
+
+            // Connect the button to a slot with the sensor index as a parameter
+            connect(calibButton, &QPushButton::clicked, this, [this, dev_nr]() { selectCalibrationFile(dev_nr); });
         }
     }
 
@@ -218,6 +302,19 @@ int DialogDevices::validateAndSave()
             data_ok = 0;
         ui->tableDevices->item(dev_nr,8)->setText(generated);
 
+        //now cluster size
+        user_data = ui->tableDevices->item(dev_nr,9)->text();
+        num_value = user_data.toInt();
+        if (num_value < 1)
+            num_value = 1;
+        if (num_value > 255)
+            num_value = 255;
+        generated = QString("%1").arg(num_value);
+            //if the strings are identical, save the value and return 1
+        if (generated.compare(user_data) != 0)
+            data_ok = 0;
+        ui->tableDevices->item(dev_nr,9)->setText(generated);
+
     }
 
         //now store the data
@@ -243,9 +340,9 @@ int DialogDevices::validateAndSave()
         deviceSettings->setValue("MasterDelay", ui->tableDevices->item(dev_nr,6)->text());
         deviceSettings->setValue("SlaveDelay", ui->tableDevices->item(dev_nr,7)->text());
         deviceSettings->setValue("Threshold", ui->tableDevices->item(dev_nr,8)->text());
-
-
-}
+        deviceSettings->setValue("Size", ui->tableDevices->item(dev_nr,9)->text());
+        deviceSettings->setValue("CalibFile", ui->tableDevices->item(dev_nr, 10)->text());
+    }
 
     return 1;
 }
@@ -255,4 +352,24 @@ void DialogDevices::on_spinNrDevices_valueChanged(int arg1)
 {
     if (initialized)
         importSettings();
+}
+
+QVector<QVector<int>> DialogDevices::getAllCalibrationFactors() const {
+    QVector<QVector<int>> calibrationFactors;
+    for (int row = 0; row < ui->tableDevices->rowCount(); ++row) {
+        QVector<int> factors(320, 8192); // Initialize with default value of 8192
+        QTableWidgetItem* item = ui->tableDevices->item(row, 10); // Assuming column 10 is for calibration factors
+        if (item) {
+            QStringList factorStrings = item->text().split(',', Qt::SkipEmptyParts);
+            for (int i = 0; i < factorStrings.size() && i < 320; ++i) {
+                bool ok;
+                int factor = factorStrings[i].toInt(&ok);
+                if (ok && factor >= 0 && factor <= 65535) {
+                    factors[i] = factor;
+                }
+            }
+        }
+        calibrationFactors.append(factors);
+    }
+    return calibrationFactors;
 }

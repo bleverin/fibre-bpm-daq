@@ -117,6 +117,10 @@ void MainWindow::setupHardware()
     int period_v2 = deviceSettings->value("Period_v2").toInt();
     int tint_v2 = deviceSettings->value("Tint_v2").toInt();
     int gain_v2 = deviceSettings->value("Gain_v2").toInt();
+    // Retrieve device-specific settings from DialogDevices
+    DialogDevices dlg;
+    dlg.deviceSettings = deviceSettings;
+    QVector<QVector<int>> allCalibrationFactors = dlg.getAllCalibrationFactors();
 
     for (int dev_nr = 0; dev_nr < nr_devices; dev_nr++)
     {
@@ -126,7 +130,7 @@ void MainWindow::setupHardware()
         dc.device_id = dev_nr;
         dc.hardware_ver = deviceSettings->value("HardwareVer").toInt();
         ip2num(deviceSettings->value("IP").toString(), ip);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)//4 bytes
             dc.device_ip[i] = ip[i];
         dc.master = deviceSettings->value("Master").toInt();
         dc.plane = deviceSettings->value("Plane").toInt();
@@ -134,7 +138,19 @@ void MainWindow::setupHardware()
         dc.nr_sensors = deviceSettings->value("Sensors").toInt();
         dc.master_delay = deviceSettings->value("MasterDelay").toInt();
         dc.slave_delay = deviceSettings->value("SlaveDelay").toInt();
-
+        dc.threshold = deviceSettings->value("Threshold").toInt();
+        dc.clustersize = deviceSettings->value("ClusterSize").toInt();
+/*
+        // Get calibration factors for this device
+        QVector<int> calibFactors = allCalibrationFactors[dev_nr];
+        for (int i = 0; i < 320; i++) {
+            if (i < calibFactors.size() && calibFactors[i] >= 0 && calibFactors[i] <= 65535) {
+                dc.calibrationFactor[i] = calibFactors[i];
+            } else {
+                dc.calibrationFactor[i] = 8192; // Default value if not set or invalid
+            }
+        }
+*/
         switch (dc.hardware_ver)
         {
             case 1:
@@ -154,6 +170,34 @@ void MainWindow::setupHardware()
 
         theHW->configureDevice(dev_nr, dc); //configure the device and an entry in base address table in the event builder
     }
+
+
+    dc.threshold = deviceSettings->value("Threshold").toInt();
+    dc.clustersize = deviceSettings->value("ClusterSize").toInt();
+/*
+    // Assume calibration factors are stored as a list or comma-separated string
+    QString calibFactorsStr = deviceSettings->value("CalibFactors").toString();
+    QStringList calibFactorList = calibFactorsStr.split(',', Qt::SkipEmptyParts);
+
+    // Clear any existing calibration data
+    for (int i = 0; i < 320; i++) {
+        dc.calibrationFactor[i] = 0; // Initialize to 0 or some default
+    }
+
+    // Load calibration factors
+    int index = 0;
+    for (const QString& factor : calibFactorList) {
+        if (index >= 320) break; // Ensure we do not overflow the array
+        bool ok;
+        int value = factor.toInt(&ok);
+        if (ok) {
+            dc.calibrationFactor[index] = value;
+            index++;
+        } else {
+            qWarning() << "Invalid calibration factor:" << factor;
+        }
+    }
+*/
 
     //theDisplay.setup(&theHW);
 }

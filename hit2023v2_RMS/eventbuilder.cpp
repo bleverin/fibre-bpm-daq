@@ -195,8 +195,9 @@ void EventBuilder::logDataToFile()
      * - number of boards: N = 1 x unsigned short
      * - number of channels per each board Cn: N x unsigned short
      * - N times the following sequence:
-     *   - SyncFrame S = 1 x SyncFrame (== 16 bytes)
+     *   - SyncFrame S = 1 x SyncFrame (== 16 bytes 4 unsigned shorts and 2 int)
      *   - Data D = Cn x unsigned short
+     *   - RMSframe R = 1 x RMSframe(== 8 unsigned shorts == 16 bytes)
      */
 
     logFile.write((const char*)&totalBoards, sizeof(unsigned short));

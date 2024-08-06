@@ -494,4 +494,38 @@ int Device::ctrlSetClusterThreshold(int threshold)
         return queryCtrl(COMMAND_SET_CLUSTER_THRESHOLD, txdata, rxdata);
 }
 
+int Device::ctrlSetClusterSize(int size)
+{
+    QVector<unsigned short> rxdata;
+    QVector<unsigned short> txdata;
+    txdata.append((unsigned short)size);
+
+    if (size)
+        return queryCtrl(COMMAND_SET_CLUSTER_SIZE, txdata, rxdata);
+    else
+        return queryCtrl(COMMAND_SET_CLUSTER_SIZE, txdata, rxdata);
+}
+
+int Device::ctrlSetCalibrationFactor(int calibrationFactor[320])
+{
+    // Check for null pointer to ensure valid input
+    if (calibrationFactor == nullptr)
+    {
+        // Handle the error case: log it, return an error code, or throw an exception
+        return -1; // Or handle as appropriate
+    }
+
+    QVector<unsigned short> rxdata;
+    QVector<unsigned short> txdata;
+
+    // Append each calibration factor to txdata
+    for (int i = 0; i < 320; ++i)
+    {
+        txdata.append(static_cast<unsigned short>(calibrationFactor[i]));
+    }
+
+    // Perform the queryCtrl operation with the populated txdata
+    return queryCtrl(COMMAND_SET_CALIBRATION_FACTOR, txdata, rxdata);
+}
+
 

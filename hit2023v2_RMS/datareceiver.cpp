@@ -79,6 +79,9 @@ void DataReceiver::readData()
                     rms.sigma = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 2);
                     rms.max = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 4);
                     rms.status = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 6);
+                    for (unsigned int ii = 0; ii < 4; ii++)
+                        rms.registers[ii] = BYTES2SHORT(tmpBuffer+baseaddr+DATA_PACKET_HEADER_SIZE+DATA_SYNC_HEADER_SIZE+DATA_BLOCK_SIZE + 8+ii*2);
+
                     data_to_push.rms_frame = rms;
 
                     dataBuffer.push(data_to_push);

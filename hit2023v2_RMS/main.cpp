@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QFile styleFile(stylesheetPath);
     if (styleFile.open(QFile::ReadOnly | QFile::Text)) {
         QString style = QTextStream(&styleFile).readAll();
-        qApp->setStyleSheet(style);
+        //qApp->setStyleSheet(style);
         styleFile.close();
     } else {
         qWarning("Failed to open stylesheet file: %s", qPrintable(stylesheetPath));

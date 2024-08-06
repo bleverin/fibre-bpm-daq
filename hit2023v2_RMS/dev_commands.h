@@ -111,9 +111,17 @@
 	//Slow control snapshot - read all channels of ADC
 
 #define COMMAND_SET_CLUSTER_THRESHOLD 0x4001
-    //L: ?
+    //L: 1
     //D: []
     //Send 8 bit beam cluster selection threshold
+
+#define COMMAND_SET_CLUSTER_SIZE 0x4002
+    //L: 1
+
+
+#define COMMAND_SET_CALIBRATION_FACTOR 0x4003
+    //L: 320*16bit
+    //D: []
 
 // ***DATA TRANSFER - SOCKET 1!!!!***
 
