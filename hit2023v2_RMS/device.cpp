@@ -110,6 +110,8 @@ void Device::configure(DeviceConfig &cfg)
         ctrlSetSlaveDelay(deviceConfig.slave_delay);
         ctrlSetGain(deviceConfig.gain);
         ctrlSetClusterThreshold(deviceConfig.threshold);
+        ctrlSetClusterSize(deviceConfig.clustersize);
+        //ctrlSetCalibrationFactor(deviceConfig.calibrationFactor);
         ctrlConfigBunch(deviceConfig.dma_bunch, deviceConfig.eth_bunch);
         ctrlConfigPeer(ipshort, DEV_BASE_DATA_PORT+ deviceConfig.device_id);
     }

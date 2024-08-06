@@ -172,8 +172,7 @@ void MainWindow::setupHardware()
     }
 
 
-    dc.threshold = deviceSettings->value("Threshold").toInt();
-    dc.clustersize = deviceSettings->value("ClusterSize").toInt();
+
 /*
     // Assume calibration factors are stored as a list or comma-separated string
     QString calibFactorsStr = deviceSettings->value("CalibFactors").toString();

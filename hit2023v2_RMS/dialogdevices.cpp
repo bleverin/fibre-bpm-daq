@@ -340,7 +340,7 @@ int DialogDevices::validateAndSave()
         deviceSettings->setValue("MasterDelay", ui->tableDevices->item(dev_nr,6)->text());
         deviceSettings->setValue("SlaveDelay", ui->tableDevices->item(dev_nr,7)->text());
         deviceSettings->setValue("Threshold", ui->tableDevices->item(dev_nr,8)->text());
-        deviceSettings->setValue("Size", ui->tableDevices->item(dev_nr,9)->text());
+        deviceSettings->setValue("ClusterSize", ui->tableDevices->item(dev_nr,9)->text());
         deviceSettings->setValue("CalibFile", ui->tableDevices->item(dev_nr, 10)->text());
     }
 
