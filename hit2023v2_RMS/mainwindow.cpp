@@ -118,41 +118,51 @@ void MainWindow::setupHardware()
     int tint_v2 = deviceSettings->value("Tint_v2").toInt();
     int gain_v2 = deviceSettings->value("Gain_v2").toInt();
     // Retrieve device-specific settings from DialogDevices
+
+
+    // Open the dialog to configure devices and retrieve calibration factors
     DialogDevices dlg;
     dlg.deviceSettings = deviceSettings;
-    QVector<QVector<int>> allCalibrationFactors = dlg.getAllCalibrationFactors();
+    if (dlg.exec() == QDialog::Accepted) {
+        QVector<QVector<unsigned short>> allCalibrationFactors = dlg.getAllCalibrationFactors();
 
-    for (int dev_nr = 0; dev_nr < nr_devices; dev_nr++)
-    {
-        top(deviceSettings);
-        QString group_label = QString("Device%1").arg(dev_nr);
-        deviceSettings->beginGroup(group_label);
-        dc.device_id = dev_nr;
-        dc.hardware_ver = deviceSettings->value("HardwareVer").toInt();
-        ip2num(deviceSettings->value("IP").toString(), ip);
-        for (int i = 0; i < 4; i++)//4 bytes
-            dc.device_ip[i] = ip[i];
-        dc.master = deviceSettings->value("Master").toInt();
-        dc.plane = deviceSettings->value("Plane").toInt();
-        dc.position = deviceSettings->value("Position").toInt();
-        dc.nr_sensors = deviceSettings->value("Sensors").toInt();
-        dc.master_delay = deviceSettings->value("MasterDelay").toInt();
-        dc.slave_delay = deviceSettings->value("SlaveDelay").toInt();
-        dc.threshold = deviceSettings->value("Threshold").toInt();
-        dc.clustersize = deviceSettings->value("ClusterSize").toInt();
-/*
-        // Get calibration factors for this device
-        QVector<int> calibFactors = allCalibrationFactors[dev_nr];
-        for (int i = 0; i < 320; i++) {
-            if (i < calibFactors.size() && calibFactors[i] >= 0 && calibFactors[i] <= 65535) {
-                dc.calibrationFactor[i] = calibFactors[i];
-            } else {
-                dc.calibrationFactor[i] = 8192; // Default value if not set or invalid
+        for (int dev_nr = 0; dev_nr < nr_devices; dev_nr++) {
+            top(deviceSettings);
+            QString group_label = QString("Device%1").arg(dev_nr);
+            deviceSettings->beginGroup(group_label);
+
+            dc.device_id = dev_nr;
+            dc.hardware_ver = deviceSettings->value("HardwareVer").toInt();
+            ip2num(deviceSettings->value("IP").toString(), ip);
+            for (int i = 0; i < 4; i++) { // 4 bytes
+                dc.device_ip[i] = ip[i];
             }
-        }
-*/
-        switch (dc.hardware_ver)
-        {
+            dc.master = deviceSettings->value("Master").toInt();
+            dc.plane = deviceSettings->value("Plane").toInt();
+            dc.position = deviceSettings->value("Position").toInt();
+            dc.nr_sensors = deviceSettings->value("Sensors").toInt();
+            dc.master_delay = deviceSettings->value("MasterDelay").toInt();
+            dc.slave_delay = deviceSettings->value("SlaveDelay").toInt();
+            dc.threshold = deviceSettings->value("Threshold").toInt();
+            dc.clustersize = deviceSettings->value("ClusterSize").toInt();
+
+            // Get calibration factors for this device
+            if (dev_nr < allCalibrationFactors.size()) {
+                QVector<unsigned short> calibFactors = allCalibrationFactors[dev_nr];
+                for (int i = 0; i < 320; i++) {
+                    if (i < calibFactors.size() && calibFactors[i] >= 0 && calibFactors[i] <= 65535) {
+                        dc.calibrationFactor[i] = calibFactors[i];
+                    } else {
+                        dc.calibrationFactor[i] = 8192; // Default value if not set or invalid
+                    }
+                }
+            } else {
+                // Default to 8192 if no calibration factors were set for this device
+                std::fill(std::begin(dc.calibrationFactor), std::end(dc.calibrationFactor), 8192);
+            }
+
+            switch (dc.hardware_ver)
+            {
             case 1:
                 dc.period = period_v1;
                 dc.tint = tint_v1;
@@ -165,40 +175,14 @@ void MainWindow::setupHardware()
                 break;
             default:
                 qCritical("Unsupported hardware version!");
-            break;
-        }
+                break;
+            }
 
-        theHW->configureDevice(dev_nr, dc); //configure the device and an entry in base address table in the event builder
-    }
-
-
-
-/*
-    // Assume calibration factors are stored as a list or comma-separated string
-    QString calibFactorsStr = deviceSettings->value("CalibFactors").toString();
-    QStringList calibFactorList = calibFactorsStr.split(',', Qt::SkipEmptyParts);
-
-    // Clear any existing calibration data
-    for (int i = 0; i < 320; i++) {
-        dc.calibrationFactor[i] = 0; // Initialize to 0 or some default
-    }
-
-    // Load calibration factors
-    int index = 0;
-    for (const QString& factor : calibFactorList) {
-        if (index >= 320) break; // Ensure we do not overflow the array
-        bool ok;
-        int value = factor.toInt(&ok);
-        if (ok) {
-            dc.calibrationFactor[index] = value;
-            index++;
-        } else {
-            qWarning() << "Invalid calibration factor:" << factor;
+            theHW->configureDevice(dev_nr, dc); // Configure the device and an entry in base address table in the event builder
         }
     }
-*/
 
-    //theDisplay.setup(&theHW);
+
 }
 
 

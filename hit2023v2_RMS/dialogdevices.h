@@ -19,7 +19,7 @@ public:
     ~DialogDevices();
     QSettings* deviceSettings = NULL;
 
-    QVector<QVector<int>> getAllCalibrationFactors() const; // Declaration of the method
+    QVector<QVector<unsigned short>> getAllCalibrationFactors() const; // Declaration of the method
 public slots:
     void showEvent(QShowEvent *event);
     void accept();
@@ -29,7 +29,7 @@ protected:
     void importSettings();
     int last_nr_devices = -1;
     int initialized = 0;
-    QVector<QVector<unsigned short>> calibrationData; // Storage for calibration data for each device
+    QVector<QVector<unsigned short>> deviceCalibrationData; // Storage for calibration data for each device
 private slots:
     void on_spinNrDevices_valueChanged(int arg1);
     void selectCalibrationFile(int dev_nr); // Slot for handling calibration file selection
