@@ -111,7 +111,7 @@ void Device::configure(DeviceConfig &cfg)
         ctrlSetGain(deviceConfig.gain);
         ctrlSetClusterThreshold(deviceConfig.threshold);
         ctrlSetClusterSize(deviceConfig.clustersize);
-        //ctrlSetCalibrationFactor(deviceConfig.calibrationFactor);
+        ctrlSetCalibrationFactor(deviceConfig.calibrationFactor);
         ctrlConfigBunch(deviceConfig.dma_bunch, deviceConfig.eth_bunch);
         ctrlConfigPeer(ipshort, DEV_BASE_DATA_PORT+ deviceConfig.device_id);
     }
@@ -519,15 +519,22 @@ int Device::ctrlSetCalibrationFactor(int calibrationFactor[320])
 
     QVector<unsigned short> rxdata;
     QVector<unsigned short> txdata;
-
+    int status = -1;
     // Append each calibration factor to txdata
     for (int i = 0; i < 320; ++i)
     {
+        txdata.append(static_cast<unsigned short>(i));
         txdata.append(static_cast<unsigned short>(calibrationFactor[i]));
+        // Perform the queryCtrl operation with the populated txdata
+        status = queryCtrl(COMMAND_SET_CALIBRATION_FACTOR, txdata, rxdata);
+        rxdata.clear();
+        txdata.clear();
+        //if (status == DEV_CTRL_ERROR) {return DEV_CTRL_ERROR;}
+
     }
 
-    // Perform the queryCtrl operation with the populated txdata
-    return queryCtrl(COMMAND_SET_CALIBRATION_FACTOR, txdata, rxdata);
+    return DEV_CTRL_OK;
+
 }
 
 
