@@ -89,6 +89,15 @@ void DialogDevices::selectCalibrationFile(int dev_nr)
         deviceCalibrationData.append(calibrationFactors);
     }
 
+
+    // Save the calibration file path to QSettings
+    top(deviceSettings);
+    QString group_label = QString("Device%1").arg(dev_nr);
+    deviceSettings->beginGroup(group_label);
+    deviceSettings->setValue("CalibFile", filename); // Save the file path
+    deviceSettings->endGroup();
+
+
     // Update the table display to show the file path (optional)
     QTableWidgetItem* calibFileItem = new QTableWidgetItem(filename);
     ui->tableDevices->setItem(dev_nr, 10, calibFileItem);
@@ -320,6 +329,19 @@ int DialogDevices::validateAndSave()
         if (generated.compare(user_data) != 0)
             data_ok = 0;
         ui->tableDevices->item(dev_nr,9)->setText(generated);
+
+
+        // Calibration file path
+        user_data = ui->tableDevices->item(dev_nr, 10)->text();
+        if (user_data.isEmpty())
+            data_ok = 0;
+
+        // Save the calibration file path
+        top(deviceSettings);
+        QString group_label = QString("Device%1").arg(dev_nr);
+        deviceSettings->beginGroup(group_label);
+        deviceSettings->setValue("CalibFile", user_data); // Save the file path
+        deviceSettings->endGroup();
 
     }
 
