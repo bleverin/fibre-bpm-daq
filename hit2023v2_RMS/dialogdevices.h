@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QShowEvent>
 #include <QVector> // Include QVector for calibration data storage
+#include <QTableWidgetItem>
 
 namespace Ui {
 class DialogDevices;
@@ -25,6 +26,7 @@ public slots:
     void accept();
 protected:
     int validateAndSave();
+    bool loadCalibrationFactorsFromFile(const QString &filePath, QVector<unsigned short> &calibrationFactors); // Function to load calibration factors from a file
     void applyCalibrationDataToDevice(int dev_nr, const QVector<unsigned short>& data); // Function to apply calibration data to a device
     void importSettings();
     int last_nr_devices = -1;
