@@ -57,6 +57,7 @@ protected:
     QTimer timer;
     QLineEdit status1;
     QLineEdit statusKeithley;
+    bool loadCalibrationFactors(const QString& filePath, int* calibrationFactors); // Loads calibration factors from a file
 
 private slots:
 

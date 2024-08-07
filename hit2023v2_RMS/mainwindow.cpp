@@ -120,11 +120,7 @@ void MainWindow::setupHardware()
     // Retrieve device-specific settings from DialogDevices
 
 
-    // Open the dialog to configure devices and retrieve calibration factors
-    DialogDevices dlg;
-    dlg.deviceSettings = deviceSettings;
-    if (dlg.exec() == QDialog::Accepted) {
-        QVector<QVector<unsigned short>> allCalibrationFactors = dlg.getAllCalibrationFactors();
+
 
         for (int dev_nr = 0; dev_nr < nr_devices; dev_nr++) {
             top(deviceSettings);
@@ -147,15 +143,11 @@ void MainWindow::setupHardware()
             dc.clustersize = deviceSettings->value("ClusterSize").toInt();
 
             // Get calibration factors for this device
-            if (dev_nr < allCalibrationFactors.size()) {
-                QVector<unsigned short> calibFactors = allCalibrationFactors[dev_nr];
-                for (int i = 0; i < 320; i++) {
-                    if (i < calibFactors.size() && calibFactors[i] >= 0 && calibFactors[i] <= 65535) {
-                        dc.calibrationFactor[i] = calibFactors[i];
-                    } else {
-                        dc.calibrationFactor[i] = 8192; // Default value if not set or invalid
-                    }
-                }
+            // Get calibration factors from the settings
+            QString calibFilePath = deviceSettings->value("CalibFile").toString();
+            if (!calibFilePath.isEmpty()) {
+                // Load calibration factors from the file
+                loadCalibrationFactors(calibFilePath, dc.calibrationFactor);
             } else {
                 // Default to 8192 if no calibration factors were set for this device
                 std::fill(std::begin(dc.calibrationFactor), std::end(dc.calibrationFactor), 8192);
@@ -180,9 +172,47 @@ void MainWindow::setupHardware()
 
             theHW->configureDevice(dev_nr, dc); // Configure the device and an entry in base address table in the event builder
         }
+
+
+
+}
+
+
+// Provide a function to load calibration factors from a file
+bool MainWindow::loadCalibrationFactors(const QString& filePath, int* calibrationFactors)
+{
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Could not open calibration file:" << filePath;
+        return false;
     }
 
+    QTextStream in(&file);
+    int index = 0;
+    bool allValid = true;
+    while (!in.atEnd() && index < 320) {
+        QString line = in.readLine().trimmed();
+        bool ok;
+        int value = line.toInt(&ok);
 
+        // Validate that value is within the range of an unsigned short
+        if (ok && value >= 0 && value <= 65535) {
+            calibrationFactors[index] = value;
+        } else {
+            qWarning() << "Invalid calibration factor:" << line << "at index" << index;
+            calibrationFactors[index] = 8192; // Default to 8192 if invalid
+            allValid = false;
+        }
+        index++;
+    }
+
+    // If file has fewer than 320 lines, fill the rest with default values
+    while (index < 320) {
+        calibrationFactors[index++] = 8192;
+    }
+
+    file.close();
+    return allValid;
 }
 
 
