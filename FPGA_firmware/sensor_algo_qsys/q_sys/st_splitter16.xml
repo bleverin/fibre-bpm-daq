@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2024.07.02.15:16:06"
+ outputDirectory="/auto/work/qinliqing/intelFPGA_lite/19.1/dev_room_qlq/sensor_algo_qsys/q_sys/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="MAX 10"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="10M50DAF484C6GES"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="6"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_ST_SPLITTER16_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_ST_SPLITTER16_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_ST_SPLITTER16_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="st_splitter16_clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="st_splitter16_clk_clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="st_splitter16_in" kind="avalon_streaming" start="0">
+   <property name="associatedClock" value="st_splitter16_clk" />
+   <property name="associatedReset" value="st_splitter16_reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="2" />
+   <port
+       name="st_splitter16_in_ready"
+       direction="output"
+       role="ready"
+       width="1" />
+   <port
+       name="st_splitter16_in_valid"
+       direction="input"
+       role="valid"
+       width="1" />
+   <port
+       name="st_splitter16_in_startofpacket"
+       direction="input"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_in_endofpacket"
+       direction="input"
+       role="endofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_in_empty"
+       direction="input"
+       role="empty"
+       width="1" />
+   <port name="st_splitter16_in_data" direction="input" role="data" width="16" />
+  </interface>
+  <interface name="st_splitter16_out0" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="st_splitter16_clk" />
+   <property name="associatedReset" value="st_splitter16_reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="2" />
+   <port
+       name="st_splitter16_out0_ready"
+       direction="input"
+       role="ready"
+       width="1" />
+   <port
+       name="st_splitter16_out0_valid"
+       direction="output"
+       role="valid"
+       width="1" />
+   <port
+       name="st_splitter16_out0_startofpacket"
+       direction="output"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_out0_endofpacket"
+       direction="output"
+       role="endofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_out0_empty"
+       direction="output"
+       role="empty"
+       width="1" />
+   <port
+       name="st_splitter16_out0_data"
+       direction="output"
+       role="data"
+       width="16" />
+  </interface>
+  <interface name="st_splitter16_out1" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="st_splitter16_clk" />
+   <property name="associatedReset" value="st_splitter16_reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="2" />
+   <port
+       name="st_splitter16_out1_ready"
+       direction="input"
+       role="ready"
+       width="1" />
+   <port
+       name="st_splitter16_out1_valid"
+       direction="output"
+       role="valid"
+       width="1" />
+   <port
+       name="st_splitter16_out1_startofpacket"
+       direction="output"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_out1_endofpacket"
+       direction="output"
+       role="endofpacket"
+       width="1" />
+   <port
+       name="st_splitter16_out1_empty"
+       direction="output"
+       role="empty"
+       width="1" />
+   <port
+       name="st_splitter16_out1_data"
+       direction="output"
+       role="data"
+       width="16" />
+  </interface>
+  <interface name="st_splitter16_reset" kind="reset" start="0">
+   <property name="associatedClock" value="st_splitter16_clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port
+       name="st_splitter16_reset_reset"
+       direction="input"
+       role="reset"
+       width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="st_splitter16:1.0:AUTO_DEVICE=10M50DAF484C6GES,AUTO_DEVICE_FAMILY=MAX 10,AUTO_DEVICE_SPEEDGRADE=6,AUTO_GENERATION_ID=1719926165,AUTO_ST_SPLITTER16_CLK_CLOCK_DOMAIN=-1,AUTO_ST_SPLITTER16_CLK_CLOCK_RATE=-1,AUTO_ST_SPLITTER16_CLK_RESET_DOMAIN=-1,AUTO_UNIQUE_ID=(altera_avalon_st_splitter:19.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=1,DATA_WIDTH=16,EMPTY_WIDTH=1,ERROR_DESCRIPTOR=,ERROR_WIDTH=1,MAX_CHANNELS=1,NUMBER_OF_OUTPUTS=2,QUALIFY_VALID_OUT=1,READY_LATENCY=0,USE_CHANNEL=0,USE_DATA=1,USE_ERROR=0,USE_PACKETS=1,USE_READY=1,USE_VALID=1)"
+   instancePathKey="st_splitter16"
+   kind="st_splitter16"
+   version="1.0"
+   name="st_splitter16">
+  <parameter name="AUTO_ST_SPLITTER16_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="1719926165" />
+  <parameter name="AUTO_DEVICE" value="10M50DAF484C6GES" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_ST_SPLITTER16_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
+  <parameter name="AUTO_ST_SPLITTER16_CLK_RESET_DOMAIN" value="-1" />
+  <generatedFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/dev_room_qlq/sensor_algo_qsys/q_sys/synthesis/st_splitter16.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/dev_room_qlq/sensor_algo_qsys/q_sys/synthesis/submodules/altera_avalon_st_splitter.sv"
+       type="SYSTEM_VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/dev_room_qlq/sensor_algo_qsys/st_splitter16.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/ip/altera/avalon_st/altera_avalon_st_splitter/altera_avalon_st_splitter_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="st_splitter16">queue size: 0 starting:st_splitter16 "st_splitter16"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="st_splitter16"><![CDATA["<b>st_splitter16</b>" reuses <b>altera_avalon_st_splitter</b> "<b>submodules/altera_avalon_st_splitter</b>"]]></message>
+   <message level="Debug" culprit="st_splitter16">queue size: 0 starting:altera_avalon_st_splitter "submodules/altera_avalon_st_splitter"</message>
+   <message level="Info" culprit="st_splitter16"><![CDATA["<b>st_splitter16</b>" instantiated <b>altera_avalon_st_splitter</b> "<b>st_splitter16</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_avalon_st_splitter:19.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=1,DATA_WIDTH=16,EMPTY_WIDTH=1,ERROR_DESCRIPTOR=,ERROR_WIDTH=1,MAX_CHANNELS=1,NUMBER_OF_OUTPUTS=2,QUALIFY_VALID_OUT=1,READY_LATENCY=0,USE_CHANNEL=0,USE_DATA=1,USE_ERROR=0,USE_PACKETS=1,USE_READY=1,USE_VALID=1"
+   instancePathKey="st_splitter16:.:st_splitter16"
+   kind="altera_avalon_st_splitter"
+   version="19.1"
+   name="altera_avalon_st_splitter">
+  <parameter name="NUMBER_OF_OUTPUTS" value="2" />
+  <parameter name="USE_DATA" value="1" />
+  <parameter name="ERROR_DESCRIPTOR" value="" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="MAX_CHANNELS" value="1" />
+  <parameter name="USE_ERROR" value="0" />
+  <parameter name="EMPTY_WIDTH" value="1" />
+  <parameter name="CHANNEL_WIDTH" value="1" />
+  <parameter name="READY_LATENCY" value="0" />
+  <parameter name="DATA_WIDTH" value="16" />
+  <parameter name="BITS_PER_SYMBOL" value="8" />
+  <parameter name="ERROR_WIDTH" value="1" />
+  <parameter name="QUALIFY_VALID_OUT" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <generatedFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/dev_room_qlq/sensor_algo_qsys/q_sys/synthesis/submodules/altera_avalon_st_splitter.sv"
+       type="SYSTEM_VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="/auto/work/qinliqing/intelFPGA_lite/19.1/ip/altera/avalon_st/altera_avalon_st_splitter/altera_avalon_st_splitter_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="st_splitter16" as="st_splitter16" />
+  <messages>
+   <message level="Debug" culprit="st_splitter16">queue size: 0 starting:altera_avalon_st_splitter "submodules/altera_avalon_st_splitter"</message>
+   <message level="Info" culprit="st_splitter16"><![CDATA["<b>st_splitter16</b>" instantiated <b>altera_avalon_st_splitter</b> "<b>st_splitter16</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

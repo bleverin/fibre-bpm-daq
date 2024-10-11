@@ -1,0 +1,213 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 480 304)
+	(text "st_splitter16" (rect 205 -1 251 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 288 20 300)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "st_splitter16_clk_clk" (rect 0 0 79 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_clk_clk" (rect 4 61 130 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 160 72)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "st_splitter16_in_valid" (rect 0 0 81 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_valid" (rect 4 117 136 128)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 160 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "st_splitter16_in_startofpacket" (rect 0 0 115 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_startofpacket" (rect 4 133 184 144)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 160 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "st_splitter16_in_endofpacket" (rect 0 0 112 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_endofpacket" (rect 4 149 172 160)(font "Arial" (font_size 8)))
+		(line (pt 0 160)(pt 160 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "st_splitter16_in_empty" (rect 0 0 89 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_empty" (rect 4 165 136 176)(font "Arial" (font_size 8)))
+		(line (pt 0 176)(pt 160 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "st_splitter16_in_data[15..0]" (rect 0 0 103 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_data[15..0]" (rect 4 181 172 192)(font "Arial" (font_size 8)))
+		(line (pt 0 192)(pt 160 192)(line_width 3))
+	)
+	(port
+		(pt 480 72)
+		(input)
+		(text "st_splitter16_out0_ready" (rect 0 0 97 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_ready" (rect 357 61 501 72)(font "Arial" (font_size 8)))
+		(line (pt 480 72)(pt 304 72)(line_width 1))
+	)
+	(port
+		(pt 480 192)
+		(input)
+		(text "st_splitter16_out1_ready" (rect 0 0 96 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_ready" (rect 359 181 503 192)(font "Arial" (font_size 8)))
+		(line (pt 480 192)(pt 304 192)(line_width 1))
+	)
+	(port
+		(pt 0 232)
+		(input)
+		(text "st_splitter16_reset_reset" (rect 0 0 97 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_reset_reset" (rect 4 221 154 232)(font "Arial" (font_size 8)))
+		(line (pt 0 232)(pt 160 232)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(output)
+		(text "st_splitter16_in_ready" (rect 0 0 87 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_in_ready" (rect 4 101 136 112)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 160 112)(line_width 1))
+	)
+	(port
+		(pt 480 88)
+		(output)
+		(text "st_splitter16_out0_valid" (rect 0 0 92 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_valid" (rect 363 77 507 88)(font "Arial" (font_size 8)))
+		(line (pt 480 88)(pt 304 88)(line_width 1))
+	)
+	(port
+		(pt 480 104)
+		(output)
+		(text "st_splitter16_out0_startofpacket" (rect 0 0 126 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_startofpacket" (rect 320 93 512 104)(font "Arial" (font_size 8)))
+		(line (pt 480 104)(pt 304 104)(line_width 1))
+	)
+	(port
+		(pt 480 120)
+		(output)
+		(text "st_splitter16_out0_endofpacket" (rect 0 0 122 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_endofpacket" (rect 324 109 504 120)(font "Arial" (font_size 8)))
+		(line (pt 480 120)(pt 304 120)(line_width 1))
+	)
+	(port
+		(pt 480 136)
+		(output)
+		(text "st_splitter16_out0_empty" (rect 0 0 100 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_empty" (rect 356 125 500 136)(font "Arial" (font_size 8)))
+		(line (pt 480 136)(pt 304 136)(line_width 1))
+	)
+	(port
+		(pt 480 152)
+		(output)
+		(text "st_splitter16_out0_data[15..0]" (rect 0 0 114 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out0_data[15..0]" (rect 336 141 516 152)(font "Arial" (font_size 8)))
+		(line (pt 480 152)(pt 304 152)(line_width 3))
+	)
+	(port
+		(pt 480 208)
+		(output)
+		(text "st_splitter16_out1_valid" (rect 0 0 90 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_valid" (rect 365 197 509 208)(font "Arial" (font_size 8)))
+		(line (pt 480 208)(pt 304 208)(line_width 1))
+	)
+	(port
+		(pt 480 224)
+		(output)
+		(text "st_splitter16_out1_startofpacket" (rect 0 0 125 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_startofpacket" (rect 322 213 514 224)(font "Arial" (font_size 8)))
+		(line (pt 480 224)(pt 304 224)(line_width 1))
+	)
+	(port
+		(pt 480 240)
+		(output)
+		(text "st_splitter16_out1_endofpacket" (rect 0 0 121 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_endofpacket" (rect 326 229 506 240)(font "Arial" (font_size 8)))
+		(line (pt 480 240)(pt 304 240)(line_width 1))
+	)
+	(port
+		(pt 480 256)
+		(output)
+		(text "st_splitter16_out1_empty" (rect 0 0 99 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_empty" (rect 358 245 502 256)(font "Arial" (font_size 8)))
+		(line (pt 480 256)(pt 304 256)(line_width 1))
+	)
+	(port
+		(pt 480 272)
+		(output)
+		(text "st_splitter16_out1_data[15..0]" (rect 0 0 113 12)(font "Arial" (font_size 8)))
+		(text "st_splitter16_out1_data[15..0]" (rect 338 261 518 272)(font "Arial" (font_size 8)))
+		(line (pt 480 272)(pt 304 272)(line_width 3))
+	)
+	(drawing
+		(text "st_splitter16_clk" (rect 66 43 234 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 165 67 348 144)(font "Arial" (color 0 0 0)))
+		(text "st_splitter16_in" (rect 72 83 240 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "ready" (rect 165 107 360 224)(font "Arial" (color 0 0 0)))
+		(text "valid" (rect 165 123 360 256)(font "Arial" (color 0 0 0)))
+		(text "startofpacket" (rect 165 139 408 288)(font "Arial" (color 0 0 0)))
+		(text "endofpacket" (rect 165 155 396 320)(font "Arial" (color 0 0 0)))
+		(text "empty" (rect 165 171 360 352)(font "Arial" (color 0 0 0)))
+		(text "data" (rect 165 187 354 384)(font "Arial" (color 0 0 0)))
+		(text "st_splitter16_out0" (rect 305 43 718 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "ready" (rect 276 67 582 144)(font "Arial" (color 0 0 0)))
+		(text "valid" (rect 281 83 592 176)(font "Arial" (color 0 0 0)))
+		(text "startofpacket" (rect 244 99 566 208)(font "Arial" (color 0 0 0)))
+		(text "endofpacket" (rect 249 115 564 240)(font "Arial" (color 0 0 0)))
+		(text "empty" (rect 274 131 578 272)(font "Arial" (color 0 0 0)))
+		(text "data" (rect 283 147 590 304)(font "Arial" (color 0 0 0)))
+		(text "st_splitter16_out1" (rect 305 163 718 339)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "ready" (rect 276 187 582 384)(font "Arial" (color 0 0 0)))
+		(text "valid" (rect 281 203 592 416)(font "Arial" (color 0 0 0)))
+		(text "startofpacket" (rect 244 219 566 448)(font "Arial" (color 0 0 0)))
+		(text "endofpacket" (rect 249 235 564 480)(font "Arial" (color 0 0 0)))
+		(text "empty" (rect 274 251 578 512)(font "Arial" (color 0 0 0)))
+		(text "data" (rect 283 267 590 544)(font "Arial" (color 0 0 0)))
+		(text "st_splitter16_reset" (rect 52 203 218 419)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset" (rect 165 227 360 464)(font "Arial" (color 0 0 0)))
+		(text " st_splitter16 " (rect 425 288 940 586)(font "Arial" ))
+		(line (pt 160 32)(pt 304 32)(line_width 1))
+		(line (pt 304 32)(pt 304 288)(line_width 1))
+		(line (pt 160 288)(pt 304 288)(line_width 1))
+		(line (pt 160 32)(pt 160 288)(line_width 1))
+		(line (pt 161 52)(pt 161 76)(line_width 1))
+		(line (pt 162 52)(pt 162 76)(line_width 1))
+		(line (pt 161 92)(pt 161 196)(line_width 1))
+		(line (pt 162 92)(pt 162 196)(line_width 1))
+		(line (pt 303 52)(pt 303 156)(line_width 1))
+		(line (pt 302 52)(pt 302 156)(line_width 1))
+		(line (pt 303 172)(pt 303 276)(line_width 1))
+		(line (pt 302 172)(pt 302 276)(line_width 1))
+		(line (pt 161 212)(pt 161 236)(line_width 1))
+		(line (pt 162 212)(pt 162 236)(line_width 1))
+		(line (pt 0 0)(pt 480 0)(line_width 1))
+		(line (pt 480 0)(pt 480 304)(line_width 1))
+		(line (pt 0 304)(pt 480 304)(line_width 1))
+		(line (pt 0 0)(pt 0 304)(line_width 1))
+	)
+)

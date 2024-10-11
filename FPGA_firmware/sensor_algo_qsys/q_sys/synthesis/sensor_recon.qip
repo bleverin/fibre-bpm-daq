@@ -1,0 +1,50 @@
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_TOOL_NAME "Qsys"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_TOOL_VERSION "19.1"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -library "sensor_recon" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../sensor_recon.sopcinfo"]
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name SLD_INFO "QSYS_NAME sensor_recon HAS_SOPCINFO 1 GENERATION_ID 1721315097"
+set_global_assignment -library "sensor_recon" -name MISC_FILE [file join $::quartus(qip_path) "../sensor_recon.cmp"]
+set_global_assignment -library "sensor_recon" -name SLD_FILE [file join $::quartus(qip_path) "sensor_recon.debuginfo"]
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_GENERATED_DEVICE_FAMILY "{MAX 10}"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_QSYS_MODE "SYSTEM"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "sensor_recon" -name MISC_FILE [file join $::quartus(qip_path) "../../sensor_recon.qsys"]
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_NAME "c2Vuc29yX3JlY29u"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_DISPLAY_NAME "c2Vuc29yX3JlY29u"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcyMTMxNTA5Nw==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfUkVDT05fMF9DQUxJQlJBVElPTl9SQU1fSU5URVJGQUNFX0FERFJFU1NfV0lEVEg=::QWRkcmVzc1dpZHRoID0gLTE=::QXV0byBBRERSRVNTX1dJRFRI"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfUkVDT05fMF9DTEtfQ0xPQ0tfUkFURQ==::LTE=::QXV0byBDTE9DS19SQVRF"
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfUkVDT05fMF9DTEtfQ0xPQ0tfRE9NQUlO::LTE=::QXV0byBDTE9DS19ET01BSU4="
+set_global_assignment -entity "sensor_recon" -library "sensor_recon" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfUkVDT05fMF9DTEtfUkVTRVRfRE9NQUlO::LTE=::QXV0byBSRVNFVF9ET01BSU4="
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_NAME "c2Vuc29yX2FsZ28="
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_DISPLAY_NAME "c2Vuc29yX3JlY29uX3Jtc19jYWxp"
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_AUTHOR "UWluLExpcWluZyAxNy5KdWx5LDIwMjQ="
+set_global_assignment -entity "sensor_algo" -library "sensor_recon" -name IP_COMPONENT_VERSION "MQ=="
+
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "sensor_recon.v"]
+set_global_assignment -library "sensor_recon" -name QIP_FILE [file join $::quartus(qip_path) "submodules/div.qip"]
+set_global_assignment -library "sensor_recon" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/rms.sv"]
+set_global_assignment -library "sensor_recon" -name QIP_FILE [file join $::quartus(qip_path) "submodules/st_splitter16.qip"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/stl2sts.v"]
+set_global_assignment -library "sensor_recon" -name QIP_FILE [file join $::quartus(qip_path) "submodules/ram4bkg.qip"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/calibration.v"]
+set_global_assignment -library "sensor_recon" -name QIP_FILE [file join $::quartus(qip_path) "submodules/data_caled_ram.qip"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/algo_top_cl_cali_rms.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/sensor_interface.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/serial_rx.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/serial_tx.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/sensor_algo.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/bkg_subtraction_pipe.v"]
+set_global_assignment -library "sensor_recon" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/cluster_locate.sv"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/data_caled_ram.v"]
+set_global_assignment -library "sensor_recon" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/st_splitter16.v"]
+set_global_assignment -library "sensor_recon" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_st_splitter.sv"]

@@ -1,0 +1,26 @@
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_TOOL_NAME "Qsys"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_TOOL_VERSION "19.1"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -library "sensor_algo" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../sensor_algo.sopcinfo"]
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name SLD_INFO "QSYS_NAME sensor_algo HAS_SOPCINFO 1 GENERATION_ID 1721214219"
+set_global_assignment -library "sensor_algo" -name MISC_FILE [file join $::quartus(qip_path) "../sensor_algo.cmp"]
+set_global_assignment -library "sensor_algo" -name SLD_FILE [file join $::quartus(qip_path) "sensor_algo.debuginfo"]
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_GENERATED_DEVICE_FAMILY "{MAX 10}"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_QSYS_MODE "SYSTEM"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "sensor_algo" -name MISC_FILE [file join $::quartus(qip_path) "../../sensor_algo.qsys"]
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_NAME "c2Vuc29yX2FsZ28="
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_DISPLAY_NAME "c2Vuc29yX2FsZ28="
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcyMTIxNDIxOQ==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfQUxHT18wX0NMS19DTE9DS19SQVRF::LTE=::QXV0byBDTE9DS19SQVRF"
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfQUxHT18wX0NMS19DTE9DS19ET01BSU4=::LTE=::QXV0byBDTE9DS19ET01BSU4="
+set_global_assignment -entity "sensor_algo" -library "sensor_algo" -name IP_COMPONENT_PARAMETER "QVVUT19TRU5TT1JfQUxHT18wX0NMS19SRVNFVF9ET01BSU4=::LTE=::QXV0byBSRVNFVF9ET01BSU4="
+
+set_global_assignment -library "sensor_algo" -name VERILOG_FILE [file join $::quartus(qip_path) "sensor_algo.v"]

@@ -1,0 +1,14 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst unsaved.sensor_recon_0 -pg 1 -lvl 1 -y 30
+preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>unsaved</net_container>(MASTER)sensor_recon_0.data_out,(MASTER)unsaved.sensor_recon_0_data_out) 1 1 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.sensor_recon_0_synchro,(SLAVE)sensor_recon_0.synchro) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.sensor_recon_0_rst,(SLAVE)sensor_recon_0.rst) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.sensor_recon_0_status_out,(SLAVE)sensor_recon_0.status_out) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.sensor_recon_0_sensor,(SLAVE)sensor_recon_0.sensor) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.sensor_recon_0_csr,(SLAVE)sensor_recon_0.csr) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)sensor_recon_0.clk,(SLAVE)unsaved.sensor_recon_0_clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(MASTER)unsaved.sensor_recon_0_calibration_ram_interface,(MASTER)sensor_recon_0.calibration_ram_interface) 1 1 1 NJ
+levelinfo -pg 1 0 170 650
+levelinfo -hier unsaved 180 210 430
